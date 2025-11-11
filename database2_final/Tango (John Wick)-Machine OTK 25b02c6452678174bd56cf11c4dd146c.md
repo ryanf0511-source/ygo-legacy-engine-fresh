@@ -1,0 +1,10 @@
+# Tango (John Wick)-Machine OTK
+
+Event: SJC Orlando 2007
+Card Name: Gatling Dragon
+Card Type: Fusion
+Quantity: 1
+Main/Extra: Extra
+Card ID: 87751584
+Deck Key: Tango (John Wick)-Machine OTK | SJC Orlando 2007
+Decklist: Tango (John Wick)-Machine OTK (https://www.notion.so/Tango-John-Wick-Machine-OTK-25b02c645267815a99a6e6567a5e98e0?pvs=21)

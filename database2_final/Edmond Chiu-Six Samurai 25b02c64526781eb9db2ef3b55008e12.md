@@ -1,0 +1,10 @@
+# Edmond Chiu-Six Samurai
+
+Event: SJC Costa Mesa 2008
+Card Name: Great Shogun Shien
+Card Type: Monster
+Quantity: 3
+Main/Extra: Main
+Card ID: 63176202
+Deck Key: Edmond Chiu-Six Samurai | SJC Costa Mesa 2008
+Decklist: Edmond Chiu-Six Samurai (https://www.notion.so/Edmond-Chiu-Six-Samurai-25b02c64526781f3ab70d0ce913913a4?pvs=21)

@@ -1,0 +1,10 @@
+# Mike Rosenberg-Flip Control
+
+Event: SJC Pomona 2005
+Card Name: Back to Square One
+Card Type: Spell
+Quantity: 1
+Main/Extra: Main
+Card ID: 47453433
+Deck Key: Mike Rosenberg-Flip Control | SJC Pomona 2005
+Decklist: Mike Rosenberg-Flip Control (https://www.notion.so/Mike-Rosenberg-Flip-Control-25b02c64526781d1bbbad004c13dc16c?pvs=21)

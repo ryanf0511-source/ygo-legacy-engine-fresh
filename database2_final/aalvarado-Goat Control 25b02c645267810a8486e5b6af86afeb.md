@@ -1,0 +1,10 @@
+# aalvarado-Goat Control
+
+Event: SJC Charlotte 2005
+Card Name: Snatch Steal
+Card Type: Spell
+Quantity: 1
+Main/Extra: Main
+Card ID: 45986603
+Deck Key: aalvarado-Goat Control | SJC Charlotte 2005
+Decklist: aalvarado-Goat Control (https://www.notion.so/aalvarado-Goat-Control-25b02c6452678157af11cec0b7fd031c?pvs=21)

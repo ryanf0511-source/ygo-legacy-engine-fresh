@@ -1,0 +1,10 @@
+# Nathan Kral-TeleDAD
+
+Event: SJC Tulsa 2008
+Card Name: Thought Ruler Archfiend
+Card Type: Synchro
+Quantity: 2
+Main/Extra: Extra
+Card ID: 70780151
+Deck Key: Nathan Kral-TeleDAD | SJC Tulsa 2008
+Decklist: Nathan Kral-TeleDAD (https://www.notion.so/Nathan-Kral-TeleDAD-25b02c64526781a98e8cd55a7d842723?pvs=21)

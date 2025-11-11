@@ -1,0 +1,10 @@
+# Jeff Baumgartner-Bazoo Return
+
+Event: SJC St. Louis 2007
+Card Name: Cyber Twin Dragon
+Card Type: Fusion
+Quantity: 1
+Main/Extra: Extra
+Card ID: 74157028
+Deck Key: Jeff Baumgartner-Bazoo Return | SJC St. Louis 2007
+Decklist: Jeff Baumgartner-Bazoo Return (https://www.notion.so/Jeff-Baumgartner-Bazoo-Return-25b02c64526781ef9500e2cd8fc44b0a?pvs=21)

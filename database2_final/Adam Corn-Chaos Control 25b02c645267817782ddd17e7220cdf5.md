@@ -1,0 +1,10 @@
+# Adam Corn-Chaos Control
+
+Event: SJC Long Beach 2006
+Card Name: Cyber Twin Dragon
+Card Type: Fusion
+Quantity: 1
+Main/Extra: Extra
+Card ID: 74157028
+Deck Key: Adam Corn-Chaos Control | SJC Long Beach 2006
+Decklist: Adam Corn-Chaos Control (https://www.notion.so/Adam-Corn-Chaos-Control-25b02c64526781c0947be52ca543a22f?pvs=21)

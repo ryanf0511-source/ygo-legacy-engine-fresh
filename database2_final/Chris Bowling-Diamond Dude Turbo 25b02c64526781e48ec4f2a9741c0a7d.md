@@ -1,0 +1,10 @@
+# Chris Bowling-Diamond Dude Turbo
+
+Event: SJC Houston 2008
+Card Name: Divine Sword - Phoenix Blade
+Card Type: Spell
+Quantity: 3
+Main/Extra: Main
+Card ID: 31423101
+Deck Key: Chris Bowling-Diamond Dude Turbo | SJC Houston 2008
+Decklist: Chris Bowling-Diamond Dude Turbo (https://www.notion.so/Chris-Bowling-Diamond-Dude-Turbo-25b02c64526781789a7cdecba12e60fc?pvs=21)

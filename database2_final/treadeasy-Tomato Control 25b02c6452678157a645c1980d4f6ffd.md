@@ -1,0 +1,10 @@
+# treadeasy-Tomato Control
+
+Event: SJC Durham 2006
+Card Name: Sakuretsu Armor
+Card Type: Trap
+Quantity: 3
+Main/Extra: Main
+Card ID: 56120475
+Deck Key: treadeasy-Tomato Control | SJC Durham 2006
+Decklist: treadeasy-Tomato Control (https://www.notion.so/treadeasy-Tomato-Control-25b02c6452678120bdddc4b461194a66?pvs=21)

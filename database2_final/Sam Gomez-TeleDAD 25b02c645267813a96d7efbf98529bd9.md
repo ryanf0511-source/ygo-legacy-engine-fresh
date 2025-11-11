@@ -1,0 +1,10 @@
+# Sam Gomez-TeleDAD
+
+Event: SJC San Francisco 2009
+Card Name: Cold Wave
+Card Type: Spell
+Quantity: 1
+Main/Extra: Main
+Card ID: 60682203
+Deck Key: Sam Gomez-TeleDAD | SJC San Francisco 2009
+Decklist: Sam Gomez-TeleDAD (https://www.notion.so/Sam-Gomez-TeleDAD-25b02c6452678108a841d057da0d9590?pvs=21)

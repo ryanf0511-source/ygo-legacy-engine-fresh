@@ -1,0 +1,10 @@
+# Bounty-Machine OTK
+
+Event: SJC Orlando 2007
+Card Name: Future Fusion
+Card Type: Spell
+Quantity: 1
+Main/Extra: Main
+Card ID: 77565204
+Deck Key: Bounty-Machine OTK | SJC Orlando 2007
+Decklist: Bounty-Machine OTK (https://www.notion.so/Bounty-Machine-OTK-25b02c645267815483b5d32446c5a43b?pvs=21)

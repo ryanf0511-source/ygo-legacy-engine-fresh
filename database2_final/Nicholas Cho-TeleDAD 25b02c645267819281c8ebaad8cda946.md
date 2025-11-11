@@ -1,0 +1,10 @@
+# Nicholas Cho-TeleDAD
+
+Event: SJC Chicago 2008
+Card Name: Destiny Draw
+Card Type: Spell
+Quantity: 3
+Main/Extra: Main
+Card ID: 45809008
+Deck Key: Nicholas Cho-TeleDAD | SJC Chicago 2008
+Decklist: Nicholas Cho-TeleDAD (https://www.notion.so/Nicholas-Cho-TeleDAD-25b02c64526781969b6ff63dfe9d6822?pvs=21)

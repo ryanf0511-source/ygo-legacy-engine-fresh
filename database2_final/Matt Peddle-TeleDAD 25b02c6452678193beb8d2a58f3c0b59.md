@@ -1,0 +1,10 @@
+# Matt Peddle-TeleDAD
+
+Event: SJC Detroit 2008
+Card Name: Phoenix Wing Wind Blast
+Card Type: Trap
+Quantity: 2
+Main/Extra: Main
+Card ID: 63356631
+Deck Key: Matt Peddle-TeleDAD | SJC Detroit 2008
+Decklist: Matt Peddle-TeleDAD (https://www.notion.so/Matt-Peddle-TeleDAD-25b02c64526781cdb997c27044313551?pvs=21)
