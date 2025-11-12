@@ -320,10 +320,16 @@ async def get_stats():
         events=sorted(events)
     )
 
-# Get Master 2P List
+# Get Master 2P List (Main Deck)
 @api_router.get("/master-2p-list")
 async def get_master_2p_list():
     cards = await db.master_2p_list.find({}, {"_id": 0}).sort("card_name", 1).to_list(None)
+    return {"cards": cards}
+
+# Get Master Extra Deck List
+@api_router.get("/master-extra-deck-list")
+async def get_master_extra_deck_list():
+    cards = await db.master_extra_deck_list.find({}, {"_id": 0}).sort("card_name", 1).to_list(None)
     return {"cards": cards}
 
 # Include the router in the main app
