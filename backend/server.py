@@ -320,6 +320,12 @@ async def get_stats():
         events=sorted(events)
     )
 
+# Get Master 2P List
+@api_router.get("/master-2p-list")
+async def get_master_2p_list():
+    cards = await db.master_2p_list.find({}, {"_id": 0}).sort("card_name", 1).to_list(None)
+    return {"cards": cards}
+
 # Include the router in the main app
 app.include_router(api_router)
 
