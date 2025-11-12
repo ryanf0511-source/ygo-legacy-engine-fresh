@@ -108,21 +108,21 @@ const NewHomePage = () => {
         {/* Streaming Schedule */}
         <Link
           to="/schedule"
-          className="md:col-span-2 bg-gradient-to-br from-pink-600/20 to-pink-800/20 backdrop-blur-md rounded-xl border border-pink-500/30 p-6 hover:border-pink-500/60 hover:shadow-xl hover:shadow-pink-500/20 transition-all duration-300 group flex flex-col justify-between"
+          className="md:col-span-2 bg-gradient-to-br from-rose-600/20 via-red-600/20 to-rose-800/20 backdrop-blur-md rounded-xl border border-rose-500/40 p-6 hover:border-rose-400/80 hover:shadow-xl hover:shadow-rose-500/30 transition-all duration-300 group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center space-x-3 mb-3">
-              <div className="p-2 bg-pink-500/20 rounded-lg">
-                <svg className="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-2 bg-rose-500/20 border border-rose-400/30 rounded-lg">
+                <svg className="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-pink-400 transition-colors">Streaming</h3>
+                <h3 className="text-lg font-bold text-white group-hover:text-rose-400 transition-colors">Streaming</h3>
               </div>
             </div>
             <p className="text-gray-300 text-sm mb-2">Next stream:</p>
-            <p className="text-pink-400 font-bold">Saturday @ 7:00 PM</p>
+            <p className="text-rose-400 font-bold">Saturday @ 7:00 PM</p>
             <p className="text-gray-400 text-xs mt-1">Format TBD</p>
           </div>
         </Link>
