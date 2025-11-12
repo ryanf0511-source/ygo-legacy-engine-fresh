@@ -47,7 +47,6 @@ const AdvancedFilters = ({ onFilterChange, filters }) => {
       player_name: "",
       deck_types: [],
       events: [],
-      card_name: "",
       search: "",
     });
   };
@@ -56,7 +55,6 @@ const AdvancedFilters = ({ onFilterChange, filters }) => {
     filters.player_name ||
     (filters.deck_types && filters.deck_types.length > 0) ||
     (filters.events && filters.events.length > 0) ||
-    filters.card_name ||
     filters.search;
 
   return (
@@ -76,7 +74,7 @@ const AdvancedFilters = ({ onFilterChange, filters }) => {
               d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
             />
           </svg>
-          Advanced Filters
+          Filters
         </h2>
         <div className="flex space-x-2">
           {hasActiveFilters && (
@@ -127,22 +125,6 @@ const AdvancedFilters = ({ onFilterChange, filters }) => {
                   onFilterChange({ ...filters, player_name: e.target.value })
                 }
                 placeholder="Enter player name..."
-                className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
-
-            {/* Card Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Card Name (Find decks containing this card)
-              </label>
-              <input
-                type="text"
-                value={filters.card_name || ""}
-                onChange={(e) =>
-                  onFilterChange({ ...filters, card_name: e.target.value })
-                }
-                placeholder="Enter card name..."
                 className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
             </div>
@@ -209,11 +191,6 @@ const AdvancedFilters = ({ onFilterChange, filters }) => {
             {filters.player_name && (
               <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded">
                 Player: {filters.player_name}
-              </span>
-            )}
-            {filters.card_name && (
-              <span className="px-2 py-1 text-xs bg-green-500/20 text-green-300 rounded">
-                Card: {filters.card_name}
               </span>
             )}
             {(filters.deck_types || []).map((dt) => (

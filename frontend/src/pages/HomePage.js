@@ -16,7 +16,6 @@ const HomePage = () => {
     player_name: "",
     deck_types: [],
     events: [],
-    card_name: "",
     search: "",
   });
   const [sortBy, setSortBy] = useState("player_name");
@@ -41,7 +40,6 @@ const HomePage = () => {
         params.deck_types = filters.deck_types.join(",");
       if (filters.events && filters.events.length > 0)
         params.events = filters.events.join(",");
-      if (filters.card_name) params.card_name = filters.card_name;
       if (filters.search) params.search = filters.search;
 
       const response = await axios.get(`${API}/decklists`, { params });
@@ -113,6 +111,9 @@ const HomePage = () => {
           Yu-Gi-Oh! SJC <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">Decklist Database</span>
         </h1>
         <p className="text-gray-400">Browse and search through tournament-winning decklists</p>
+        <p className="text-sm text-gray-500 mt-2">
+          💡 Tip: Looking for specific cards? Check out the <Link to="/cards" className="text-purple-400 hover:text-purple-300 underline">Card Browser</Link> tab!
+        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -191,7 +192,6 @@ const HomePage = () => {
                   player_name: "",
                   deck_types: [],
                   events: [],
-                  card_name: "",
                   search: "",
                 })}
                 className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
