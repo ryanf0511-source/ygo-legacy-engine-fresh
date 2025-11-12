@@ -34,7 +34,33 @@ const CardBrowser = () => {
       if (eventFilter) params.event = eventFilter;
 
       const response = await axios.get(`${API}/card-records`, { params });
-      setRecords(response.data.items || []);
+      
+      // Apply multi-level sorting client-side
+      const sortedRecords = (response.data.items || []).sort((a, b) => {
+        // Extract year from event (e.g., "SJC Houston 2008" -> 2008)
+        const yearA = parseInt(a.event.match(/\d{4}/)?.[0] || "0");
+        const yearB = parseInt(b.event.match(/\d{4}/)?.[0] || "0");
+        
+        // 1. Sort by Year (ascending)
+        if (yearA !== yearB) return yearA - yearB;
+        
+        // 2. Sort by Deck Name (ascending)
+        const deckCompare = `${a.player_name}-${a.deck_name}`.localeCompare(`${b.player_name}-${b.deck_name}`);
+        if (deckCompare !== 0) return deckCompare;
+        
+        // 3. Sort by Main/Extra (ascending - Extra before Main alphabetically)
+        const mainExtraCompare = a.main_extra.localeCompare(b.main_extra);
+        if (mainExtraCompare !== 0) return mainExtraCompare;
+        
+        // 4. Sort by Card Type (ascending)
+        const cardTypeCompare = (a.card_type || "").localeCompare(b.card_type || "");
+        if (cardTypeCompare !== 0) return cardTypeCompare;
+        
+        // 5. Sort by Card Name (ascending)
+        return a.card_name.localeCompare(b.card_name);
+      });
+      
+      setRecords(sortedRecords);
       setTotal(response.data.total);
       setTotalPages(response.data.total_pages);
     } catch (error) {
