@@ -6,6 +6,8 @@ import DecklistDetail from "@/pages/DecklistDetail";
 import StatsPage from "@/pages/StatsPage";
 import CardBrowser from "@/pages/CardBrowser";
 import Master2PList from "@/pages/Master2PList";
+import MasterListsHub from "@/pages/MasterListsHub";
+import MasterExtraDeck from "@/pages/MasterExtraDeck";
 import Layout from "@/components/Layout";
 
 const UnderConstruction = () => (
