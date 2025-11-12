@@ -82,12 +82,12 @@ const Master2PList = () => {
   };
 
   const downloadCSV = () => {
-    const headers = ["Card Name", "Card Type", "Max Qty Needed", "Checkbox"];
+    const headers = ["Card Name", "Card Type", "Max Qty Needed", "Have It"];
     const rows = filteredCards.map((card) => [
       card.card_name,
       card.card_type,
       card.max_qty,
-      card.checkbox,
+      checkedCards[card.card_name] ? "Yes" : "No",
     ]);
 
     const csvContent = [
@@ -105,6 +105,18 @@ const Master2PList = () => {
     link.click();
     document.body.removeChild(link);
   };
+
+  const calculateProgress = () => {
+    const totalCards = cards.length;
+    const checkedCount = Object.keys(checkedCards).length;
+    return {
+      checked: checkedCount,
+      total: totalCards,
+      percentage: totalCards > 0 ? Math.round((checkedCount / totalCards) * 100) : 0,
+    };
+  };
+
+  const progress = calculateProgress();
 
   const uniqueCardTypes = [...new Set(cards.map((c) => c.card_type).filter(Boolean))];
 
