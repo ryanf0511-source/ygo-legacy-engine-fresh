@@ -138,6 +138,10 @@ const Master2PList = () => {
 
   const uniqueCardTypes = [...new Set(cards.map((c) => c.card_type).filter(Boolean))];
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
