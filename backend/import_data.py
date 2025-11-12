@@ -111,7 +111,7 @@ async def import_csv_decklists():
 
 async def import_card_usage():
     """Import card usage data from MD files and CSV"""
-    csv_path = Path('/app/database2_final/YGO_SJC_Main_Extra_Only_Deck_Card_Usage_Notion_FIN 57ab801eed8a44c0ba41efc7f446cf5e.csv')
+    csv_path = Path('/app/database2_final/YGO_SJC_Main_Extra_Only_Deck_Card_Usage_Notion_FIN 57ab801eed8a44c0ba41efc7f446cf5e_all.csv')
     
     if not csv_path.exists():
         print(f"Card usage CSV file not found at {csv_path}")
@@ -123,29 +123,30 @@ async def import_card_usage():
     with open(csv_path, 'r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # Extract data from CSV
-            deck_key = row.get('Deck Key', '')
+            # Extract data directly from CSV columns
+            full_deck_name = row.get('Deck Name', '')
             card_name = row.get('Card Name', '')
             card_type = row.get('Card Type', '')
-            quantity = int(row.get('Quantity', 0))
+            quantity_str = row.get('Quantity', '0')
+            try:
+                quantity = int(quantity_str) if quantity_str else 0
+            except ValueError:
+                quantity = 0
             main_extra = row.get('Main/Extra', 'Main')
             card_id = row.get('Card ID', '')
+            event = row.get('Event', '')
+            deck_key = row.get('Deck Key', '')
             
-            # Parse player name and deck type from deck_key
-            if ' | ' in deck_key:
-                name_part = deck_key.split(' | ')[0]
-                if '-' in name_part:
-                    parts = name_part.split('-', 1)
-                    player_name = parts[0].strip()
-                    deck_name = parts[1].strip() if len(parts) > 1 else 'Unknown'
-                else:
-                    player_name = name_part
-                    deck_name = 'Unknown'
-                event = deck_key.split(' | ')[1] if ' | ' in deck_key else 'Unknown'
+            # Parse player name and deck type from full_deck_name
+            # Format is typically "Player Name-Deck Type"
+            if '-' in full_deck_name:
+                parts = full_deck_name.split('-', 1)
+                player_name = parts[0].strip()
+                deck_name = parts[1].strip() if len(parts) > 1 else 'Unknown'
             else:
-                player_name = 'Unknown'
+                # If no dash, treat entire name as player name
+                player_name = full_deck_name.strip()
                 deck_name = 'Unknown'
-                event = 'Unknown'
             
             card_usage = {
                 "id": str(uuid.uuid4()),
