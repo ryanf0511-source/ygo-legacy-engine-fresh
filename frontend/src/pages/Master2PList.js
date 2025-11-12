@@ -143,8 +143,8 @@ const Master2PList = () => {
         <div className="max-w-2xl mx-auto mt-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-300">Collection Progress</span>
-            <span className="text-sm font-medium text-green-400">
-              {progress.collected} / {progress.total} cards ({progress.percentage}%)
+            <span className="text-lg font-bold text-green-400">
+              {progress.percentage}% Complete
             </span>
           </div>
           <div className="w-full bg-gray-700 rounded-full h-4">
