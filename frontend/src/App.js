@@ -30,7 +30,9 @@ function App() {
             <Route path="/decklists" element={<HomePage />} />
             <Route path="/decklist/:id" element={<DecklistDetail />} />
             <Route path="/cards" element={<CardBrowser />} />
+            <Route path="/master-lists" element={<MasterListsHub />} />
             <Route path="/master-2p" element={<Master2PList />} />
+            <Route path="/master-extra-deck" element={<MasterExtraDeck />} />
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/schedule" element={<UnderConstruction />} />
           </Routes>
