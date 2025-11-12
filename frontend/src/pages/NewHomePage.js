@@ -6,11 +6,11 @@ const NewHomePage = () => {
       {/* Hero/Story Section */}
       <div className="text-center max-w-4xl mx-auto space-y-6">
         <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-          YGO SJC <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">Database</span>
+          YGO SJC <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">Database</span>
         </h1>
-        <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-8 shadow-xl">
+        <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 p-8 shadow-2xl shadow-fuchsia-500/10">
           <div className="text-gray-300 space-y-4 text-left">
-            <p className="text-lg italic text-purple-400">
+            <p className="text-lg italic text-amber-400 font-semibold">
               "The story of how this database came to be..."
             </p>
             <p>
