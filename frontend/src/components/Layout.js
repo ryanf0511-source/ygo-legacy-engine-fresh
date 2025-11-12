@@ -27,27 +27,7 @@ const Layout = ({ children }) => {
                     : "text-gray-300 hover:bg-gray-700 hover:text-white"
                 }`}
               >
-                Decklists
-              </Link>
-              <Link
-                to="/cards"
-                className={`px-4 py-2 rounded-lg transition-all ${
-                  isActive("/cards")
-                    ? "bg-purple-600 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                }`}
-              >
-                Card Browser
-              </Link>
-              <Link
-                to="/stats"
-                className={`px-4 py-2 rounded-lg transition-all ${
-                  isActive("/stats")
-                    ? "bg-purple-600 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                }`}
-              >
-                Statistics
+                Home
               </Link>
             </div>
           </div>
