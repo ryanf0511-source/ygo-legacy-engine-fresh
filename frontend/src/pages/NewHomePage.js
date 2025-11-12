@@ -87,17 +87,17 @@ const NewHomePage = () => {
         {/* Master 2P List */}
         <Link
           to="/master-2p"
-          className="md:col-span-2 bg-gradient-to-br from-green-600/20 to-green-800/20 backdrop-blur-md rounded-xl border border-green-500/30 p-6 hover:border-green-500/60 hover:shadow-xl hover:shadow-green-500/20 transition-all duration-300 group flex flex-col justify-between"
+          className="md:col-span-2 bg-gradient-to-br from-emerald-600/20 via-green-600/20 to-amber-800/20 backdrop-blur-md rounded-xl border border-emerald-500/40 p-6 hover:border-amber-400/80 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center space-x-3 mb-3">
-              <div className="p-2 bg-green-500/20 rounded-lg">
-                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-2 bg-emerald-500/20 border border-emerald-400/30 rounded-lg">
+                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-green-400 transition-colors">Master 2P List</h3>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Master 2P List</h3>
                 <p className="text-xs text-gray-400">509 cards</p>
               </div>
             </div>
