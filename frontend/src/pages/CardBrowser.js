@@ -276,8 +276,8 @@ const CardBrowser = () => {
                     </td>
                     <td className="px-4 py-3">
                       {record.decklist_id ? (
-                        <Link
-                          to={`/decklist/${record.decklist_id}`}
+                        <button
+                          onClick={() => setSelectedDecklistId(record.decklist_id)}
                           className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors"
                         >
                           <svg
@@ -296,7 +296,7 @@ const CardBrowser = () => {
                           <span className="text-xs">
                             {record.player_name}-{record.deck_name}
                           </span>
-                        </Link>
+                        </button>
                       ) : (
                         <span className="text-gray-500 text-xs">No link</span>
                       )}
