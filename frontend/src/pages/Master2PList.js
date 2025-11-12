@@ -10,14 +10,48 @@ const Master2PList = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [cardTypeFilter, setCardTypeFilter] = useState("");
+  const [checkedCards, setCheckedCards] = useState({});
 
   useEffect(() => {
     fetchCards();
+    loadCheckedCards();
   }, []);
 
   useEffect(() => {
     filterCards();
   }, [cards, searchTerm, cardTypeFilter]);
+
+  const loadCheckedCards = () => {
+    const saved = localStorage.getItem("master2p_checked");
+    if (saved) {
+      try {
+        setCheckedCards(JSON.parse(saved));
+      } catch (e) {
+        console.error("Error loading checked cards:", e);
+      }
+    }
+  };
+
+  const saveCheckedCards = (newChecked) => {
+    localStorage.setItem("master2p_checked", JSON.stringify(newChecked));
+    setCheckedCards(newChecked);
+  };
+
+  const toggleCard = (cardName) => {
+    const newChecked = { ...checkedCards };
+    if (newChecked[cardName]) {
+      delete newChecked[cardName];
+    } else {
+      newChecked[cardName] = true;
+    }
+    saveCheckedCards(newChecked);
+  };
+
+  const clearAllChecks = () => {
+    if (window.confirm("Are you sure you want to clear all checked items?")) {
+      saveCheckedCards({});
+    }
+  };
 
   const fetchCards = async () => {
     setLoading(true);
