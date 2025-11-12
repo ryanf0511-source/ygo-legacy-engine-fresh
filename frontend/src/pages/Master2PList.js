@@ -240,13 +240,18 @@ const Master2PList = () => {
                     Max Qty Needed
                   </th>
                   <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Checkbox
+                    Have It?
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-700/30">
                 {filteredCards.map((card, index) => (
-                  <tr key={index} className="hover:bg-gray-700/20 transition-colors">
+                  <tr 
+                    key={index} 
+                    className={`hover:bg-gray-700/20 transition-colors ${
+                      checkedCards[card.card_name] ? "bg-green-900/10" : ""
+                    }`}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {index + 1}
                     </td>
@@ -261,8 +266,13 @@ const Master2PList = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-bold text-green-400">
                       {card.max_qty}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-400">
-                      {card.checkbox}
+                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                      <input
+                        type="checkbox"
+                        checked={checkedCards[card.card_name] || false}
+                        onChange={() => toggleCard(card.card_name)}
+                        className="w-5 h-5 text-green-600 bg-gray-700 border-gray-600 rounded focus:ring-green-500 focus:ring-2 cursor-pointer"
+                      />
                     </td>
                   </tr>
                 ))}
