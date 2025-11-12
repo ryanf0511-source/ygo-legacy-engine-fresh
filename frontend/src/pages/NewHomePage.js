@@ -84,24 +84,24 @@ const NewHomePage = () => {
           </div>
         </Link>
 
-        {/* Master 2P List */}
+        {/* Master Lists Hub */}
         <Link
-          to="/master-2p"
+          to="/master-lists"
           className="md:col-span-2 bg-gradient-to-br from-emerald-600/20 via-green-600/20 to-amber-800/20 backdrop-blur-md rounded-xl border border-emerald-500/40 p-6 hover:border-amber-400/80 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center space-x-3 mb-3">
               <div className="p-2 bg-emerald-500/20 border border-emerald-400/30 rounded-lg">
                 <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Master 2P List</h3>
-                <p className="text-xs text-gray-400">509 cards</p>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">Master Lists</h3>
+                <p className="text-xs text-gray-400">Collection checklists</p>
               </div>
             </div>
-            <p className="text-gray-300 text-sm">Complete card inventory for Master 2 Player collection with CSV download.</p>
+            <p className="text-gray-300 text-sm">Complete card inventories for different formats (Main Deck, Extra Deck, and more)</p>
           </div>
         </Link>
 
