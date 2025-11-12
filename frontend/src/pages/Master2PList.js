@@ -129,6 +129,22 @@ const Master2PList = () => {
         </h1>
         <p className="text-gray-400">Complete card inventory for Master 2 Player collection</p>
         <p className="text-sm text-gray-500 mt-2">{cards.length} cards total</p>
+        
+        {/* Progress Bar */}
+        <div className="max-w-2xl mx-auto mt-6">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-gray-300">Collection Progress</span>
+            <span className="text-sm font-medium text-green-400">
+              {progress.checked} / {progress.total} ({progress.percentage}%)
+            </span>
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-4">
+            <div
+              className="bg-gradient-to-r from-green-500 to-emerald-600 h-4 rounded-full transition-all duration-500"
+              style={{ width: `${progress.percentage}%` }}
+            ></div>
+          </div>
+        </div>
       </div>
 
       {/* Filters and Download */}
