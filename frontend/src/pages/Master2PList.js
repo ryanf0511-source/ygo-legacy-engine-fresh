@@ -57,8 +57,11 @@ const Master2PList = () => {
   };
 
   const clearAllChecks = () => {
-    if (window.confirm("Are you sure you want to clear all checked items?")) {
+    const confirmed = window.confirm("Are you sure you want to reset all your progress? This will uncheck all cards.");
+    if (confirmed) {
       saveCheckedCards({});
+      // Force a re-render
+      setCheckedCards({});
     }
   };
 
