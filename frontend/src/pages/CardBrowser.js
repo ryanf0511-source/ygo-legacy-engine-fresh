@@ -6,203 +6,191 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const CardBrowser = () => {
-  const [cards, setCards] = useState([]);
+  const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [total, setTotal] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  const [cardTypeFilter, setCardTypeFilter] = useState("all");
-  const [mainExtraFilter, setMainExtraFilter] = useState("all");
-  const [sortBy, setSortBy] = useState("deck_count");
-  const [limit, setLimit] = useState(100);
-  const [filteredCards, setFilteredCards] = useState([]);
+  const [cardTypeFilter, setCardTypeFilter] = useState("");
+  const [mainExtraFilter, setMainExtraFilter] = useState("");
+  const [deckNameFilter, setDeckNameFilter] = useState("");
+  const [eventFilter, setEventFilter] = useState("");
+  const [pageSize] = useState(50);
 
   useEffect(() => {
-    fetchCards();
-  }, [limit, mainExtraFilter]);
+    fetchRecords();
+  }, [page, searchTerm, cardTypeFilter, mainExtraFilter, deckNameFilter, eventFilter]);
 
-  useEffect(() => {
-    filterCards();
-  }, [cards, searchTerm, cardTypeFilter]);
-
-  const fetchCards = async () => {
+  const fetchRecords = async () => {
     setLoading(true);
     try {
-      const params = { limit };
-      if (mainExtraFilter !== "all") {
-        params.main_extra = mainExtraFilter === "main" ? "Main" : "Extra";
-      }
-      const response = await axios.get(`${API}/card-usage`, { params });
-      setCards(response.data.cards || []);
+      const params = { page, page_size: pageSize };
+      if (searchTerm) params.search = searchTerm;
+      if (cardTypeFilter) params.card_type = cardTypeFilter;
+      if (mainExtraFilter) params.main_extra = mainExtraFilter;
+      if (deckNameFilter) params.deck_name = deckNameFilter;
+      if (eventFilter) params.event = eventFilter;
+
+      const response = await axios.get(`${API}/card-records`, { params });
+      setRecords(response.data.items || []);
+      setTotal(response.data.total);
+      setTotalPages(response.data.total_pages);
     } catch (error) {
-      console.error("Error fetching cards:", error);
+      console.error("Error fetching card records:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const filterCards = () => {
-    let filtered = [...cards];
-
-    // Filter by search term
-    if (searchTerm) {
-      filtered = filtered.filter((card) =>
-        card.card_name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    // Filter by card type
-    if (cardTypeFilter !== "all") {
-      filtered = filtered.filter(
-        (card) => card.card_type?.toLowerCase() === cardTypeFilter.toLowerCase()
-      );
-    }
-
-    // Sort
-    if (sortBy === "deck_count") {
-      filtered.sort((a, b) => b.deck_count - a.deck_count);
-    } else if (sortBy === "total_copies") {
-      filtered.sort((a, b) => b.total_copies - a.total_copies);
-    } else if (sortBy === "name") {
-      filtered.sort((a, b) => a.card_name.localeCompare(b.card_name));
-    }
-
-    setFilteredCards(filtered);
-  };
-
   const getCardTypeColor = (type) => {
     const typeColors = {
-      Monster: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-      Spell: "bg-green-500/20 text-green-400 border-green-500/30",
-      Trap: "bg-pink-500/20 text-pink-400 border-pink-500/30",
+      Monster: "bg-orange-600/30 text-orange-300 border-orange-600/50",
+      Spell: "bg-green-600/30 text-green-300 border-green-600/50",
+      Trap: "bg-pink-600/30 text-pink-300 border-pink-600/50",
     };
-    return typeColors[type] || "bg-gray-500/20 text-gray-400 border-gray-500/30";
+    return typeColors[type] || "bg-gray-600/30 text-gray-300 border-gray-600/50";
   };
 
-  const uniqueCardTypes = [...new Set(cards.map((c) => c.card_type).filter(Boolean))];
+  const getMainExtraColor = (mainExtra) => {
+    return mainExtra === "Main" 
+      ? "bg-red-600/30 text-red-300 border-red-600/50"
+      : "bg-blue-600/30 text-blue-300 border-blue-600/50";
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setCardTypeFilter("");
+    setMainExtraFilter("");
+    setDeckNameFilter("");
+    setEventFilter("");
+    setPage(1);
+  };
+
+  const hasActiveFilters = searchTerm || cardTypeFilter || mainExtraFilter || deckNameFilter || eventFilter;
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">
-          Card <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">Browser</span>
+      {/* Header - Notion Style */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-white mb-2">
+          YGO SJC Card Usage Database
         </h1>
-        <p className="text-gray-400">Search and explore individual card usage across all tournaments</p>
+        <p className="text-gray-400 text-sm">Individual card usage records across all tournaments</p>
       </div>
 
-      {/* Filters */}
-      <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-6 shadow-xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Search */}
-          <div className="lg:col-span-2">
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Search Card Name
-            </label>
+      {/* Search and Filters - Notion Style */}
+      <div className="bg-gray-800/50 backdrop-blur-md rounded-lg border border-gray-700/50 p-4 space-y-4">
+        {/* Search Bar */}
+        <div className="flex items-center space-x-3">
+          <div className="flex-1 relative">
+            <svg
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
             <input
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Type card name..."
-              className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPage(1);
+              }}
+              placeholder="Search card name..."
+              className="w-full pl-10 pr-4 py-2 bg-gray-700/50 border border-gray-600 rounded-md text-white text-sm placeholder-gray-400 focus:ring-1 focus:ring-purple-500 focus:border-purple-500"
             />
+            {searchTerm && (
+              <button
+                onClick={() => {
+                  setSearchTerm("");
+                  setPage(1);
+                }}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
-
-          {/* Card Type Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Card Type
-            </label>
-            <select
-              value={cardTypeFilter}
-              onChange={(e) => setCardTypeFilter(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
+          {hasActiveFilters && (
+            <button
+              onClick={clearFilters}
+              className="px-3 py-2 text-sm bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-colors"
             >
-              <option value="all">All Types</option>
-              {uniqueCardTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Main/Extra Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Deck Location
-            </label>
-            <select
-              value={mainExtraFilter}
-              onChange={(e) => setMainExtraFilter(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-purple-500"
-            >
-              <option value="all">All Cards</option>
-              <option value="main">Main Deck Only</option>
-              <option value="extra">Extra Deck Only</option>
-            </select>
-          </div>
+              Reset
+            </button>
+          )}
         </div>
 
-        {/* Sort and Limit Controls */}
-        <div className="flex flex-wrap items-center justify-between mt-4 pt-4 border-t border-gray-700 gap-4">
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-400">Sort by:</span>
-            <button
-              onClick={() => setSortBy("deck_count")}
-              className={`px-3 py-1 rounded text-sm transition-all ${
-                sortBy === "deck_count"
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-            >
-              Popularity
-            </button>
-            <button
-              onClick={() => setSortBy("total_copies")}
-              className={`px-3 py-1 rounded text-sm transition-all ${
-                sortBy === "total_copies"
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-            >
-              Total Copies
-            </button>
-            <button
-              onClick={() => setSortBy("name")}
-              className={`px-3 py-1 rounded text-sm transition-all ${
-                sortBy === "name"
-                  ? "bg-purple-600 text-white"
-                  : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-              }`}
-            >
-              Name A-Z
-            </button>
-          </div>
+        {/* Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2">
+          <select
+            value={cardTypeFilter}
+            onChange={(e) => {
+              setCardTypeFilter(e.target.value);
+              setPage(1);
+            }}
+            className="px-3 py-1.5 text-sm bg-gray-700/50 border border-gray-600 rounded-md text-white focus:ring-1 focus:ring-purple-500"
+          >
+            <option value="">All Card Types</option>
+            <option value="Monster">Monster</option>
+            <option value="Spell">Spell</option>
+            <option value="Trap">Trap</option>
+          </select>
 
-          <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-400">Show:</span>
-            <select
-              value={limit}
-              onChange={(e) => setLimit(parseInt(e.target.value))}
-              className="px-3 py-1 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
-            >
-              <option value="50">Top 50</option>
-              <option value="100">Top 100</option>
-              <option value="200">Top 200</option>
-            </select>
-          </div>
+          <select
+            value={mainExtraFilter}
+            onChange={(e) => {
+              setMainExtraFilter(e.target.value);
+              setPage(1);
+            }}
+            className="px-3 py-1.5 text-sm bg-gray-700/50 border border-gray-600 rounded-md text-white focus:ring-1 focus:ring-purple-500"
+          >
+            <option value="">All Locations</option>
+            <option value="Main">Main Deck</option>
+            <option value="Extra">Extra Deck</option>
+          </select>
+
+          <input
+            type="text"
+            value={deckNameFilter}
+            onChange={(e) => {
+              setDeckNameFilter(e.target.value);
+              setPage(1);
+            }}
+            placeholder="Filter by deck/player..."
+            className="px-3 py-1.5 text-sm bg-gray-700/50 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500"
+          />
+
+          <input
+            type="text"
+            value={eventFilter}
+            onChange={(e) => {
+              setEventFilter(e.target.value);
+              setPage(1);
+            }}
+            placeholder="Filter by event..."
+            className="px-3 py-1.5 text-sm bg-gray-700/50 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:ring-1 focus:ring-purple-500"
+          />
         </div>
 
         {/* Results Count */}
-        <div className="mt-4 pt-4 border-t border-gray-700">
-          <p className="text-sm text-gray-400">
-            Showing <span className="text-white font-semibold">{filteredCards.length}</span> cards
-            {searchTerm && (
-              <span>
-                {" "}
-                matching <span className="text-purple-400 font-semibold">"{searchTerm}"</span>
-              </span>
-            )}
-          </p>
+        <div className="text-sm text-gray-400">
+          Showing <span className="text-white font-semibold">{records.length}</span> of{" "}
+          <span className="text-white font-semibold">{total.toLocaleString()}</span> records
         </div>
       </div>
 
@@ -213,76 +201,107 @@ const CardBrowser = () => {
         </div>
       )}
 
-      {/* Cards Table */}
-      {!loading && filteredCards.length > 0 && (
-        <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 overflow-hidden shadow-xl">
+      {/* Table - Notion Style */}
+      {!loading && records.length > 0 && (
+        <div className="bg-gray-800/50 backdrop-blur-md rounded-lg border border-gray-700/50 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-900/50">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-900/50 border-b border-gray-700">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    #
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Deck Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Event
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Card Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Type
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Card Type
                   </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Decks Using
+                  <th className="px-4 py-3 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Quantity
                   </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Total Copies
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Main/Extra
                   </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Avg per Deck
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Card ID
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Decklist
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-700/50">
-                {filteredCards.map((card, index) => {
-                  const avgPerDeck = (card.total_copies / card.deck_count).toFixed(2);
-                  return (
-                    <tr
-                      key={index}
-                      className="hover:bg-gray-700/30 transition-colors"
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                        {index + 1}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-white">
-                          {card.card_name}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span
-                          className={`px-2 py-1 text-xs font-semibold rounded border ${
-                            getCardTypeColor(card.card_type)
-                          }`}
+              <tbody className="divide-y divide-gray-700/30">
+                {records.map((record, index) => (
+                  <tr
+                    key={index}
+                    className="hover:bg-gray-700/20 transition-colors"
+                  >
+                    <td className="px-4 py-3 text-gray-200">
+                      {record.player_name}-{record.deck_name}
+                    </td>
+                    <td className="px-4 py-3 text-gray-300 text-xs">
+                      {record.event}
+                    </td>
+                    <td className="px-4 py-3 text-white font-medium">
+                      {record.card_name}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${
+                          getCardTypeColor(record.card_type)
+                        }`}
+                      >
+                        {record.card_type || "Unknown"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-center text-white">
+                      {record.quantity}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${
+                          getMainExtraColor(record.main_extra)
+                        }`}
+                      >
+                        {record.main_extra}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-gray-400 text-xs">
+                      {record.card_id || "N/A"}
+                    </td>
+                    <td className="px-4 py-3">
+                      {record.decklist_id ? (
+                        <Link
+                          to={`/decklist/${record.decklist_id}`}
+                          className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors"
                         >
-                          {card.card_type || "Unknown"}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        <div className="text-sm font-bold text-purple-400">
-                          {card.deck_count}
-                        </div>
-                        <div className="text-xs text-gray-500">decks</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        <div className="text-sm font-semibold text-blue-400">
-                          {card.total_copies}
-                        </div>
-                        <div className="text-xs text-gray-500">copies</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        <div className="text-sm text-gray-300">{avgPerDeck}</div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                          <svg
+                            className="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                          <span className="text-xs">
+                            {record.player_name}-{record.deck_name}
+                          </span>
+                        </Link>
+                      ) : (
+                        <span className="text-gray-500 text-xs">No link</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -290,8 +309,8 @@ const CardBrowser = () => {
       )}
 
       {/* No Results */}
-      {!loading && filteredCards.length === 0 && (
-        <div className="text-center py-12 bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20">
+      {!loading && records.length === 0 && (
+        <div className="text-center py-12 bg-gray-800/40 backdrop-blur-sm rounded-lg border border-gray-700/50">
           <svg
             className="mx-auto h-12 w-12 text-gray-400"
             fill="none"
@@ -305,16 +324,38 @@ const CardBrowser = () => {
               d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p className="text-gray-400 text-lg mt-4">No cards found matching your filters.</p>
+          <p className="text-gray-400 text-lg mt-4">No records found matching your filters.</p>
           <button
-            onClick={() => {
-              setSearchTerm("");
-              setCardTypeFilter("all");
-            }}
+            onClick={clearFilters}
             className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
           >
             Clear Filters
           </button>
+        </div>
+      )}
+
+      {/* Pagination - Notion Style */}
+      {!loading && totalPages > 1 && (
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-400">
+            Page {page} of {totalPages}
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setPage(Math.max(1, page - 1))}
+              disabled={page === 1}
+              className="px-3 py-1.5 text-sm bg-gray-700 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-colors"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setPage(Math.min(totalPages, page + 1))}
+              disabled={page === totalPages}
+              className="px-3 py-1.5 text-sm bg-gray-700 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600 transition-colors"
+            >
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>
