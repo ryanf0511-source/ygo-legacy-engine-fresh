@@ -68,6 +68,10 @@ const HomePage = () => {
     setPage(1);
   };
 
+  const calculateTotalCards = (cards) => {
+    return cards?.reduce((sum, card) => sum + (card.quantity || 0), 0) || 0;
+  };
+
   const DecklistCard = ({ decklist }) => (
     <Link
       to={`/decklist/${decklist.id}`}
@@ -88,13 +92,13 @@ const HomePage = () => {
             <div className="flex items-center space-x-2">
               <span className="text-xs">Main:</span>
               <span className="font-semibold text-purple-400">
-                {decklist.main_deck?.length || 0}
+                {calculateTotalCards(decklist.main_deck)}
               </span>
             </div>
             <div className="flex items-center space-x-2 mt-1">
               <span className="text-xs">Extra:</span>
               <span className="font-semibold text-blue-400">
-                {decklist.extra_deck?.length || 0}
+                {calculateTotalCards(decklist.extra_deck)}
               </span>
             </div>
           </div>
