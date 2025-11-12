@@ -175,7 +175,7 @@ async def get_decklist(deck_id: str):
         raise HTTPException(status_code=404, detail="Decklist not found")
     return decklist
 
-# Get card usage statistics
+# Get card usage statistics (aggregated)
 @api_router.get("/card-usage")
 async def get_card_usage(
     limit: int = Query(50, ge=1, le=200),
@@ -210,6 +210,74 @@ async def get_card_usage(
     
     results = await db.card_usage.aggregate(pipeline).to_list(limit)
     return {"cards": results}
+
+# Get individual card usage records (Notion-style)
+@api_router.get("/card-records")
+async def get_card_records(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(50, ge=1, le=200),
+    search: Optional[str] = None,
+    card_type: Optional[str] = None,
+    main_extra: Optional[str] = None,
+    event: Optional[str] = None,
+    deck_name: Optional[str] = None
+):
+    # Build filter query
+    query = {}
+    
+    if search:
+        query["card_name"] = {"$regex": search, "$options": "i"}
+    
+    if card_type:
+        query["card_type"] = card_type
+    
+    if main_extra:
+        query["main_extra"] = main_extra
+    
+    if event:
+        query["event"] = {"$regex": event, "$options": "i"}
+    
+    if deck_name:
+        query["$or"] = [
+            {"player_name": {"$regex": deck_name, "$options": "i"}},
+            {"deck_name": {"$regex": deck_name, "$options": "i"}}
+        ]
+    
+    # Get total count
+    total = await db.card_usage.count_documents(query)
+    
+    # Calculate pagination
+    skip = (page - 1) * page_size
+    total_pages = (total + page_size - 1) // page_size
+    
+    # Fetch paginated results
+    items = await db.card_usage.find(query, {"_id": 0}).sort(
+        "card_name", 1
+    ).skip(skip).limit(page_size).to_list(page_size)
+    
+    # For each item, try to find the matching decklist ID
+    for item in items:
+        # Try to find the decklist by matching player_name and deck_name
+        decklist = await db.decklists.find_one(
+            {
+                "player_name": item["player_name"],
+                "deck_name": item["deck_name"],
+                "event": item["event"]
+            },
+            {"id": 1}
+        )
+        if decklist:
+            item["decklist_id"] = decklist["id"]
+        else:
+            item["decklist_id"] = None
+    
+    return {
+        "total": total,
+        "page": page,
+        "page_size": page_size,
+        "total_pages": total_pages,
+        "items": items
+    }
 
 # Get statistics dashboard data
 @api_router.get("/stats", response_model=StatsResponse)
