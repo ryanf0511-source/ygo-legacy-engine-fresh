@@ -60,23 +60,23 @@ const NewHomePage = () => {
         {/* Decklists Database */}
         <Link
           to="/decklists"
-          className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-blue-600/20 to-blue-800/20 backdrop-blur-md rounded-xl border border-blue-500/30 p-6 hover:border-blue-500/60 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 group flex flex-col justify-between"
+          className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-purple-600/20 via-blue-600/20 to-purple-800/20 backdrop-blur-md rounded-xl border border-purple-500/40 p-6 hover:border-purple-400/80 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 group flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="p-3 bg-blue-500/20 rounded-lg">
-                <svg className="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-3 bg-purple-500/20 border border-purple-400/30 rounded-lg">
+                <svg className="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">Decklists</h3>
+                <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">Decklists</h3>
                 <p className="text-sm text-gray-400">911 decks</p>
               </div>
             </div>
             <p className="text-gray-300 text-sm">Browse complete tournament-winning decklists with advanced filtering by player, deck type, and event.</p>
           </div>
-          <div className="flex items-center text-blue-400 group-hover:text-blue-300 transition-colors">
+          <div className="flex items-center text-purple-400 group-hover:text-blue-300 transition-colors">
             <span className="text-sm font-medium">View Decklists</span>
             <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
