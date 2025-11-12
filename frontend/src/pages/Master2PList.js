@@ -107,12 +107,21 @@ const Master2PList = () => {
   };
 
   const calculateProgress = () => {
-    const totalCards = cards.length;
-    const checkedCount = Object.keys(checkedCards).length;
+    // Calculate total cards needed (sum of all max_qty)
+    const totalCardsNeeded = cards.reduce((sum, card) => sum + card.max_qty, 0);
+    
+    // Calculate cards collected (sum of max_qty for checked cards)
+    const cardsCollected = cards.reduce((sum, card) => {
+      if (checkedCards[card.card_name]) {
+        return sum + card.max_qty;
+      }
+      return sum;
+    }, 0);
+    
     return {
-      checked: checkedCount,
-      total: totalCards,
-      percentage: totalCards > 0 ? Math.round((checkedCount / totalCards) * 100) : 0,
+      collected: cardsCollected,
+      total: totalCardsNeeded,
+      percentage: totalCardsNeeded > 0 ? Math.round((cardsCollected / totalCardsNeeded) * 100) : 0,
     };
   };
 
