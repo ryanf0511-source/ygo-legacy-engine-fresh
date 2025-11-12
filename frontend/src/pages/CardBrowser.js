@@ -359,6 +359,12 @@ const CardBrowser = () => {
           </div>
         </div>
       )}
+
+      {/* Side Panel for Decklist */}
+      <DecklistSidePanel
+        decklistId={selectedDecklistId}
+        onClose={() => setSelectedDecklistId(null)}
+      />
     </div>
   );
 };
