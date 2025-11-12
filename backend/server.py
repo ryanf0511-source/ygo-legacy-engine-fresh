@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, Query, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -6,7 +6,7 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional, Dict, Any
 import uuid
 from datetime import datetime, timezone
 
@@ -27,44 +27,230 @@ api_router = APIRouter(prefix="/api")
 
 
 # Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+class Card(BaseModel):
+    name: str
+    quantity: int
+    card_type: Optional[str] = None
+
+class Decklist(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    player_name: str
+    deck_name: str
+    event: str
+    main_deck: List[Card] = []
+    extra_deck: List[Card] = []
+    side_deck: List[Card] = []
+    raw_decklist: Optional[str] = None
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+class CardUsage(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    player_name: str
+    deck_name: str
+    event: str
+    card_name: str
+    card_type: str
+    quantity: int
+    main_extra: str
+    card_id: Optional[str] = None
+    deck_key: str
 
-# Add your routes to the router instead of directly to app
+class FilterResponse(BaseModel):
+    total: int
+    page: int
+    page_size: int
+    total_pages: int
+    items: List[Dict[str, Any]]
+
+class StatsResponse(BaseModel):
+    total_decks: int
+    total_events: int
+    total_players: int
+    deck_types: List[Dict[str, int]]
+    popular_cards: List[Dict[str, int]]
+    events: List[str]
+
+# Root endpoint
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Yu-Gi-Oh SJC Decklist Database API"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
+# Get all unique deck types for filtering
+@api_router.get("/deck-types")
+async def get_deck_types():
+    deck_types = await db.decklists.distinct("deck_name")
+    return {"deck_types": sorted([dt for dt in deck_types if dt])}
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+# Get all unique events for filtering
+@api_router.get("/events")
+async def get_events():
+    events = await db.decklists.distinct("event")
+    return {"events": sorted([e for e in events if e])}
+
+# Get all unique players for filtering
+@api_router.get("/players")
+async def get_players():
+    players = await db.decklists.distinct("player_name")
+    return {"players": sorted([p for p in players if p])}
+
+# Advanced filtering endpoint for decklists
+@api_router.get("/decklists", response_model=FilterResponse)
+async def get_decklists(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    player_name: Optional[str] = None,
+    deck_types: Optional[str] = Query(None, description="Comma-separated deck types"),
+    events: Optional[str] = Query(None, description="Comma-separated events"),
+    card_name: Optional[str] = None,
+    search: Optional[str] = None,
+    sort_by: str = Query("player_name", regex="^(player_name|deck_name|event)$"),
+    sort_order: str = Query("asc", regex="^(asc|desc)$")
+):
+    # Build filter query
+    query = {}
     
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
+    if player_name:
+        query["player_name"] = {"$regex": player_name, "$options": "i"}
     
-    return status_checks
+    if deck_types:
+        deck_type_list = [dt.strip() for dt in deck_types.split(",")]
+        query["deck_name"] = {"$in": deck_type_list}
+    
+    if events:
+        event_list = [e.strip() for e in events.split(",")]
+        query["event"] = {"$in": event_list}
+    
+    if card_name:
+        # Search in card usage collection and get matching deck keys
+        card_matches = await db.card_usage.find(
+            {"card_name": {"$regex": card_name, "$options": "i"}},
+            {"deck_key": 1}
+        ).to_list(None)
+        
+        if card_matches:
+            deck_keys = list(set([match["deck_key"] for match in card_matches]))
+            # Match against player-deck combination
+            query["$or"] = [
+                {"$expr": {"$in": [{"$concat": ["$player_name", "-", "$deck_name"]}, deck_keys]}}
+            ]
+    
+    if search:
+        query["$or"] = [
+            {"player_name": {"$regex": search, "$options": "i"}},
+            {"deck_name": {"$regex": search, "$options": "i"}},
+            {"event": {"$regex": search, "$options": "i"}}
+        ]
+    
+    # Get total count
+    total = await db.decklists.count_documents(query)
+    
+    # Calculate pagination
+    skip = (page - 1) * page_size
+    total_pages = (total + page_size - 1) // page_size
+    
+    # Sort order
+    sort_direction = 1 if sort_order == "asc" else -1
+    
+    # Fetch paginated results
+    items = await db.decklists.find(query, {"_id": 0}).sort(
+        sort_by, sort_direction
+    ).skip(skip).limit(page_size).to_list(page_size)
+    
+    return FilterResponse(
+        total=total,
+        page=page,
+        page_size=page_size,
+        total_pages=total_pages,
+        items=items
+    )
+
+# Get single decklist by ID
+@api_router.get("/decklists/{deck_id}")
+async def get_decklist(deck_id: str):
+    decklist = await db.decklists.find_one({"id": deck_id}, {"_id": 0})
+    if not decklist:
+        raise HTTPException(status_code=404, detail="Decklist not found")
+    return decklist
+
+# Get card usage statistics
+@api_router.get("/card-usage")
+async def get_card_usage(
+    limit: int = Query(50, ge=1, le=200),
+    card_type: Optional[str] = None,
+    main_extra: Optional[str] = Query(None, regex="^(Main|Extra)$")
+):
+    query = {}
+    if card_type:
+        query["card_type"] = card_type
+    if main_extra:
+        query["main_extra"] = main_extra
+    
+    # Aggregate card usage
+    pipeline = [
+        {"$match": query},
+        {"$group": {
+            "_id": "$card_name",
+            "total_copies": {"$sum": "$quantity"},
+            "deck_count": {"$sum": 1},
+            "card_type": {"$first": "$card_type"}
+        }},
+        {"$sort": {"deck_count": -1}},
+        {"$limit": limit},
+        {"$project": {
+            "_id": 0,
+            "card_name": "$_id",
+            "total_copies": 1,
+            "deck_count": 1,
+            "card_type": 1
+        }}
+    ]
+    
+    results = await db.card_usage.aggregate(pipeline).to_list(limit)
+    return {"cards": results}
+
+# Get statistics dashboard data
+@api_router.get("/stats", response_model=StatsResponse)
+async def get_stats():
+    # Get counts
+    total_decks = await db.decklists.count_documents({})
+    total_events = len(await db.decklists.distinct("event"))
+    total_players = len(await db.decklists.distinct("player_name"))
+    
+    # Get deck type distribution
+    deck_type_pipeline = [
+        {"$group": {"_id": "$deck_name", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+        {"$limit": 20},
+        {"$project": {"_id": 0, "deck_type": "$_id", "count": 1}}
+    ]
+    deck_types = await db.decklists.aggregate(deck_type_pipeline).to_list(20)
+    
+    # Get most popular cards
+    popular_cards_pipeline = [
+        {"$group": {
+            "_id": "$card_name",
+            "count": {"$sum": 1}
+        }},
+        {"$sort": {"count": -1}},
+        {"$limit": 20},
+        {"$project": {"_id": 0, "card_name": "$_id", "count": 1}}
+    ]
+    popular_cards = await db.card_usage.aggregate(popular_cards_pipeline).to_list(20)
+    
+    # Get all events
+    events = await db.decklists.distinct("event")
+    
+    return StatsResponse(
+        total_decks=total_decks,
+        total_events=total_events,
+        total_players=total_players,
+        deck_types=deck_types,
+        popular_cards=popular_cards,
+        events=sorted(events)
+    )
 
 # Include the router in the main app
 app.include_router(api_router)
