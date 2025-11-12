@@ -11,10 +11,19 @@ const Master2PList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [cardTypeFilter, setCardTypeFilter] = useState("");
   const [checkedCards, setCheckedCards] = useState({});
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     fetchCards();
     loadCheckedCards();
+    
+    // Add scroll listener for scroll-to-top button
+    const handleScroll = () => {
+      setShowScrollTop(window.pageYOffset > 300);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
