@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
+
+const COLORS = {
+  Monster: "#FF8C42",
+  Spell: "#4ADE80",
+  Trap: "#F472B6",
+  Fusion: "#A855F7",
+  Synchro: "#E0E0E0"
+};
 
 const StatsPage = () => {
   const [stats, setStats] = useState(null);
@@ -34,7 +43,7 @@ const StatsPage = () => {
     try {
       const params = { limit: cardLimit };
       if (cardFilter !== "all") {
-        params.main_extra = cardFilter === "main" ? "Main" : "Extra";
+        params.card_type = cardFilter;
       }
       const response = await axios.get(`${API}/card-usage`, { params });
       setCardUsage(response.data.cards);
