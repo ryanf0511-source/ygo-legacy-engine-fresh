@@ -284,7 +284,12 @@ const Master2PList = () => {
                       {card.card_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 py-1 text-xs font-semibold rounded border bg-green-600/20 text-green-300 border-green-600/50">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded border ${
+                        card.card_type === 'Monster' ? 'bg-orange-600/20 text-orange-300 border-orange-600/50' :
+                        card.card_type === 'Spell' ? 'bg-green-600/20 text-green-300 border-green-600/50' :
+                        card.card_type === 'Trap' ? 'bg-pink-600/20 text-pink-300 border-pink-600/50' :
+                        'bg-gray-600/20 text-gray-300 border-gray-600/50'
+                      }`}>
                         {card.card_type}
                       </span>
                     </td>
