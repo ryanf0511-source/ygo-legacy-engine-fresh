@@ -39,7 +39,7 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
           <img src={getCardFrame()} alt={`${cardType} frame`} />
           {/* Full-size checkbox overlay filling the card art area */}
           <div className="checkbox-overlay">
-            <div className="checkbox-inner">
+            <div className={`checkbox-inner ${isChecked ? 'checked' : 'unchecked'}`}>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
