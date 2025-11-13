@@ -150,7 +150,7 @@ const DecklistDetail = () => {
     <div className="space-y-6">
       {/* Back Button */}
       <Link
-        to="/"
+        to="/decklists"
         className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors"
       >
         <svg
