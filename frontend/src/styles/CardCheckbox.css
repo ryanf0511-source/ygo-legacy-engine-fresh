@@ -75,11 +75,11 @@
 /* Full-size checkbox overlay filling the card art area precisely */
 .checkbox-overlay {
   position: absolute;
-  /* Adjusted to match Yu-Gi-Oh card art boundaries exactly */
-  top: 12%;
-  left: 11%;
-  right: 11%;
-  height: 42%;
+  /* Positioned to match exact card art boundaries from the reference image */
+  top: 18%;
+  left: 13%;
+  right: 13%;
+  height: 48%;
   z-index: 10;
   pointer-events: none;
   display: flex;
@@ -90,17 +90,18 @@
 .checkbox-inner {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  border-radius: 2px;
+  /* Solid black background as shown in reference */
+  background: #000000;
+  /* Thin white border to match the frame edge */
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Unchecked state - just the empty box */
+/* Unchecked state - hide the checkmark */
 .checkbox-inner.unchecked .checkmark-icon {
   display: none;
 }
@@ -111,13 +112,12 @@
 }
 
 .card-checkbox:hover .checkbox-inner {
-  background: rgba(0, 0, 0, 0.7);
   border-color: rgba(255, 255, 255, 1);
-  border-width: 2.5px;
+  border-width: 2px;
 }
 
 .checkmark-icon {
-  width: 70%;
-  height: 70%;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  width: 75%;
+  height: 75%;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
