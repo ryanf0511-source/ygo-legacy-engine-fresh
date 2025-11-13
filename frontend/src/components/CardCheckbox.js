@@ -1,7 +1,10 @@
+import { useState } from "react";
 import "../styles/CardCheckbox.css";
 
 const CardCheckbox = ({ cardType, isChecked, onChange }) => {
-  // Map card type to checkmarked frame image
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  // Map card type to checkmarked frame image (shown when UNCHECKED)
   const getCardFrame = () => {
     switch (cardType) {
       case "Monster":
@@ -19,14 +22,26 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
     }
   };
 
+  const handleClick = () => {
+    setIsFlipping(true);
+    onChange();
+    // Reset flip animation after it completes
+    setTimeout(() => setIsFlipping(false), 600);
+  };
+
   return (
     <div className="card-checkbox-container">
       <div
-        className="card-checkbox"
-        onClick={onChange}
+        className={`card-checkbox ${isChecked ? "flipped" : ""} ${isFlipping ? "flipping" : ""}`}
+        onClick={handleClick}
       >
+        {/* Front: Checkmarked frame (unchecked state) */}
         <div className="card-front">
           <img src={getCardFrame()} alt={`${cardType} frame`} />
+        </div>
+        {/* Back: Yu-Gi-Oh card back (checked state) */}
+        <div className="card-back">
+          <img src="/card-frames/card-back.png" alt="Card back" />
         </div>
       </div>
     </div>
