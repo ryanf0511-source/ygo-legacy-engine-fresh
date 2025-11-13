@@ -236,7 +236,7 @@ const CardBrowser = () => {
               <thead className="bg-gray-900/50 border-b border-gray-700">
                 <tr>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Deck Name
+                    Player Name/Deck Name
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Event
