@@ -37,34 +37,24 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
       >
         <div className="card-front">
           <img src={getCardFrame()} alt={`${cardType} frame`} />
-          {/* Checkbox icon overlay in the card art area */}
-          <div className="checkbox-indicator">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="3"
-                y="3"
-                width="18"
-                height="18"
-                rx="3"
-                stroke="white"
-                strokeWidth="2"
-                fill="rgba(0, 0, 0, 0.5)"
-              />
-              <path
-                d="M7 12L10 15L17 8"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.7"
-              />
-            </svg>
+          {/* Full-size checkbox overlay filling the card art area */}
+          <div className="checkbox-overlay">
+            <div className="checkbox-inner">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="checkmark-icon"
+              >
+                <path
+                  d="M5 13l4 4L19 7"
+                  stroke="white"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div className="card-back">
