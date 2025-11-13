@@ -127,7 +127,7 @@ const DecklistDetail = () => {
         </div>
 
         {/* Deck Stats */}
-        <div className="grid grid-cols-3 gap-4 mt-6">
+        <div className="grid grid-cols-2 gap-4 mt-6">
           <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/20">
             <div className="text-2xl font-bold text-purple-400">{mainDeckTotal}</div>
             <div className="text-sm text-gray-400">Main Deck Cards</div>
@@ -135,10 +135,6 @@ const DecklistDetail = () => {
           <div className="bg-blue-500/10 rounded-lg p-4 border border-blue-500/20">
             <div className="text-2xl font-bold text-blue-400">{extraDeckTotal}</div>
             <div className="text-sm text-gray-400">Extra Deck Cards</div>
-          </div>
-          <div className="bg-green-500/10 rounded-lg p-4 border border-green-500/20">
-            <div className="text-2xl font-bold text-green-400">{sideDeckTotal}</div>
-            <div className="text-sm text-gray-400">Side Deck Cards</div>
           </div>
         </div>
       </div>
