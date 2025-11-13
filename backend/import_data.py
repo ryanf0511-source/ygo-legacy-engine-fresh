@@ -16,12 +16,13 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 async def parse_decklist(raw_text):
-    """Parse raw decklist text into structured format"""
+    """Parse raw decklist text into structured format with card types"""
     main_deck = []
     extra_deck = []
     side_deck = []
     
     current_section = None
+    current_card_type = None
     lines = raw_text.split('\n')
     
     for line in lines:
@@ -29,24 +30,36 @@ async def parse_decklist(raw_text):
         if not line:
             continue
             
-        # Detect sections
+        # Detect sections and card types
         if 'Main Deck' in line and 'Monsters' in line:
             current_section = 'main'
+            current_card_type = 'Monster'
         elif 'Main Deck' in line and 'Spells' in line:
             current_section = 'main'
+            current_card_type = 'Spell'
         elif 'Main Deck' in line and 'Traps' in line:
             current_section = 'main'
+            current_card_type = 'Trap'
+        elif 'Extra Deck' in line and 'Fusions' in line:
+            current_section = 'extra'
+            current_card_type = 'Fusion'
         elif 'Extra Deck' in line:
             current_section = 'extra'
+            current_card_type = 'Fusion'
         elif 'Side Deck' in line:
             current_section = 'side'
+            current_card_type = None
         else:
             # Parse card line (format: "3x Card Name" or "1x Card Name")
             match = re.match(r'(\d+)x\s+(.+)', line)
             if match and current_section:
                 quantity = int(match.group(1))
                 card_name = match.group(2).strip()
-                card = {"name": card_name, "quantity": quantity}
+                card = {
+                    "name": card_name, 
+                    "quantity": quantity,
+                    "card_type": current_card_type
+                }
                 
                 if current_section == 'main':
                     main_deck.append(card)
