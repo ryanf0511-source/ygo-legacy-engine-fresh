@@ -4,21 +4,25 @@ import "../styles/CardCheckbox.css";
 const CardCheckbox = ({ cardType, isChecked, onChange }) => {
   const [isFlipping, setIsFlipping] = useState(false);
 
-  // Map card type to frame image
+  // Map card type to frame image (blank or with checkmark)
   const getCardFrame = () => {
+    // If not checked, show blank frame
+    // If checked and not currently flipping, show frame with checkmark
+    const useChecked = isChecked && !isFlipping;
+    
     switch (cardType) {
       case "Monster":
-        return "/card-frames/monster-frame.png";
+        return useChecked ? "/card-frames/monster-frame-checked.png" : "/card-frames/monster-frame.png";
       case "Spell":
-        return "/card-frames/spell-frame.png";
+        return useChecked ? "/card-frames/spell-frame-checked.png" : "/card-frames/spell-frame.png";
       case "Trap":
-        return "/card-frames/trap-frame.png";
+        return useChecked ? "/card-frames/trap-frame-checked.png" : "/card-frames/trap-frame.png";
       case "Fusion":
-        return "/card-frames/fusion-frame.png";
+        return useChecked ? "/card-frames/fusion-frame-checked.png" : "/card-frames/fusion-frame.png";
       case "Synchro":
-        return "/card-frames/synchro-frame.png";
+        return useChecked ? "/card-frames/synchro-frame-checked.png" : "/card-frames/synchro-frame.png";
       default:
-        return "/card-frames/monster-frame.png";
+        return useChecked ? "/card-frames/monster-frame-checked.png" : "/card-frames/monster-frame.png";
     }
   };
 
@@ -37,25 +41,6 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
       >
         <div className="card-front">
           <img src={getCardFrame()} alt={`${cardType} frame`} />
-          {/* Full-size checkbox overlay filling the card art area */}
-          <div className="checkbox-overlay">
-            <div className={`checkbox-inner ${isChecked ? 'checked' : 'unchecked'}`}>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="checkmark-icon"
-              >
-                <path
-                  d="M5 13l4 4L19 7"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </div>
         </div>
         <div className="card-back">
           <img src="/card-frames/card-back.png" alt="Card back" />
