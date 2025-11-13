@@ -19,7 +19,8 @@
   transform: rotateY(180deg);
 }
 
-.card-checkbox:hover {
+/* Only apply hover effect to NON-flipped cards */
+.card-checkbox:not(.flipped):hover {
   filter: brightness(1.1);
 }
 
@@ -55,6 +56,10 @@
   z-index: 1;
 }
 
+.card-back:hover {
+  filter: brightness(1.05);
+}
+
 .card-front img,
 .card-back img {
   width: 100%;
@@ -65,4 +70,21 @@
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+}
+
+/* Checkbox indicator styling - positioned in the card art area */
+.checkbox-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.card-checkbox:hover .checkbox-indicator {
+  opacity: 1;
 }
