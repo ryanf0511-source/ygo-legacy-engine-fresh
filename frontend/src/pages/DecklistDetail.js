@@ -31,25 +31,94 @@ const DecklistDetail = () => {
     return cards.reduce((sum, card) => sum + card.quantity, 0);
   };
 
-  const CardList = ({ cards, title }) => (
-    <div className="space-y-2">
-      {cards && cards.length > 0 ? (
-        <div className="space-y-1">
-          {cards.map((card, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors"
-            >
-              <span className="text-gray-200">{card.name}</span>
-              <span className="text-purple-400 font-semibold">×{card.quantity}</span>
+  const CardList = ({ cards, title }) => {
+    if (!cards || cards.length === 0) {
+      return <p className="text-gray-400 text-center py-4">No cards in {title}</p>;
+    }
+
+    // For Main Deck, organize by card type
+    if (title === "Main Deck") {
+      const monsters = cards.filter((card) => !card.card_type || card.card_type === "Monster");
+      const spells = cards.filter((card) => card.card_type === "Spell");
+      const traps = cards.filter((card) => card.card_type === "Trap");
+
+      return (
+        <div className="space-y-6">
+          {monsters.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wider">
+                Monsters
+              </h4>
+              <div className="space-y-1">
+                {monsters.map((card, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors"
+                  >
+                    <span className="text-gray-200">{card.name}</span>
+                    <span className="text-purple-400 font-semibold">×{card.quantity}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+          )}
+
+          {spells.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wider">
+                Spells
+              </h4>
+              <div className="space-y-1">
+                {spells.map((card, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors"
+                  >
+                    <span className="text-gray-200">{card.name}</span>
+                    <span className="text-purple-400 font-semibold">×{card.quantity}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {traps.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wider">
+                Traps
+              </h4>
+              <div className="space-y-1">
+                {traps.map((card, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors"
+                  >
+                    <span className="text-gray-200">{card.name}</span>
+                    <span className="text-purple-400 font-semibold">×{card.quantity}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      ) : (
-        <p className="text-gray-400 text-center py-4">No cards in {title}</p>
-      )}
-    </div>
-  );
+      );
+    }
+
+    // For Extra Deck, show as is
+    return (
+      <div className="space-y-1">
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-between p-3 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors"
+          >
+            <span className="text-gray-200">{card.name}</span>
+            <span className="text-purple-400 font-semibold">×{card.quantity}</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   if (loading) {
     return (
