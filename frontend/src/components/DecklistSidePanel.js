@@ -94,14 +94,42 @@ const DecklistSidePanel = ({ decklistId, onClose }) => {
           {decklist.main_deck && decklist.main_deck.length > 0 && (
             <div>
               <h4 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wider">
-                Main Deck
+                Main Deck — Monsters
               </h4>
               <div className="space-y-1">
-                {decklist.main_deck.map((card, index) => (
-                  <div key={index} className="text-sm text-gray-300">
-                    {card.quantity}x {card.name}
-                  </div>
-                ))}
+                {decklist.main_deck
+                  .filter((card) => !card.card_type || card.card_type === "Monster")
+                  .map((card, index) => (
+                    <div key={index} className="text-sm text-gray-300">
+                      {card.quantity}x {card.name}
+                    </div>
+                  ))}
+              </div>
+
+              <h4 className="text-sm font-semibold text-gray-300 mt-4 mb-3 uppercase tracking-wider">
+                Main Deck — Spells
+              </h4>
+              <div className="space-y-1">
+                {decklist.main_deck
+                  .filter((card) => card.card_type === "Spell")
+                  .map((card, index) => (
+                    <div key={index} className="text-sm text-gray-300">
+                      {card.quantity}x {card.name}
+                    </div>
+                  ))}
+              </div>
+
+              <h4 className="text-sm font-semibold text-gray-300 mt-4 mb-3 uppercase tracking-wider">
+                Main Deck — Traps
+              </h4>
+              <div className="space-y-1">
+                {decklist.main_deck
+                  .filter((card) => card.card_type === "Trap")
+                  .map((card, index) => (
+                    <div key={index} className="text-sm text-gray-300">
+                      {card.quantity}x {card.name}
+                    </div>
+                  ))}
               </div>
             </div>
           )}
