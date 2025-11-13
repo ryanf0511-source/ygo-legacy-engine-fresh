@@ -273,12 +273,13 @@ const MasterExtraDeck = () => {
                       {card.max_qty}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-center">
-                      <input
-                        type="checkbox"
-                        checked={checkedCards[card.card_name] || false}
-                        onChange={() => toggleCard(card.card_name)}
-                        className="w-5 h-5 text-purple-600 bg-gray-700 border-gray-600 rounded focus:ring-purple-500 focus:ring-2 cursor-pointer"
-                      />
+                      <div className="flex justify-center">
+                        <CardCheckbox
+                          cardType={card.card_type}
+                          isChecked={checkedCards[card.card_name] || false}
+                          onChange={() => toggleCard(card.card_name)}
+                        />
+                      </div>
                     </td>
                   </tr>
                 ))}
