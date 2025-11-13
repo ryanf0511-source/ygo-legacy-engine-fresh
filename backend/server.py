@@ -317,11 +317,9 @@ async def get_stats():
     most_successful_pipeline = [
         {
             "$group": {
-                "_id": {
-                    "deck_name": "$deck_name",
-                    "player_name": "$player_name"
-                },
+                "_id": "$deck_name",
                 "appearances": {"$sum": 1},
+                "unique_players": {"$addToSet": "$player_name"},
                 "events": {"$addToSet": "$event"}
             }
         },
@@ -330,9 +328,9 @@ async def get_stats():
         {
             "$project": {
                 "_id": 0,
-                "deck_name": "$_id.deck_name",
-                "player_name": "$_id.player_name",
+                "deck_name": "$_id",
                 "appearances": 1,
+                "unique_players": {"$size": "$unique_players"},
                 "events": 1
             }
         }
