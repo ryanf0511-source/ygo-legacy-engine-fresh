@@ -260,7 +260,11 @@ const MasterExtraDeck = () => {
                       {card.card_name}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 py-1 text-xs font-semibold rounded border bg-purple-600/20 text-purple-300 border-purple-600/50">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded border ${
+                        card.card_type === 'Fusion' ? 'bg-purple-600/20 text-purple-300 border-purple-600/50' :
+                        card.card_type === 'Synchro' ? 'bg-white/20 text-white border-white/50' :
+                        'bg-gray-600/20 text-gray-300 border-gray-600/50'
+                      }`}>
                         {card.card_type}
                       </span>
                     </td>
