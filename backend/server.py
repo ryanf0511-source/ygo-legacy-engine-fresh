@@ -69,8 +69,8 @@ class StatsResponse(BaseModel):
     total_decks: int
     total_events: int
     total_players: int
-    deck_types: List[Dict[str, int]]
-    popular_cards: List[Dict[str, int]]
+    deck_types: List[Dict]
+    popular_cards: List[Dict]
     events: List[str]
     most_successful_decks: List[Dict]
     card_type_distribution: Dict[str, int]
