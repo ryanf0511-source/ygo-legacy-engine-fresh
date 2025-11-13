@@ -150,7 +150,7 @@ const DecklistDetail = () => {
                 : "text-gray-400 hover:bg-gray-700/50 hover:text-white"
             }`}
           >
-            Main Deck ({decklist.main_deck?.length || 0})
+            Main Deck
           </button>
           <button
             onClick={() => setActiveTab("extra")}
@@ -160,17 +160,7 @@ const DecklistDetail = () => {
                 : "text-gray-400 hover:bg-gray-700/50 hover:text-white"
             }`}
           >
-            Extra Deck ({decklist.extra_deck?.length || 0})
-          </button>
-          <button
-            onClick={() => setActiveTab("side")}
-            className={`flex-1 px-6 py-4 font-semibold transition-colors ${
-              activeTab === "side"
-                ? "bg-purple-600 text-white"
-                : "text-gray-400 hover:bg-gray-700/50 hover:text-white"
-            }`}
-          >
-            Side Deck ({decklist.side_deck?.length || 0})
+            Extra Deck
           </button>
         </div>
 
@@ -180,9 +170,6 @@ const DecklistDetail = () => {
           )}
           {activeTab === "extra" && (
             <CardList cards={decklist.extra_deck} title="Extra Deck" />
-          )}
-          {activeTab === "side" && (
-            <CardList cards={decklist.side_deck} title="Side Deck" />
           )}
         </div>
       </div>
