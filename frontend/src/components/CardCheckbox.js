@@ -36,14 +36,11 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
   return (
     <div className="card-checkbox-container">
       <div
-        className={`card-checkbox ${isChecked ? "flipped" : ""} ${isFlipping ? "flipping" : ""}`}
+        className="card-checkbox"
         onClick={handleClick}
       >
         <div className="card-front">
           <img src={getCardFrame()} alt={`${cardType} frame`} />
-        </div>
-        <div className="card-back">
-          <img src="/card-frames/card-back.png" alt="Card back" />
         </div>
       </div>
     </div>
