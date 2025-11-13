@@ -313,13 +313,54 @@ async def get_stats():
     # Get all events
     events = await db.decklists.distinct("event")
     
+    # Get most successful decks (by count of appearances)
+    most_successful_pipeline = [
+        {
+            "$group": {
+                "_id": {
+                    "deck_name": "$deck_name",
+                    "player_name": "$player_name"
+                },
+                "appearances": {"$sum": 1},
+                "events": {"$addToSet": "$event"}
+            }
+        },
+        {"$sort": {"appearances": -1}},
+        {"$limit": 10},
+        {
+            "$project": {
+                "_id": 0,
+                "deck_name": "$_id.deck_name",
+                "player_name": "$_id.player_name",
+                "appearances": 1,
+                "events": 1
+            }
+        }
+    ]
+    most_successful_decks = await db.decklists.aggregate(most_successful_pipeline).to_list(10)
+    
+    # Get card type distribution
+    card_type_pipeline = [
+        {
+            "$group": {
+                "_id": "$card_type",
+                "count": {"$sum": 1}
+            }
+        },
+        {"$sort": {"count": -1}}
+    ]
+    card_type_results = await db.card_usage.aggregate(card_type_pipeline).to_list(10)
+    card_type_distribution = {item["_id"]: item["count"] for item in card_type_results if item["_id"]}
+    
     return StatsResponse(
         total_decks=total_decks,
         total_events=total_events,
         total_players=total_players,
         deck_types=deck_types,
         popular_cards=popular_cards,
-        events=sorted(events)
+        events=sorted(events),
+        most_successful_decks=most_successful_decks,
+        card_type_distribution=card_type_distribution
     )
 
 # Get Master 2P List (Main Deck)
