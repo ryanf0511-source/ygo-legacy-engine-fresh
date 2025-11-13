@@ -69,7 +69,7 @@ const DecklistSidePanel = ({ decklistId, onClose }) => {
           </div>
 
           {/* Deck Stats */}
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
               <div className="text-xl font-bold text-purple-400">
                 {calculateTotalCards(decklist.main_deck)}
@@ -81,12 +81,6 @@ const DecklistSidePanel = ({ decklistId, onClose }) => {
                 {calculateTotalCards(decklist.extra_deck)}
               </div>
               <div className="text-xs text-gray-400">Extra Deck</div>
-            </div>
-            <div className="bg-green-500/10 rounded-lg p-3 border border-green-500/20">
-              <div className="text-xl font-bold text-green-400">
-                {calculateTotalCards(decklist.side_deck)}
-              </div>
-              <div className="text-xs text-gray-400">Side Deck</div>
             </div>
           </div>
 
