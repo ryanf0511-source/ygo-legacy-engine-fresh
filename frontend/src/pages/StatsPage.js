@@ -52,6 +52,16 @@ const StatsPage = () => {
     }
   };
 
+  // Prepare pie chart data
+  const getPieChartData = () => {
+    if (!stats?.card_type_distribution) return [];
+    return Object.entries(stats.card_type_distribution).map(([name, value]) => ({
+      name,
+      value,
+      color: COLORS[name] || "#888888"
+    }));
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -67,109 +77,78 @@ const StatsPage = () => {
         <h1 className="text-4xl font-bold text-white mb-2">
           Database <span className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">Statistics</span>
         </h1>
-        <p className="text-gray-400">Insights and trends from the tournament scene</p>
+        <p className="text-gray-400">Insights and trends from SJC history (2004-2010)</p>
       </div>
 
-      {/* Overview Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 backdrop-blur-md rounded-xl border border-purple-500/30 p-6 shadow-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-300 text-sm">Total Decklists</p>
-              <p className="text-4xl font-bold text-white mt-2">{stats?.total_decks || 0}</p>
-            </div>
-            <svg
-              className="w-12 h-12 text-purple-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-md rounded-xl border border-blue-500/30 p-6 shadow-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-300 text-sm">Total Events</p>
-              <p className="text-4xl font-bold text-white mt-2">{stats?.total_events || 0}</p>
-            </div>
-            <svg
-              className="w-12 h-12 text-blue-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 backdrop-blur-md rounded-xl border border-green-500/30 p-6 shadow-xl">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-300 text-sm">Total Players</p>
-              <p className="text-4xl font-bold text-white mt-2">{stats?.total_players || 0}</p>
-            </div>
-            <svg
-              className="w-12 h-12 text-green-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* Top Deck Types */}
+      {/* Card Type Distribution Pie Chart */}
       <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-6 shadow-xl">
-        <h2 className="text-2xl font-bold text-white mb-4">Top Deck Types</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">Card Type Distribution</h2>
+        <div className="flex items-center justify-center">
+          <ResponsiveContainer width="100%" height={400}>
+            <PieChart>
+              <Pie
+                data={getPieChartData()}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={120}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {getPieChartData().map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip 
+                contentStyle={{ 
+                  backgroundColor: '#1f2937', 
+                  border: '1px solid #4b5563',
+                  borderRadius: '8px',
+                  color: '#fff'
+                }}
+              />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Most Successful Decks */}
+      <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-6 shadow-xl">
+        <h2 className="text-2xl font-bold text-white mb-4">Most Successful Players</h2>
+        <p className="text-gray-400 text-sm mb-4">Players with the most Top 8 appearances in SJC history</p>
         <div className="space-y-3">
-          {stats?.deck_types?.slice(0, 10).map((deck, index) => {
-            const maxCount = stats.deck_types[0]?.count || 1;
-            const percentage = (deck.count / maxCount) * 100;
-            
-            return (
-              <div key={index} className="space-y-1">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-300 font-medium">{deck.deck_type}</span>
-                  <span className="text-purple-400 font-semibold">{deck.count} decks</span>
+          {stats?.most_successful_decks?.map((player, index) => (
+            <div key={index} className="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors">
+              <div className="flex items-center space-x-3">
+                <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-lg ${
+                  index === 0 ? 'bg-yellow-500/20 text-yellow-400' :
+                  index === 1 ? 'bg-gray-400/20 text-gray-300' :
+                  index === 2 ? 'bg-orange-600/20 text-orange-400' :
+                  'bg-purple-500/20 text-purple-400'
+                }`}>
+                  {index + 1}
                 </div>
-                <div className="w-full bg-gray-700/50 rounded-full h-2">
-                  <div
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-500"
-                    style={{ width: `${percentage}%` }}
-                  ></div>
+                <div>
+                  <p className="text-gray-200 font-bold">{player.player_name}</p>
+                  <p className="text-gray-400 text-sm">{player.deck_name}</p>
                 </div>
               </div>
-            );
-          })}
+              <div className="text-right">
+                <p className="text-purple-400 font-bold text-lg">{player.appearances}</p>
+                <p className="text-gray-400 text-xs">appearances</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Popular Cards */}
       <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-6 shadow-xl">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-4">
           <h2 className="text-2xl font-bold text-white">Most Popular Cards</h2>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-2">
             <label className="text-sm text-gray-400">Filter:</label>
             <select
               value={cardFilter}
@@ -177,8 +156,11 @@ const StatsPage = () => {
               className="px-3 py-1 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:ring-2 focus:ring-purple-500"
             >
               <option value="all">All Cards</option>
-              <option value="main">Main Deck</option>
-              <option value="extra">Extra Deck</option>
+              <option value="Monster">Monsters</option>
+              <option value="Spell">Spells</option>
+              <option value="Trap">Traps</option>
+              <option value="Fusion">Fusions</option>
+              <option value="Synchro">Synchros</option>
             </select>
             <label className="text-sm text-gray-400">Show:</label>
             <select
@@ -205,7 +187,15 @@ const StatsPage = () => {
                 </div>
                 <div>
                   <p className="text-gray-200 font-medium">{card.card_name}</p>
-                  <p className="text-gray-400 text-xs">{card.card_type}</p>
+                  <span 
+                    className="inline-block px-2 py-0.5 rounded text-xs font-medium"
+                    style={{ 
+                      backgroundColor: `${COLORS[card.card_type]}30`,
+                      color: COLORS[card.card_type]
+                    }}
+                  >
+                    {card.card_type}
+                  </span>
                 </div>
               </div>
               <div className="text-right">
