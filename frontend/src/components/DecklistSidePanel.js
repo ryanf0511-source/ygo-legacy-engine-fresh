@@ -149,22 +149,6 @@ const DecklistSidePanel = ({ decklistId, onClose }) => {
               </div>
             </div>
           )}
-
-          {/* Side Deck */}
-          {decklist.side_deck && decklist.side_deck.length > 0 && (
-            <div>
-              <h4 className="text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wider">
-                Side Deck
-              </h4>
-              <div className="space-y-1">
-                {decklist.side_deck.map((card, index) => (
-                  <div key={index} className="text-sm text-gray-300">
-                    {card.quantity}x {card.name}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       ) : (
         <div className="p-6 text-center text-gray-400">
