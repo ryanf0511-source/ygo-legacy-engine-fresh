@@ -72,6 +72,8 @@ class StatsResponse(BaseModel):
     deck_types: List[Dict[str, int]]
     popular_cards: List[Dict[str, int]]
     events: List[str]
+    most_successful_decks: List[Dict]
+    card_type_distribution: Dict[str, int]
 
 # Root endpoint
 @api_router.get("/")
