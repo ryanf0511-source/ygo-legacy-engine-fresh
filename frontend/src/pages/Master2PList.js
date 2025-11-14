@@ -178,7 +178,7 @@ const Master2PList = () => {
         </div>
         
         {/* Progress Bar */}
-        <div className="max-w-4xl mx-auto mt-6">
+        <div className="max-w-5xl mx-auto mt-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-300">Collection Progress</span>
             <span className="text-lg font-bold text-green-400">
