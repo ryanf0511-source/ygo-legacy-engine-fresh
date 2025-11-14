@@ -101,3 +101,100 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: |
+  Create a new "Head-to-Head Builder" feature for the Yu-Gi-Oh! SJC database. This is a standalone page that allows users to:
+  1. Select a specific SJC event from a dropdown
+  2. Browse all decklists from that event in a card grid (similar to existing decklists page)
+  3. Assign decklists to Player A and Player B by clicking "Assign to Player A/B" buttons on each card
+  4. Use randomize buttons to randomly select decks (individual randomize for each player + "Randomize Both Players" button)
+  5. Lock in selections to view full decklists side-by-side
+  6. Full decklists should show cards grouped by type (Monster, Spell, Trap, Fusion, Synchro)
+
+backend:
+  - task: "Create /decklists-by-event/{event} endpoint"
+    implemented: true
+    working: "needs_testing"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "needs_testing"
+        agent: "main"
+        comment: "Added new endpoint to fetch all decklists for a specific event. Returns decklists sorted by player_name with count."
+
+frontend:
+  - task: "Create HeadToHeadBuilder page component"
+    implemented: true
+    working: "needs_testing"
+    file: "/app/frontend/src/pages/HeadToHeadBuilder.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "needs_testing"
+        agent: "main"
+        comment: "Created complete Head-to-Head Builder page with event selection, player slots, deck browsing, assignment buttons, randomize features, and full decklist display after lock-in."
+
+  - task: "Add route for /head-to-head"
+    implemented: true
+    working: "needs_testing"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "needs_testing"
+        agent: "main"
+        comment: "Added route for /head-to-head in App.js and imported HeadToHeadBuilder component."
+
+  - task: "Add Head-to-Head tile to homepage"
+    implemented: true
+    working: "needs_testing"
+    file: "/app/frontend/src/pages/NewHomePage.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: "needs_testing"
+        agent: "main"
+        comment: "Replaced one of the 'Under Construction' tiles with Head-to-Head Builder tile in the bento grid layout."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Create /decklists-by-event/{event} endpoint"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "sequential"
+
+agent_communication:
+  - agent: "main"
+    message: |
+      I have successfully implemented the Head-to-Head Builder feature. All components are in place:
+      
+      BACKEND:
+      - New endpoint /api/decklists-by-event/{event} to fetch decklists for a specific event
+      
+      FRONTEND:
+      - HeadToHeadBuilder.js page with full functionality (event dropdown, player slots, randomize buttons, deck browsing, assignment, lock-in, full decklist display)
+      - Route added in App.js
+      - Homepage tile added in NewHomePage.js
+      
+      MANUAL TESTING DONE:
+      - Verified homepage displays Head-to-Head tile correctly
+      - Verified page loads with synopsis and event dropdown
+      - Tested event selection - decklists load correctly
+      - Tested "Assign to Player A/B" buttons - decks populate slots correctly
+      - Tested "Randomize Both Players" button - randomly selects 2 different decks
+      - Tested Lock In button - shows green "Locked" state and disables other buttons
+      - Verified full decklist displays correctly with card grouping by type
+      
+      READY FOR BACKEND TESTING:
+      Please test the new /api/decklists-by-event/{event} endpoint.
