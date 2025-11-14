@@ -174,14 +174,26 @@ const NewHomePage = () => {
           </div>
         </Link>
 
-        {/* Under Construction Cards */}
-        <div className="md:col-span-2 bg-gradient-to-br from-gray-700/20 to-gray-800/20 backdrop-blur-md rounded-xl border border-gray-600/30 p-6 flex flex-col justify-center items-center">
-          <svg className="w-8 h-8 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-          </svg>
-          <h3 className="text-lg font-bold text-gray-400 mb-1">TCGplayer Guide</h3>
-          <p className="text-xs text-gray-500 text-center">Under Construction</p>
-        </div>
+        {/* Head-to-Head Builder */}
+        <Link
+          to="/head-to-head"
+          className="md:col-span-2 bg-gradient-to-br from-indigo-600/20 via-violet-600/20 to-indigo-800/20 backdrop-blur-md rounded-xl border border-indigo-500/40 p-6 hover:border-violet-400/80 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-300 group flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center space-x-3 mb-3">
+              <div className="p-2 bg-indigo-500/20 border border-indigo-400/30 rounded-lg">
+                <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">Head-to-Head</h3>
+                <p className="text-xs text-gray-400">Deck Builder</p>
+              </div>
+            </div>
+            <p className="text-gray-300 text-sm">Pick two decks from any SJC event for a head-to-head matchup!</p>
+          </div>
+        </Link>
 
         <div className="md:col-span-2 bg-gradient-to-br from-gray-700/20 to-gray-800/20 backdrop-blur-md rounded-xl border border-gray-600/30 p-6 flex flex-col justify-center items-center">
           <svg className="w-8 h-8 text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
