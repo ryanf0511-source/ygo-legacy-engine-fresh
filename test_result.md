@@ -171,8 +171,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Create /decklists-by-event/{event} endpoint"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "sequential"
