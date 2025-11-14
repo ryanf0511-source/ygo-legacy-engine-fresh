@@ -174,15 +174,29 @@ const HeadToHeadBuilder = () => {
     </div>
   );
 
+  const openModal = (decklist) => {
+    setModalDecklist(decklist);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalDecklist(null);
+  };
+
   const DecklistCard = ({ decklist }) => (
     <div className="bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20 p-5 hover:border-purple-500/50 transition-all duration-300">
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold text-white">{decklist.player_name}</h3>
+      <div 
+        className="mb-4 cursor-pointer"
+        onClick={() => openModal(decklist)}
+      >
+        <h3 className="text-lg font-semibold text-white hover:text-purple-400 transition-colors">{decklist.player_name}</h3>
         <p className="text-purple-400 text-sm mt-1 font-medium">{decklist.deck_name}</p>
         <div className="flex items-center space-x-4 text-sm mt-2 text-gray-400">
           <span>Main: <span className="font-semibold text-purple-400">{calculateTotalCards(decklist.main_deck)}</span></span>
           <span>Extra: <span className="font-semibold text-blue-400">{calculateTotalCards(decklist.extra_deck)}</span></span>
         </div>
+        <p className="text-xs text-gray-500 mt-2">👁️ Click to preview decklist</p>
       </div>
 
       <div className="flex space-x-2">
