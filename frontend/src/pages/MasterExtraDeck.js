@@ -251,71 +251,141 @@ const MasterExtraDeck = () => {
       )}
 
       {/* Cards Table */}
-      {!loading && filteredCards.length > 0 && (
-        <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 overflow-hidden shadow-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-black/40 border-b border-gray-700">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    #
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Card Name
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Card Type
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Max Qty Needed
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Have It?
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-700/30">
-                {filteredCards.map((card, index) => (
-                  <tr 
-                    key={index} 
-                    className={`hover:bg-gray-700/20 transition-colors ${
-                      checkedCards[card.card_name] ? "bg-purple-900/10" : ""
-                    }`}
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      {index + 1}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
-                      {card.card_name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 text-xs font-semibold rounded border ${
-                        card.card_type === 'Fusion' ? 'bg-purple-600/20 text-purple-300 border-purple-600/50' :
-                        card.card_type === 'Synchro' ? 'bg-white/20 text-white border-white/50' :
-                        'bg-gray-600/20 text-gray-300 border-gray-600/50'
-                      }`}>
-                        {card.card_type}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-bold text-purple-400">
-                      {card.max_qty}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-center">
-                      <div className="flex justify-center">
-                        <CardCheckbox
-                          cardType={card.card_type}
-                          isChecked={checkedCards[card.card_name] || false}
-                          onChange={() => toggleCard(card.card_name)}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      {!loading && filteredCards.length > 0 && (() => {
+        // Pagination logic
+        const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+        const startIndex = (currentPage - 1) * cardsPerPage;
+        const endIndex = startIndex + cardsPerPage;
+        const currentCards = filteredCards.slice(startIndex, endIndex);
+        
+        return (
+          <>
+            <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 overflow-hidden shadow-xl">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-black/40 border-b border-gray-700">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        #
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Card Name
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Card Type
+                      </th>
+                      <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Max Qty Needed
+                      </th>
+                      <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Have It?
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-700/30">
+                    {currentCards.map((card, index) => {
+                      const absoluteIndex = startIndex + index;
+                      return (
+                        <tr 
+                          key={index} 
+                          className={`hover:bg-gray-700/20 transition-colors ${
+                            checkedCards[card.card_name] ? "bg-purple-900/10" : ""
+                          }`}
+                        >
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                            {absoluteIndex + 1}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+                            {card.card_name}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 py-1 text-xs font-semibold rounded border ${
+                              card.card_type === 'Fusion' ? 'bg-purple-600/20 text-purple-300 border-purple-600/50' :
+                              card.card_type === 'Synchro' ? 'bg-white/20 text-white border-white/50' :
+                              'bg-gray-600/20 text-gray-300 border-gray-600/50'
+                            }`}>
+                              {card.card_type}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-bold text-purple-400">
+                            {card.max_qty}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-center">
+                            <div className="flex justify-center">
+                              <CardCheckbox
+                                cardType={card.card_type}
+                                isChecked={checkedCards[card.card_name] || false}
+                                onChange={() => toggleCard(card.card_name)}
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 p-4 mt-4">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-gray-400">
+                    Showing {startIndex + 1} to {Math.min(endIndex, filteredCards.length)} of {filteredCards.length} cards
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Previous
+                    </button>
+                    
+                    <div className="flex items-center space-x-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={`px-3 py-2 rounded-lg transition-colors ${
+                              currentPage === pageNum
+                                ? 'bg-purple-600 text-white'
+                                : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        );
+      })()}
 
       {/* No Results */}
       {!loading && filteredCards.length === 0 && (
