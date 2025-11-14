@@ -516,6 +516,9 @@ const HeadToHeadBuilder = () => {
           </div>
         </div>
       )}
+
+      {/* Decklist Preview Modal */}
+      <DecklistModal />
     </div>
   );
 };
