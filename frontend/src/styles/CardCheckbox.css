@@ -51,10 +51,6 @@
   z-index: 1;
 }
 
-.card-back:hover {
-  filter: brightness(1.05);
-}
-
 .card-front img,
 .card-back img {
   width: 100%;
