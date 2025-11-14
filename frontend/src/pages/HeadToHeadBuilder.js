@@ -528,7 +528,11 @@ const HeadToHeadBuilder = () => {
           <h2 className="text-3xl font-bold text-white mb-6 text-center">
             Locked Decklists
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className={`grid gap-6 ${
+            playerALocked && playerBLocked 
+              ? 'grid-cols-1 xl:grid-cols-2' 
+              : 'grid-cols-1 max-w-4xl mx-auto'
+          }`}>
             {playerALocked && playerA && (
               <FullDecklistView player={playerA} playerLabel="Player A" />
             )}
