@@ -120,7 +120,7 @@ const HeadToHeadBuilder = () => {
   };
 
   const DeckSlot = ({ player, playerLabel, onRandomize, isLocked, onLockToggle }) => (
-    <div className="bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20 p-6">
+    <div className="bg-gray-800/60 rounded-lg border border-purple-500/20 p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-semibold text-white">{playerLabel}</h3>
         <div className="flex space-x-2">
