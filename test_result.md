@@ -114,15 +114,18 @@ user_problem_statement: |
 backend:
   - task: "Create /decklists-by-event/{event} endpoint"
     implemented: true
-    working: "needs_testing"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "needs_testing"
         agent: "main"
         comment: "Added new endpoint to fetch all decklists for a specific event. Returns decklists sorted by player_name with count."
+      - working: true
+        agent: "testing"
+        comment: "✅ BACKEND TESTING COMPLETE - All 12 tests passed. Endpoint GET /api/decklists-by-event/{event} working correctly: ✓ Valid event names return proper response structure (decklists, event, count) ✓ URL encoding with spaces handled correctly ✓ Non-existent events return 404 with error detail ✓ Decklists sorted by player_name ✓ Card objects contain card_type field ✓ Response format matches specification. Tested with real data from 75 available events."
 
 frontend:
   - task: "Create HeadToHeadBuilder page component"
