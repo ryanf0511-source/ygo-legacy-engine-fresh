@@ -465,8 +465,8 @@ const HeadToHeadBuilder = () => {
             />
           </div>
 
-          {/* Randomize Both Button */}
-          <div className="text-center">
+          {/* Randomize Both & Reset Buttons */}
+          <div className="flex items-center justify-center gap-4">
             <button
               onClick={randomizeBoth}
               disabled={playerALocked || playerBLocked}
@@ -477,6 +477,17 @@ const HeadToHeadBuilder = () => {
               }`}
             >
               🎲 Randomize Both Players
+            </button>
+            <button
+              onClick={resetBoth}
+              disabled={!playerA && !playerB}
+              className={`px-8 py-3 rounded-lg text-lg font-semibold transition-all ${
+                !playerA && !playerB
+                  ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+                  : "bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 shadow-lg shadow-red-500/20"
+              }`}
+            >
+              🔄 Reset Both
             </button>
           </div>
         </>
