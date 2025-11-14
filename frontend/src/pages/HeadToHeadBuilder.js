@@ -301,8 +301,8 @@ const HeadToHeadBuilder = () => {
           {/* Modal Header */}
           <div className="sticky top-0 bg-gray-900/95 backdrop-blur-sm border-b border-purple-500/30 p-6 flex items-start justify-between">
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-white mb-2">{modalDecklist.player_name}</h2>
-              <p className="text-xl text-purple-400 font-semibold">{modalDecklist.deck_name}</p>
+              <h2 className="text-3xl font-bold text-purple-400 mb-2">{modalDecklist.deck_name}</h2>
+              <p className="text-lg text-gray-300">{modalDecklist.player_name}</p>
               <p className="text-sm text-gray-400 mt-1">{modalDecklist.event}</p>
               <div className="flex items-center space-x-4 text-sm mt-3">
                 <span className="text-gray-400">Main: <span className="font-semibold text-purple-400">{calculateTotalCards(modalDecklist.main_deck)}</span></span>
