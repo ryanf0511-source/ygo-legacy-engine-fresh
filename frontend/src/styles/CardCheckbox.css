@@ -19,13 +19,17 @@
   transform: rotateY(180deg);
 }
 
-/* Backward flip animation (when unchecking) */
+/* Backward flip animation (when unchecking) - flips in opposite direction */
 .card-checkbox.flip-backward.flipped {
-  transform: rotateX(-180deg);
+  transform: rotateY(180deg);
 }
 
 .card-checkbox.flip-backward:not(.flipped) {
-  transform: rotateX(0deg);
+  transform: rotateY(-180deg);
+}
+
+.card-checkbox.flip-backward {
+  transition: transform 0.4s ease-in-out;
 }
 
 /* Only apply hover effect to NON-flipped cards */
