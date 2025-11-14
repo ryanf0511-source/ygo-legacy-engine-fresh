@@ -233,8 +233,8 @@ const HeadToHeadBuilder = () => {
     return (
       <div className="bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20 p-6">
         <h3 className="text-2xl font-bold text-white mb-2">{playerLabel}</h3>
-        <h4 className="text-xl font-semibold text-purple-400 mb-1">{player.player_name}</h4>
-        <p className="text-gray-300 mb-4">{player.deck_name}</p>
+        <h4 className="text-2xl font-bold text-purple-400 mb-1">{player.deck_name}</h4>
+        <p className="text-gray-300 text-sm mb-4">{player.player_name}</p>
 
         {/* Main Deck */}
         <div className="mb-6">
