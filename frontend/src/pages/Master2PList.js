@@ -272,29 +272,41 @@ const Master2PList = () => {
       )}
 
       {/* Cards Table */}
-      {!loading && filteredCards.length > 0 && (
-        <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 overflow-hidden shadow-xl">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-900/50 border-b border-gray-700">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider\">\n                    #\n                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Card Name
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Card Type
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Max Qty Needed
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
-                    Have It?
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-700/30">
-                {filteredCards.map((card, index) => (
+      {!loading && filteredCards.length > 0 && (() => {
+        // Pagination logic
+        const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+        const startIndex = (currentPage - 1) * cardsPerPage;
+        const endIndex = startIndex + cardsPerPage;
+        const currentCards = filteredCards.slice(startIndex, endIndex);
+        
+        return (
+          <>
+            <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 overflow-hidden shadow-xl">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-900/50 border-b border-gray-700">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        #
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Card Name
+                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Card Type
+                      </th>
+                      <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Max Qty Needed
+                      </th>
+                      <th className="px-6 py-4 text-center text-xs font-medium text-gray-400 uppercase tracking-wider">
+                        Have It?
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-700/30">
+                    {currentCards.map((card, index) => {
+                      const absoluteIndex = startIndex + index;
+                      return (
                   <tr 
                     key={index} 
                     className={`hover:bg-gray-700/20 transition-colors ${
