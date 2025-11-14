@@ -190,8 +190,8 @@ const HeadToHeadBuilder = () => {
         className="mb-4 cursor-pointer"
         onClick={() => openModal(decklist)}
       >
-        <h3 className="text-lg font-semibold text-white hover:text-purple-400 transition-colors">{decklist.player_name}</h3>
-        <p className="text-purple-400 text-sm mt-1 font-medium">{decklist.deck_name}</p>
+        <h3 className="text-xl font-bold text-purple-400 hover:text-purple-300 transition-colors">{decklist.deck_name}</h3>
+        <p className="text-gray-300 text-sm mt-1">{decklist.player_name}</p>
         <div className="flex items-center space-x-4 text-sm mt-2 text-gray-400">
           <span>Main: <span className="font-semibold text-purple-400">{calculateTotalCards(decklist.main_deck)}</span></span>
           <span>Extra: <span className="font-semibold text-blue-400">{calculateTotalCards(decklist.extra_deck)}</span></span>
