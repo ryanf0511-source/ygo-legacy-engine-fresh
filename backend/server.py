@@ -90,7 +90,15 @@ async def get_deck_types():
 @api_router.get("/events")
 async def get_events():
     events = await db.decklists.distinct("event")
-    return {"events": sorted([e for e in events if e])}
+    # Sort by year (extracted from event name) then alphabetically
+    def sort_key(event):
+        # Extract year from event name (e.g., "SJC Anaheim 2004" -> 2004)
+        parts = event.split()
+        year = next((int(p) for p in parts if p.isdigit() and len(p) == 4), 9999)
+        return (year, event)
+    
+    sorted_events = sorted([e for e in events if e], key=sort_key)
+    return {"events": sorted_events}
 
 # Get all unique players for filtering
 @api_router.get("/players")
