@@ -8,6 +8,7 @@ import CardBrowser from "@/pages/CardBrowser";
 import Master2PList from "@/pages/Master2PList";
 import MasterListsHub from "@/pages/MasterListsHub";
 import MasterExtraDeck from "@/pages/MasterExtraDeck";
+import HeadToHeadBuilder from "@/pages/HeadToHeadBuilder";
 import Layout from "@/components/Layout";
 
 const UnderConstruction = () => (
