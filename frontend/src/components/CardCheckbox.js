@@ -26,7 +26,7 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
     setIsFlipping(true);
     onChange();
     // Reset flip animation after it completes
-    setTimeout(() => setIsFlipping(false), 480);
+    setTimeout(() => setIsFlipping(false), 400);
   };
 
   return (
