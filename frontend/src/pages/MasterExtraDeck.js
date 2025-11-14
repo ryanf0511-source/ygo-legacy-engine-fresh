@@ -31,6 +31,11 @@ const MasterExtraDeck = () => {
     filterCards();
   }, [cards, searchTerm]);
 
+  useEffect(() => {
+    // Reset to first page when search changes
+    setCurrentPage(1);
+  }, [searchTerm]);
+
   const loadCheckedCards = () => {
     const saved = localStorage.getItem("master_extra_deck_checked");
     if (saved) {
