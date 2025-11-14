@@ -314,7 +314,7 @@ const Master2PList = () => {
                     }`}
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      {index + 1}
+                      {absoluteIndex + 1}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
                       {card.card_name}
