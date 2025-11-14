@@ -283,6 +283,129 @@ const HeadToHeadBuilder = () => {
     );
   };
 
+  const DecklistModal = () => {
+    if (!isModalOpen || !modalDecklist) return null;
+
+    const mainDeckGrouped = groupCardsByType(modalDecklist.main_deck);
+    const extraDeckGrouped = groupCardsByType(modalDecklist.extra_deck);
+
+    return (
+      <div 
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        onClick={closeModal}
+      >
+        <div 
+          className="bg-gray-900 rounded-xl border border-purple-500/30 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Modal Header */}
+          <div className="sticky top-0 bg-gray-900/95 backdrop-blur-sm border-b border-purple-500/30 p-6 flex items-start justify-between">
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-white mb-2">{modalDecklist.player_name}</h2>
+              <p className="text-xl text-purple-400 font-semibold">{modalDecklist.deck_name}</p>
+              <p className="text-sm text-gray-400 mt-1">{modalDecklist.event}</p>
+              <div className="flex items-center space-x-4 text-sm mt-3">
+                <span className="text-gray-400">Main: <span className="font-semibold text-purple-400">{calculateTotalCards(modalDecklist.main_deck)}</span></span>
+                <span className="text-gray-400">Extra: <span className="font-semibold text-blue-400">{calculateTotalCards(modalDecklist.extra_deck)}</span></span>
+              </div>
+            </div>
+            <button
+              onClick={closeModal}
+              className="text-gray-400 hover:text-white transition-colors ml-4"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Modal Body */}
+          <div className="p-6">
+            {/* Main Deck */}
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold text-amber-400 mb-4 border-b border-amber-400/30 pb-2">
+                Main Deck ({calculateTotalCards(modalDecklist.main_deck)} cards)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {Object.entries(mainDeckGrouped).map(([type, cards]) =>
+                  cards.length > 0 ? (
+                    <div key={type}>
+                      <h4 className="text-sm font-semibold text-gray-400 mb-3">{type}s:</h4>
+                      <ul className="space-y-1">
+                        {cards.map((card, idx) => (
+                          <li key={idx} className="text-gray-300 text-sm">
+                            {card.quantity}x {card.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null
+                )}
+              </div>
+            </div>
+
+            {/* Extra Deck */}
+            {modalDecklist.extra_deck && modalDecklist.extra_deck.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-2xl font-semibold text-cyan-400 mb-4 border-b border-cyan-400/30 pb-2">
+                  Extra Deck ({calculateTotalCards(modalDecklist.extra_deck)} cards)
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {Object.entries(extraDeckGrouped).map(([type, cards]) =>
+                    cards.length > 0 ? (
+                      <div key={type}>
+                        <h4 className="text-sm font-semibold text-gray-400 mb-3">{type}s:</h4>
+                        <ul className="space-y-1">
+                          {cards.map((card, idx) => (
+                            <li key={idx} className="text-gray-300 text-sm">
+                              {card.quantity}x {card.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex space-x-4 pt-4 border-t border-purple-500/20">
+              <button
+                onClick={() => {
+                  assignToPlayerA(modalDecklist);
+                  closeModal();
+                }}
+                disabled={playerALocked}
+                className={`flex-1 py-3 rounded-lg text-base font-semibold transition-all ${
+                  playerALocked
+                    ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+                    : "bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800"
+                }`}
+              >
+                Assign to Player A
+              </button>
+              <button
+                onClick={() => {
+                  assignToPlayerB(modalDecklist);
+                  closeModal();
+                }}
+                disabled={playerBLocked}
+                className={`flex-1 py-3 rounded-lg text-base font-semibold transition-all ${
+                  playerBLocked
+                    ? "bg-gray-700 text-gray-500 cursor-not-allowed"
+                    : "bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800"
+                }`}
+              >
+                Assign to Player B
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
