@@ -3,6 +3,7 @@ import "../styles/CardCheckbox.css";
 
 const CardCheckbox = ({ cardType, isChecked, onChange }) => {
   const [isFlipping, setIsFlipping] = useState(false);
+  const [flipDirection, setFlipDirection] = useState("forward");
 
   // Map card type to checkmarked frame image (shown when UNCHECKED)
   const getCardFrame = () => {
@@ -24,6 +25,10 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
 
   const handleClick = () => {
     setIsFlipping(true);
+    // Set flip direction based on current state
+    // Checking (unchecked → checked): rotateY forward
+    // Unchecking (checked → unchecked): rotateX backward
+    setFlipDirection(isChecked ? "backward" : "forward");
     onChange();
     // Reset flip animation after it completes
     setTimeout(() => setIsFlipping(false), 400);
@@ -32,7 +37,7 @@ const CardCheckbox = ({ cardType, isChecked, onChange }) => {
   return (
     <div className="card-checkbox-container">
       <div
-        className={`card-checkbox ${isChecked ? "flipped" : ""} ${isFlipping ? "flipping" : ""}`}
+        className={`card-checkbox ${isChecked ? "flipped" : ""} ${isFlipping ? "flipping" : ""} ${flipDirection === "backward" ? "flip-backward" : ""}`}
         onClick={handleClick}
       >
         {/* Front: Checkmarked frame (unchecked state) */}
