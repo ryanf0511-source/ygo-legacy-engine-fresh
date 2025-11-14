@@ -76,7 +76,7 @@ const MasterListsHub = () => {
           <div className="flex items-center justify-between mt-6 pt-6 border-t border-purple-500/20">
             <div className="text-sm">
               <span className="text-gray-400">Total Cards: </span>
-              <span className="text-blue-400 font-bold">TBD</span>
+              <span className="text-blue-400 font-bold">123</span>
             </div>
             <div className="text-sm">
               <span className="text-gray-400">Unique: </span>
