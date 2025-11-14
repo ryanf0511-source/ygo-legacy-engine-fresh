@@ -93,6 +93,13 @@ const HeadToHeadBuilder = () => {
     }
   };
 
+  const resetBoth = () => {
+    setPlayerA(null);
+    setPlayerB(null);
+    setPlayerALocked(false);
+    setPlayerBLocked(false);
+  };
+
   const calculateTotalCards = (cards) => {
     return cards?.reduce((sum, card) => sum + (card.quantity || 0), 0) || 0;
   };
