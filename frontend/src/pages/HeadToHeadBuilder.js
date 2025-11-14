@@ -420,7 +420,7 @@ const HeadToHeadBuilder = () => {
       </div>
 
       {/* Event Filter */}
-      <div className="bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20 p-6">
+      <div className="bg-gray-800/60 rounded-lg border border-purple-500/20 p-6">
         <label className="block text-sm font-medium text-gray-300 mb-2">
           Select SJC Event
         </label>
