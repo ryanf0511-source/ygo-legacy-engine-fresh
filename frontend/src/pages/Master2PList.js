@@ -340,8 +340,7 @@ const Master2PList = () => {
                 )}
               </div>
             </div>
-        
-          <>
+            
             <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 overflow-hidden shadow-xl">
               <div className="overflow-x-auto">
                 <table className="w-full">
