@@ -373,6 +373,19 @@ async def get_master_extra_deck_list():
     cards = await db.master_extra_deck_list.find({}, {"_id": 0}).sort("card_name", 1).to_list(None)
     return {"cards": cards}
 
+# Get decklists by specific event (for Head-to-Head Builder)
+@api_router.get("/decklists-by-event/{event}")
+async def get_decklists_by_event(event: str):
+    decklists = await db.decklists.find(
+        {"event": event},
+        {"_id": 0}
+    ).sort("player_name", 1).to_list(None)
+    
+    if not decklists:
+        raise HTTPException(status_code=404, detail="No decklists found for this event")
+    
+    return {"decklists": decklists, "event": event, "count": len(decklists)}
+
 # Include the router in the main app
 app.include_router(api_router)
 
