@@ -185,7 +185,7 @@ const HeadToHeadBuilder = () => {
   };
 
   const DecklistCard = ({ decklist }) => (
-    <div className="bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20 p-5 hover:border-purple-500/50 transition-all duration-300">
+    <div className="bg-gray-800/40 backdrop-blur-sm rounded-lg border border-purple-500/20 p-5 hover:border-purple-500/50 transition-all duration-200">
       <div 
         className="mb-4 cursor-pointer"
         onClick={() => openModal(decklist)}
