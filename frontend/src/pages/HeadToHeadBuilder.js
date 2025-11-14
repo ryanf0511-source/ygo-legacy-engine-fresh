@@ -248,31 +248,10 @@ const HeadToHeadBuilder = () => {
           <h5 className="text-lg font-semibold text-amber-400 mb-3 border-b border-amber-400/30 pb-2">
             Main Deck ({calculateTotalCards(player.main_deck)} cards)
           </h5>
-          {Object.entries(mainDeckGrouped).map(([type, cards]) =>
-            cards.length > 0 ? (
-              <div key={type} className="mb-4">
-                <h6 className="text-sm font-semibold text-gray-400 mb-2">{type}s:</h6>
-                <ul className="space-y-1">
-                  {cards.map((card, idx) => (
-                    <li key={idx} className="text-gray-300 text-sm">
-                      {card.quantity}x {card.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null
-          )}
-        </div>
-
-        {/* Extra Deck */}
-        {player.extra_deck && player.extra_deck.length > 0 && (
-          <div>
-            <h5 className="text-lg font-semibold text-cyan-400 mb-3 border-b border-cyan-400/30 pb-2">
-              Extra Deck ({calculateTotalCards(player.extra_deck)} cards)
-            </h5>
-            {Object.entries(extraDeckGrouped).map(([type, cards]) =>
+          <div className="grid grid-cols-2 gap-4">
+            {Object.entries(mainDeckGrouped).map(([type, cards]) =>
               cards.length > 0 ? (
-                <div key={type} className="mb-4">
+                <div key={type}>
                   <h6 className="text-sm font-semibold text-gray-400 mb-2">{type}s:</h6>
                   <ul className="space-y-1">
                     {cards.map((card, idx) => (
@@ -284,6 +263,31 @@ const HeadToHeadBuilder = () => {
                 </div>
               ) : null
             )}
+          </div>
+        </div>
+
+        {/* Extra Deck */}
+        {player.extra_deck && player.extra_deck.length > 0 && (
+          <div>
+            <h5 className="text-lg font-semibold text-cyan-400 mb-3 border-b border-cyan-400/30 pb-2">
+              Extra Deck ({calculateTotalCards(player.extra_deck)} cards)
+            </h5>
+            <div className="grid grid-cols-2 gap-4">
+              {Object.entries(extraDeckGrouped).map(([type, cards]) =>
+                cards.length > 0 ? (
+                  <div key={type}>
+                    <h6 className="text-sm font-semibold text-gray-400 mb-2">{type}s:</h6>
+                    <ul className="space-y-1">
+                      {cards.map((card, idx) => (
+                        <li key={idx} className="text-gray-300 text-sm">
+                          {card.quantity}x {card.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null
+              )}
+            </div>
           </div>
         )}
       </div>
