@@ -12,6 +12,8 @@ const MasterExtraDeck = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [checkedCards, setCheckedCards] = useState({});
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 50;
 
   useEffect(() => {
     fetchCards();
