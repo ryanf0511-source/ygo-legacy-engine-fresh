@@ -33,6 +33,11 @@ const Master2PList = () => {
     filterCards();
   }, [cards, searchTerm, cardTypeFilter]);
 
+  useEffect(() => {
+    // Reset to first page when filters change
+    setCurrentPage(1);
+  }, [searchTerm, cardTypeFilter]);
+
   const loadCheckedCards = () => {
     const saved = localStorage.getItem("master2p_checked");
     if (saved) {
