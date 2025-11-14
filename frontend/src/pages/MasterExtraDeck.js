@@ -236,11 +236,6 @@ const MasterExtraDeck = () => {
           </div>
         </div>
 
-        {/* Results Count */}
-        <div className="text-sm text-gray-400">
-          Showing <span className="text-white font-semibold">{filteredCards.length}</span> of{" "}
-          <span className="text-white font-semibold">{cards.length}</span> cards
-        </div>
       </div>
 
       {/* Loading State */}
@@ -260,6 +255,66 @@ const MasterExtraDeck = () => {
         
         return (
           <>
+            {/* Pagination Controls - Top */}
+            <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 p-4">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-400">
+                  Showing <span className="text-white font-semibold">{startIndex + 1}</span> to{" "}
+                  <span className="text-white font-semibold">{Math.min(endIndex, filteredCards.length)}</span> of{" "}
+                  <span className="text-white font-semibold">{filteredCards.length}</span> cards
+                </div>
+                
+                {totalPages > 1 && (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Previous
+                    </button>
+                    
+                    <div className="flex items-center space-x-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={`px-3 py-2 rounded-lg transition-colors ${
+                              currentPage === pageNum
+                                ? 'bg-purple-600 text-white'
+                                : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            
             <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 overflow-hidden shadow-xl">
               <div className="overflow-x-auto">
                 <table className="w-full">
