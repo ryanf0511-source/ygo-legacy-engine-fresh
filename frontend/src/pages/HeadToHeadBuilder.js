@@ -15,6 +15,10 @@ const HeadToHeadBuilder = () => {
   const [playerB, setPlayerB] = useState(null);
   const [playerALocked, setPlayerALocked] = useState(false);
   const [playerBLocked, setPlayerBLocked] = useState(false);
+  
+  // Modal state
+  const [modalDecklist, setModalDecklist] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch all events on mount
   useEffect(() => {
