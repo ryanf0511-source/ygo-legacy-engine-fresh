@@ -153,8 +153,8 @@ const HeadToHeadBuilder = () => {
 
       {player ? (
         <div className="space-y-2">
-          <h4 className="text-lg font-semibold text-purple-400">{player.player_name}</h4>
-          <p className="text-gray-300">{player.deck_name}</p>
+          <h4 className="text-xl font-bold text-purple-400">{player.deck_name}</h4>
+          <p className="text-gray-300 text-sm">{player.player_name}</p>
           <p className="text-sm text-gray-400">{player.event}</p>
           <div className="flex space-x-4 text-sm mt-2">
             <span className="text-gray-400">
