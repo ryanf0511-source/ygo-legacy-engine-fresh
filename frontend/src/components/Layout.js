@@ -8,27 +8,47 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen obsidian-marble-bg">
-      {/* Header with transparent marble effect */}
-      <nav className="relative border-b border-gold-foil/30 backdrop-blur-md bg-marble-black/75 sticky top-0 z-50">
-        {/* Subtle holographic shimmer on bottom border hover */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-foil/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-        
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-center h-20">
-            <Link to="/" className="group">
-              <h1 className="font-serif text-3xl font-bold text-off-white group-hover:text-gold-foil transition-colors duration-300">
-                YGO SJC Database
-              </h1>
-            </Link>
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-blue-950">
+      {/* Navigation */}
+      <nav className="bg-black/60 backdrop-blur-md border-b border-fuchsia-500/30 sticky top-0 z-50 shadow-lg shadow-fuchsia-500/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center space-x-3 group">
+                <div className="text-2xl font-bold bg-gradient-to-r from-fuchsia-400 via-purple-400 to-amber-400 bg-clip-text text-transparent group-hover:from-amber-400 group-hover:via-fuchsia-400 group-hover:to-purple-400 transition-all duration-500">
+                  YGO SJC Database
+                </div>
+              </Link>
+            </div>
+            <div className="flex space-x-4">
+              <Link
+                to="/"
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  isActive("/")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30"
+                    : "text-gray-300 hover:bg-slate-800/50 hover:text-fuchsia-400"
+                }`}
+              >
+                Home
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <main>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
+
+      {/* Footer */}
+      <footer className="bg-black/40 backdrop-blur-md border-t border-fuchsia-500/20 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <p className="text-center text-gray-400 text-sm">
+            Yu-Gi-Oh! SJC Decklist Database - Featuring <span className="text-amber-400 font-semibold">911</span> tournament decklists and <span className="text-fuchsia-400 font-semibold">30,224</span> card usage records
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
