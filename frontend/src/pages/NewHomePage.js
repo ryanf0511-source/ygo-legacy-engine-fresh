@@ -106,21 +106,21 @@ const NewHomePage = () => {
         
         {/* Symmetrical grid - all items equal importance */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Master Lists */}
+          {/* Decklists */}
           <Link
-            to="/master-lists"
-            className="group bg-gradient-to-br from-emerald-600/10 to-teal-600/10 backdrop-blur-md rounded-xl border-2 border-emerald-500/40 p-6 hover:border-emerald-400/80 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 flex flex-col h-full"
+            to="/decklists"
+            className="group bg-gradient-to-br from-blue-600/10 to-indigo-600/10 backdrop-blur-md rounded-xl border-2 border-blue-500/40 p-6 hover:border-blue-400/80 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 flex flex-col h-full"
           >
             <div className="flex flex-col items-center text-center space-y-4 flex-1">
-              <div className="p-4 bg-emerald-500/20 rounded-xl border border-emerald-400/30 group-hover:bg-emerald-500/30 transition-colors">
-                <svg className="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              <div className="p-4 bg-blue-500/20 rounded-xl border border-blue-400/30 group-hover:bg-blue-500/30 transition-colors">
+                <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Master Lists</h3>
-                <p className="text-sm text-gray-400 mb-3">Collection Checklists</p>
-                <p className="text-gray-300 text-sm">Track your collection with comprehensive card inventories</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Decklists</h3>
+                <p className="text-sm text-gray-400 mb-3">911 tournament decks</p>
+                <p className="text-gray-300 text-sm">Browse complete tournament-winning decklists</p>
               </div>
             </div>
           </Link>
