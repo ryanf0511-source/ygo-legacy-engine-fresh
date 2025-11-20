@@ -4,13 +4,81 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-black via-neutral-950 to-stone-950;
     @apply text-gray-100;
     @apply min-h-screen;
+    /* Obsidian marble background with veins */
+    background: 
+      /* Gold and white mineral veins */
+      linear-gradient(135deg, transparent 20%, rgba(251, 191, 36, 0.03) 20%, rgba(251, 191, 36, 0.03) 22%, transparent 22%, transparent 48%, rgba(251, 191, 36, 0.02) 48%, rgba(251, 191, 36, 0.02) 50%, transparent 50%),
+      linear-gradient(45deg, transparent 25%, rgba(255, 255, 255, 0.015) 25%, rgba(255, 255, 255, 0.015) 27%, transparent 27%, transparent 73%, rgba(255, 255, 255, 0.015) 73%, rgba(255, 255, 255, 0.015) 75%, transparent 75%),
+      linear-gradient(90deg, transparent 30%, rgba(251, 191, 36, 0.02) 30%, rgba(251, 191, 36, 0.02) 32%, transparent 32%),
+      /* Smokey fog texture */
+      radial-gradient(ellipse at 20% 30%, rgba(30, 30, 30, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(20, 20, 20, 0.3) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(15, 15, 15, 0.5) 0%, transparent 60%),
+      /* Deep black obsidian base */
+      linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+    background-size: 800px 800px, 600px 600px, 500px 500px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-attachment: fixed;
   }
 }
 
-/* Holographic shimmer animation */
+/* Marble card effect - polished obsidian with veins */
+.marble-card {
+  background: 
+    /* Subtle white/gold veins */
+    linear-gradient(135deg, transparent 40%, rgba(251, 191, 36, 0.04) 40%, rgba(251, 191, 36, 0.04) 42%, transparent 42%),
+    linear-gradient(45deg, transparent 60%, rgba(255, 255, 255, 0.02) 60%, rgba(255, 255, 255, 0.02) 62%, transparent 62%),
+    /* Smoke/fog texture */
+    radial-gradient(ellipse at 30% 40%, rgba(40, 40, 40, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(30, 30, 30, 0.2) 0%, transparent 50%),
+    /* Deep glossy black base */
+    linear-gradient(135deg, #000000 0%, #0f0f0f 50%, #000000 100%);
+  background-size: 400px 400px, 300px 300px, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Holographic shimmer effect - subtle rainbow like the sleeve edge */
+.holographic-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 255, 0.15) 0%,
+    rgba(0, 255, 255, 0.15) 20%,
+    rgba(255, 255, 0, 0.15) 40%,
+    rgba(255, 0, 128, 0.15) 60%,
+    rgba(0, 255, 255, 0.15) 80%,
+    rgba(255, 0, 255, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+}
+
+.holographic-shimmer-emerald {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 128, 0.15) 0%,
+    rgba(64, 255, 192, 0.15) 25%,
+    rgba(0, 255, 255, 0.15) 50%,
+    rgba(64, 255, 192, 0.15) 75%,
+    rgba(0, 255, 128, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Holographic border accent - very subtle */
+.holographic-border {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 255, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    rgba(255, 255, 0, 0.1) 50%,
+    rgba(255, 0, 255, 0.1) 75%,
+    rgba(0, 255, 255, 0.1) 100%
+  );
+  background-size: 300% 300%;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
 @keyframes shimmer {
   0% {
     background-position: 0% 50%;
@@ -24,33 +92,22 @@
 }
 
 @layer components {
-  /* Custom scrollbar */
+  /* Custom scrollbar with gold accent */
   ::-webkit-scrollbar {
     width: 12px;
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-stone-950;
+    background: #0a0a0a;
   }
   
   ::-webkit-scrollbar-thumb {
     @apply bg-gradient-to-b from-yellow-600 to-amber-700;
     @apply rounded-full;
+    border: 2px solid #0a0a0a;
   }
   
   ::-webkit-scrollbar-thumb:hover {
     @apply from-yellow-500 to-amber-600;
-  }
-
-  /* Gradient text utility */
-  .gradient-text {
-    @apply bg-gradient-to-r from-fuchsia-400 via-purple-400 to-fuchsia-400;
-    @apply bg-clip-text text-transparent;
-  }
-
-  /* Gold gradient utility */
-  .gradient-gold {
-    @apply bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500;
-    @apply bg-clip-text text-transparent;
   }
 }
