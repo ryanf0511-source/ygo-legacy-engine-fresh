@@ -4,9 +4,22 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-black via-slate-950 to-blue-950;
+    @apply bg-gradient-to-br from-black via-neutral-950 to-stone-950;
     @apply text-gray-100;
     @apply min-h-screen;
+  }
+}
+
+/* Holographic shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
