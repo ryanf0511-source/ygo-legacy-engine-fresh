@@ -35,30 +35,33 @@ const NewHomePage = () => {
         </div>
       </div>
 
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[200px]">
+      {/* Feature Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-5 auto-rows-[200px]">
         {/* Card Browser - Large Featured */}
         <Link
           to="/cards"
-          className="md:col-span-3 md:row-span-2 bg-gradient-to-br from-fuchsia-600/20 via-purple-600/20 to-fuchsia-800/20 backdrop-blur-md rounded-xl border border-fuchsia-500/40 p-6 hover:border-fuchsia-400/80 hover:shadow-2xl hover:shadow-fuchsia-500/30 transition-all duration-300 group flex flex-col justify-between"
+          className="md:col-span-3 md:row-span-2 relative bg-gradient-to-br from-stone-900/80 via-neutral-900/80 to-stone-950/80 rounded-xl border-2 border-yellow-600/40 p-8 hover:border-yellow-500/70 hover:shadow-2xl hover:shadow-yellow-900/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden"
         >
-          <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="p-3 bg-fuchsia-500/20 rounded-lg border border-fuchsia-400/30">
-                <svg className="w-8 h-8 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* Emerald accent glow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          <div className="relative z-10">
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="p-3 bg-yellow-600/20 rounded-lg border-2 border-yellow-500/50 shadow-lg shadow-yellow-900/30">
+                <svg className="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-fuchsia-400 group-hover:to-amber-400 group-hover:bg-clip-text group-hover:text-transparent transition-colors">Card Browser</h3>
-                <p className="text-sm text-amber-400 font-semibold">30,224 records</p>
+                <h3 className="text-3xl font-bold text-yellow-400 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)] group-hover:text-yellow-300 transition-colors">Card Browser</h3>
+                <p className="text-sm text-yellow-600 font-semibold">30,224 records</p>
               </div>
             </div>
-            <p className="text-gray-300">Search and explore individual card usage across all SJC tournaments. Filter by card type, deck, event, and more.</p>
+            <p className="text-gray-300 leading-relaxed">Search and explore individual card usage across all SJC tournaments. Filter by card type, deck, event, and more.</p>
           </div>
-          <div className="flex items-center text-fuchsia-400 group-hover:text-amber-400 transition-colors">
-            <span className="text-sm font-medium">Explore Cards</span>
-            <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="relative z-10 flex items-center text-yellow-500 group-hover:text-emerald-400 transition-colors">
+            <span className="text-sm font-bold tracking-wide">EXPLORE CARDS</span>
+            <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </div>
