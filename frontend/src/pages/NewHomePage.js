@@ -4,22 +4,29 @@ const NewHomePage = () => {
   return (
     <div className="space-y-12">
       {/* Hero/Story Section */}
-      <div className="text-center max-w-4xl mx-auto space-y-6">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-          YGO SJC <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">Database</span>
+      <div className="text-center max-w-5xl mx-auto space-y-6">
+        <h1 className="text-6xl md:text-7xl font-bold mb-4">
+          <span className="text-white">YGO SJC</span>{" "}
+          <span className="bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(251,191,36,0.5)]">
+            Database
+          </span>
         </h1>
-        <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 p-8 shadow-2xl shadow-fuchsia-500/10">
-          <div className="text-gray-300 space-y-4 text-left">
-            <p className="text-lg italic text-amber-400 font-semibold">
-              "The story of how this database came to be..."
+        <div className="relative bg-gradient-to-br from-stone-900/90 via-neutral-900/90 to-stone-950/90 rounded-2xl border-2 border-yellow-600/50 p-10 shadow-2xl shadow-yellow-900/20 overflow-hidden">
+          {/* Subtle marble texture overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent opacity-40"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-yellow-900/5 via-transparent to-transparent"></div>
+          
+          <div className="relative z-10 text-gray-200 space-y-4 text-left">
+            <p className="text-xl italic text-yellow-400 font-bold drop-shadow-[0_0_10px_rgba(251,191,36,0.3)]">
+              "Preserving the Legacy of Champions..."
             </p>
-            <p>
+            <p className="leading-relaxed">
               This comprehensive Yu-Gi-Oh! SJC database represents years of tournament history, 
               cataloging thousands of competitive decklists and card usage data from the golden era 
               of Yu-Gi-Oh! competitive play. Our mission is to preserve this legacy and provide 
               players with the tools to study, analyze, and appreciate the evolution of the game.
             </p>
-            <p>
+            <p className="leading-relaxed">
               Whether you're a competitive player studying the meta, a collector building your 
               Master 2 Player collection, or a content creator exploring Yu-Gi-Oh! history, 
               this database serves as your comprehensive resource for SJC tournament data.
