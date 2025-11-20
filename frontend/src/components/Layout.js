@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3 group">
                 <div className="text-2xl font-bold bg-gradient-to-r from-fuchsia-400 via-purple-400 to-amber-400 bg-clip-text text-transparent group-hover:from-amber-400 group-hover:via-fuchsia-400 group-hover:to-purple-400 transition-all duration-500">
-                  YGO SJC Database
+                  YGO Legacy Engine
                 </div>
               </Link>
             </div>
