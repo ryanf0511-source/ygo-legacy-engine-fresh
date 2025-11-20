@@ -30,16 +30,16 @@
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-slate-900;
+    @apply bg-stone-950;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-fuchsia-600 to-purple-700;
+    @apply bg-gradient-to-b from-yellow-600 to-amber-700;
     @apply rounded-full;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply from-fuchsia-500 to-purple-600;
+    @apply from-yellow-500 to-amber-600;
   }
 
   /* Gradient text utility */
