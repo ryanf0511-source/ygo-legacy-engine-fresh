@@ -43,10 +43,15 @@ const Layout = ({ children }) => {
 
       {/* Footer */}
       <footer className="bg-black/40 backdrop-blur-md border-t border-fuchsia-500/20 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-center text-gray-400 text-sm">
-            YGO Legacy Engine - Featuring <span className="text-amber-400 font-semibold">911</span> tournament decklists and <span className="text-fuchsia-400 font-semibold">30,224</span> card usage records
-          </p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center space-y-4">
+            <p className="text-gray-400 text-sm">
+              Featuring <span className="text-amber-400 font-semibold">911</span> tournament decklists and <span className="text-fuchsia-400 font-semibold">30,224</span> card usage records
+            </p>
+            <p className="text-gray-500 text-xs max-w-4xl mx-auto leading-relaxed">
+              YGO Legacy Engine is an independent fan project and is not affiliated with or endorsed by Konami. All Yu-Gi-Oh! trademarks and images are property of Konami Digital Entertainment, used here for informational purposes only. Tournament data is compiled from official sources and community archives.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
