@@ -21,15 +21,9 @@ const NewHomePage = () => {
           <p className="text-xl text-amber-400 font-semibold mb-6 italic">
             "Preserving the Legacy of Champions"
           </p>
-          <div className="space-y-4 text-gray-300 text-left leading-relaxed">
+          <div className="text-gray-300 text-left leading-relaxed">
             <p>
-              This comprehensive Yu-Gi-Oh! SJC database represents years of tournament history, 
-              cataloging thousands of competitive decklists and card usage data from the golden era 
-              of Yu-Gi-Oh! competitive play.
-            </p>
-            <p>
-              Our mission is to preserve this legacy and provide players with the tools to study, 
-              analyze, and appreciate the evolution of the game.
+              Driven by a passion for the game's rich history, I built YGO Legacy Engine to unlock the full experience of every SJC format. Anyone can play, explore, and relive classic decks from 2005 to 2010, with every card choice and format instantly accessible. This project is more than a database; it's about sharing nostalgia, bringing people together, and keeping the legacy alive for fans everywhere.
             </p>
           </div>
         </div>
