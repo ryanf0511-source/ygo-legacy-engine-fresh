@@ -19,7 +19,7 @@ const NewHomePage = () => {
         {/* Story Card - Common Region principle */}
         <div className="max-w-4xl mx-auto bg-slate-900/50 backdrop-blur-md rounded-2xl border border-fuchsia-500/30 p-10 shadow-2xl shadow-fuchsia-500/10">
           <p className="text-xl text-amber-400 font-semibold mb-6 italic">
-            "Preserving the Legacy of Champions"
+            "Play Every Era. Relive Every Duel."
           </p>
           <div className="text-gray-300 text-left leading-relaxed">
             <p>
