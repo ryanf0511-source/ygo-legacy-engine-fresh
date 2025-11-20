@@ -70,25 +70,25 @@ const NewHomePage = () => {
             </div>
           </Link>
 
-          {/* Decklists - Primary Feature */}
+          {/* Master Lists - Primary Feature */}
           <Link
-            to="/decklists"
-            className="group relative bg-gradient-to-br from-blue-600/10 to-indigo-600/10 backdrop-blur-md rounded-2xl border-2 border-blue-500/40 p-8 hover:border-blue-400/80 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 flex flex-col"
+            to="/master-lists"
+            className="group relative bg-gradient-to-br from-emerald-600/10 to-teal-600/10 backdrop-blur-md rounded-2xl border-2 border-emerald-500/40 p-8 hover:border-emerald-400/80 hover:shadow-2xl hover:shadow-emerald-500/30 transition-all duration-300 flex flex-col"
           >
             <div className="flex items-start space-x-4 mb-6">
-              <div className="p-4 bg-blue-500/20 rounded-xl border border-blue-400/30 group-hover:bg-blue-500/30 transition-colors">
-                <svg className="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <div className="p-4 bg-emerald-500/20 rounded-xl border border-emerald-400/30 group-hover:bg-emerald-500/30 transition-colors">
+                <svg className="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">Decklists</h3>
-                <p className="text-cyan-400 font-semibold text-sm">911 tournament decks</p>
+                <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Master Lists</h3>
+                <p className="text-teal-400 font-semibold text-sm">Collection Checklists</p>
               </div>
             </div>
-            <p className="text-gray-300 mb-4 flex-1">Browse complete tournament-winning decklists with advanced filtering by player, deck type, and event.</p>
-            <div className="flex items-center text-blue-400 group-hover:text-cyan-400 transition-colors font-medium">
-              <span>View Decklists</span>
+            <p className="text-gray-300 mb-4 flex-1">Track your collection with comprehensive card inventories for different formats including Main Deck and Extra Deck.</p>
+            <div className="flex items-center text-emerald-400 group-hover:text-teal-400 transition-colors font-medium">
+              <span>View Master Lists</span>
               <svg className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
