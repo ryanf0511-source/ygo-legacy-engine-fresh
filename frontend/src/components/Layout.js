@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
       <footer className="bg-black/40 backdrop-blur-md border-t border-fuchsia-500/20 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-center text-gray-400 text-sm">
-            Yu-Gi-Oh! SJC Decklist Database - Featuring <span className="text-amber-400 font-semibold">911</span> tournament decklists and <span className="text-fuchsia-400 font-semibold">30,224</span> card usage records
+            YGO Legacy Engine - Featuring <span className="text-amber-400 font-semibold">911</span> tournament decklists and <span className="text-fuchsia-400 font-semibold">30,224</span> card usage records
           </p>
         </div>
       </footer>
