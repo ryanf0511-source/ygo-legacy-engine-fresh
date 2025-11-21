@@ -1,8 +1,21 @@
 import "../styles/CardCheckbox.css";
 
-const CardCheckbox = ({ cardType, isChecked, onChange }) => {
+const CardCheckbox = ({ cardType, cardSubtype, isChecked, onChange }) => {
   // Map card type to checkmarked frame image (shown when UNCHECKED)
   const getCardFrame = () => {
+    // For monsters, check subtype first
+    if (cardType === "Monster" && cardSubtype) {
+      switch (cardSubtype) {
+        case "Ritual":
+          return "/card-frames/ritual-frame-checked.png";
+        case "Normal":
+          return "/card-frames/normal-frame-checked.png";
+        default:
+          return "/card-frames/monster-frame-checked.png";
+      }
+    }
+    
+    // For non-monsters or monsters without subtype
     switch (cardType) {
       case "Monster":
         return "/card-frames/monster-frame-checked.png";
