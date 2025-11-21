@@ -336,6 +336,7 @@ const Master2PList = () => {
                       <div className="flex justify-center">
                         <CardCheckbox
                           cardType={card.card_type}
+                          cardSubtype={card.card_subtype}
                           isChecked={checkedCards[card.card_name] || false}
                           onChange={() => toggleCard(card.card_name)}
                         />
