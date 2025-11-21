@@ -367,19 +367,9 @@ const Master2PList = () => {
                       Previous
                     </button>
                     
-                    <div className="flex items-center space-x-1">
-                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                        let pageNum;
-                        if (totalPages <= 5) {
-                          pageNum = i + 1;
-                        } else if (currentPage <= 3) {
-                          pageNum = i + 1;
-                        } else if (currentPage >= totalPages - 2) {
-                          pageNum = totalPages - 4 + i;
-                        } else {
-                          pageNum = currentPage - 2 + i;
-                        }
-                        
+                    <div className="flex items-center space-x-1 flex-wrap gap-1">
+                      {Array.from({ length: totalPages }, (_, i) => {
+                        const pageNum = i + 1;
                         return (
                           <button
                             key={pageNum}
