@@ -104,8 +104,9 @@ const Master2PList = () => {
   const downloadCSV = () => {
     const headers = ["Card Name", "Card Type", "Max Qty Needed", "Have It"];
     const rows = filteredCards.map((card) => [
-      card.card_name,
-      card.card_type,
+      // Escape double quotes and wrap fields in quotes if they contain commas or quotes
+      `"${card.card_name.replace(/"/g, '""')}"`,
+      `"${card.card_type.replace(/"/g, '""')}"`,
       card.max_qty,
       checkedCards[card.card_name] ? "Yes" : "No",
     ]);
@@ -113,13 +114,13 @@ const Master2PList = () => {
     const csvContent = [
       headers.join(","),
       ...rows.map((row) => row.join(",")),
-    ].join("\\n");
+    ].join("\n");
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
     link.setAttribute("href", url);
-    link.setAttribute("download", "master_2p_inventory.csv");
+    link.setAttribute("download", "Master 2 Player List.csv");
     link.style.visibility = "hidden";
     document.body.appendChild(link);
     link.click();
