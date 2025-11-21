@@ -30,6 +30,7 @@ async def import_master_2p_list():
             card = {
                 "card_name": row.get('Card Name', ''),
                 "card_type": row.get('Card Type', ''),
+                "card_subtype": row.get('Card Subtype', ''),
                 "max_qty": int(row.get('Max Qty Needed', 0)),
                 "checkbox": row.get('Checkbox', 'No')
             }
