@@ -189,15 +189,48 @@ const Master2PList = () => {
         <div className="max-w-5xl mx-auto mt-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-300">Collection Progress</span>
-            <span className="text-lg font-bold text-green-400">
+            <span className="text-lg font-bold bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-300 bg-clip-text text-transparent animate-pulse">
               {progress.percentage}% Complete
             </span>
           </div>
-          <div className="w-full bg-gray-700 rounded-full h-4">
+          <div className="w-full bg-gray-800 rounded-full h-5 overflow-hidden border border-gray-600 relative">
+            {/* Background shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/20 to-transparent animate-shimmer"></div>
+            
+            {/* Progress bar with dynamic glow */}
             <div
-              className="bg-gradient-to-r from-green-500 to-emerald-600 h-4 rounded-full transition-all duration-500"
-              style={{ width: `${progress.percentage}%` }}
-            ></div>
+              className="relative h-5 rounded-full transition-all duration-700 ease-out overflow-hidden"
+              style={{ 
+                width: `${progress.percentage}%`,
+                background: `linear-gradient(90deg, 
+                  ${progress.percentage < 33 ? '#10b981, #059669' : 
+                    progress.percentage < 66 ? '#f59e0b, #d97706' : 
+                    '#fbbf24, #f59e0b, #eab308'}
+                )`,
+                boxShadow: `0 0 ${Math.min(progress.percentage / 5, 20)}px ${
+                  progress.percentage < 33 ? 'rgba(16, 185, 129, 0.8)' : 
+                  progress.percentage < 66 ? 'rgba(245, 158, 11, 0.9)' : 
+                  'rgba(251, 191, 36, 1)'
+                }, inset 0 1px 2px rgba(255, 255, 255, 0.3)`
+              }}
+            >
+              {/* Animated comet/shimmer effect */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-comet"
+                style={{ 
+                  animationDuration: `${Math.max(2 - (progress.percentage / 100), 1)}s`
+                }}
+              ></div>
+              
+              {/* Sparkle effect for high progress */}
+              {progress.percentage > 75 && (
+                <div className="absolute inset-0 opacity-60">
+                  <div className="absolute top-1/2 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"></div>
+                  <div className="absolute top-1/3 left-1/2 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                  <div className="absolute top-2/3 left-3/4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
