@@ -333,12 +333,15 @@ const Master2PList = () => {
           </div>
           
           {/* Achievement message */}
-          {progress.percentage >= 25 && progress.percentage < 100 && (
+          {progress.percentage >= 14.3 && progress.percentage < 100 && (
             <div className="text-center mt-3">
-              <p className="text-sm font-medium bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                {progress.percentage >= 75 ? "Almost there! You're a true collector! 👑" :
-                 progress.percentage >= 50 ? "Halfway there! Keep going! 💎" :
-                 "Great start! You've unlocked the first milestone! ⭐"}
+              <p className="text-sm font-medium bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-300 bg-clip-text text-transparent">
+                {progress.percentage >= 85.7 ? "One more to go! The Millennium Puzzle awaits! ✨" :
+                 progress.percentage >= 71.4 ? "The Millennium Necklace is yours! Almost complete! 🔮" :
+                 progress.percentage >= 57.1 ? "The Millennium Rod unlocked! Keep collecting! 📿" :
+                 progress.percentage >= 42.9 ? "The Millennium Eye sees your progress! 👁️" :
+                 progress.percentage >= 28.6 ? "The Millennium Scales are balanced! ⚖️" :
+                 "The Millennium Ring is yours! Continue the journey! 💍"}
               </p>
             </div>
           )}
