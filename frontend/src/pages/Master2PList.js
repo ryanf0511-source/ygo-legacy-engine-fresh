@@ -507,6 +507,17 @@ const Master2PList = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <button
+                      onClick={checkCurrentPage}
+                      className="px-3 py-2 bg-blue-600/80 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-1"
+                      title="Check all cards on this page"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Check Page</span>
+                    </button>
+                    
+                    <button
                       onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                       disabled={currentPage === 1}
                       className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
