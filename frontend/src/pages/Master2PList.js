@@ -202,24 +202,14 @@ const Master2PList = () => {
         {/* Progress Bar - Gamified */}
         <div className="max-w-5xl mx-auto mt-6">
           <div className="flex items-center justify-between mb-3">
-            <div>
-              <span className="text-sm font-medium text-gray-300">Collection Progress</span>
-              <p className="text-xs text-gray-500 mt-1">
-                {progress.collected} / {progress.total} cards collected
-              </p>
-            </div>
-            <div className="text-right">
-              <span className={`text-2xl font-bold ${
-                progress.percentage === 100 
-                  ? 'bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent animate-pulse'
-                  : 'bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent'
-              }`}>
-                {progress.percentage}%
-              </span>
-              {progress.percentage === 100 && (
-                <p className="text-xs text-yellow-400 animate-bounce mt-1">🎉 COMPLETE!</p>
-              )}
-            </div>
+            <span className="text-sm font-medium text-gray-300">Collection Progress</span>
+            <span className={`text-3xl font-bold ${
+              progress.percentage === 100 
+                ? 'bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent animate-pulse'
+                : 'bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent'
+            }`}>
+              {progress.percentage}%
+            </span>
           </div>
           
           <div className="relative w-full bg-gray-800/80 rounded-full h-8 overflow-visible border-2 border-gray-700 shadow-lg">
