@@ -224,8 +224,8 @@ const Master2PList = () => {
                 className="absolute top-0 bottom-0 flex flex-col items-center justify-center"
                 style={{ left: `${milestone.percent}%`, transform: 'translateX(-50%)' }}
               >
-                {/* Millennium Item Icon */}
-                <div className={`absolute -top-16 transition-all duration-500 ${
+                {/* Millennium Item Icon above progress bar */}
+                <div className={`absolute -top-14 transition-all duration-500 ${
                   progress.percentage >= milestone.percent 
                     ? 'scale-110 opacity-100' 
                     : 'scale-90 opacity-30 grayscale'
@@ -233,7 +233,7 @@ const Master2PList = () => {
                   <img 
                     src={`/millennium-${milestone.item}.png`}
                     alt={milestone.name}
-                    className={`w-12 h-12 object-contain ${
+                    className={`w-10 h-10 object-contain ${
                       progress.percentage >= milestone.percent 
                         ? 'animate-bounce drop-shadow-[0_0_12px_rgba(251,191,36,1)]' 
                         : ''
@@ -241,18 +241,12 @@ const Master2PList = () => {
                     style={{
                       imageRendering: 'pixelated',
                       filter: progress.percentage >= milestone.percent 
-                        ? 'brightness(1.2) drop-shadow(0 0 4px rgba(251, 191, 36, 0.8))' 
-                        : 'brightness(0.5)'
+                        ? 'brightness(1.3) drop-shadow(0 0 6px rgba(251, 191, 36, 0.9))' 
+                        : 'brightness(0.4)'
                     }}
                     title={milestone.name}
                   />
                 </div>
-                {/* Vertical line marker */}
-                <div className={`w-0.5 h-8 transition-all duration-500 ${
-                  progress.percentage >= milestone.percent 
-                    ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50' 
-                    : 'bg-gray-600'
-                }`}></div>
               </div>
             ))}
             
