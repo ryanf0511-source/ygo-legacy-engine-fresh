@@ -209,29 +209,41 @@ const Master2PList = () => {
           </div>
           
           <div className="relative w-full bg-gray-800/80 rounded-full h-8 overflow-visible border-2 border-gray-700 shadow-lg">
-            {/* Milestone markers */}
-            {[25, 50, 75, 100].map((milestone) => (
+            {/* Millennium Item Milestones - 1/7 intervals */}
+            {[
+              { percent: 14.3, item: 1, name: "Millennium Ring" },
+              { percent: 28.6, item: 2, name: "Millennium Scales" },
+              { percent: 42.9, item: 3, name: "Millennium Eye" },
+              { percent: 57.1, item: 4, name: "Millennium Rod" },
+              { percent: 71.4, item: 5, name: "Millennium Key" },
+              { percent: 85.7, item: 6, name: "Millennium Necklace" },
+              { percent: 100, item: 7, name: "Millennium Puzzle" }
+            ].map((milestone) => (
               <div
-                key={milestone}
+                key={milestone.item}
                 className="absolute top-0 bottom-0 flex flex-col items-center justify-center"
-                style={{ left: `${milestone}%`, transform: 'translateX(-50%)' }}
+                style={{ left: `${milestone.percent}%`, transform: 'translateX(-50%)' }}
               >
-                <div className={`absolute -top-6 text-xs font-bold transition-all duration-300 ${
-                  progress.percentage >= milestone 
-                    ? 'text-yellow-400 scale-110' 
-                    : 'text-gray-500 scale-100'
+                {/* Millennium Item Icon */}
+                <div className={`absolute -top-12 transition-all duration-500 ${
+                  progress.percentage >= milestone.percent 
+                    ? 'scale-110 opacity-100' 
+                    : 'scale-90 opacity-40 grayscale'
                 }`}>
-                  {milestone >= progress.percentage && progress.percentage > 0 && (
-                    <span className="inline-block">🎯</span>
-                  )}
-                  {progress.percentage >= milestone && (
-                    <span className="inline-block animate-bounce">
-                      {milestone === 25 ? '⭐' : milestone === 50 ? '💎' : milestone === 75 ? '👑' : '🏆'}
-                    </span>
-                  )}
+                  <img 
+                    src={`/millennium-${milestone.item}.png`}
+                    alt={milestone.name}
+                    className={`w-8 h-8 object-contain ${
+                      progress.percentage >= milestone.percent 
+                        ? 'animate-bounce drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]' 
+                        : ''
+                    }`}
+                    title={milestone.name}
+                  />
                 </div>
-                <div className={`w-0.5 h-8 transition-all duration-300 ${
-                  progress.percentage >= milestone 
+                {/* Vertical line marker */}
+                <div className={`w-0.5 h-8 transition-all duration-500 ${
+                  progress.percentage >= milestone.percent 
                     ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50' 
                     : 'bg-gray-600'
                 }`}></div>
