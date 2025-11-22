@@ -177,7 +177,6 @@ const Master2PList = () => {
           Master <span className="bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">2 Player</span> Inventory
         </h1>
         <p className="text-gray-400">Complete card inventory for Master 2 Player collection</p>
-        <p className="text-sm text-gray-500 mt-2">{cards.length} cards total</p>
         
         {/* Legend/Instructions */}
         <div className="max-w-3xl mx-auto mt-6 bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-4">
