@@ -225,19 +225,25 @@ const Master2PList = () => {
                 style={{ left: `${milestone.percent}%`, transform: 'translateX(-50%)' }}
               >
                 {/* Millennium Item Icon */}
-                <div className={`absolute -top-12 transition-all duration-500 ${
+                <div className={`absolute -top-16 transition-all duration-500 ${
                   progress.percentage >= milestone.percent 
                     ? 'scale-110 opacity-100' 
-                    : 'scale-90 opacity-40 grayscale'
+                    : 'scale-90 opacity-30 grayscale'
                 }`}>
                   <img 
                     src={`/millennium-${milestone.item}.png`}
                     alt={milestone.name}
-                    className={`w-8 h-8 object-contain ${
+                    className={`w-12 h-12 object-contain ${
                       progress.percentage >= milestone.percent 
-                        ? 'animate-bounce drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]' 
+                        ? 'animate-bounce drop-shadow-[0_0_12px_rgba(251,191,36,1)]' 
                         : ''
                     }`}
+                    style={{
+                      imageRendering: 'pixelated',
+                      filter: progress.percentage >= milestone.percent 
+                        ? 'brightness(1.2) drop-shadow(0 0 4px rgba(251, 191, 36, 0.8))' 
+                        : 'brightness(0.5)'
+                    }}
                     title={milestone.name}
                   />
                 </div>
