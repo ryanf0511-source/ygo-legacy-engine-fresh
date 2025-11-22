@@ -185,53 +185,151 @@ const Master2PList = () => {
           </div>
         </div>
         
-        {/* Progress Bar */}
+        {/* Progress Bar - Gamified */}
         <div className="max-w-5xl mx-auto mt-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-300">Collection Progress</span>
-            <span className="text-lg font-bold bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-300 bg-clip-text text-transparent animate-pulse">
-              {progress.percentage}% Complete
-            </span>
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <span className="text-sm font-medium text-gray-300">Collection Progress</span>
+              <p className="text-xs text-gray-500 mt-1">
+                {progress.collected} / {progress.total} cards collected
+              </p>
+            </div>
+            <div className="text-right">
+              <span className={`text-2xl font-bold ${
+                progress.percentage === 100 
+                  ? 'bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent animate-pulse'
+                  : 'bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent'
+              }`}>
+                {progress.percentage}%
+              </span>
+              {progress.percentage === 100 && (
+                <p className="text-xs text-yellow-400 animate-bounce mt-1">🎉 COMPLETE!</p>
+              )}
+            </div>
           </div>
-          <div className="w-full bg-gray-800 rounded-full h-5 overflow-hidden border border-gray-600 relative">
-            {/* Background shimmer effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-600/20 to-transparent animate-shimmer"></div>
+          
+          <div className="relative w-full bg-gray-800/80 rounded-full h-8 overflow-visible border-2 border-gray-700 shadow-lg">
+            {/* Milestone markers */}
+            {[25, 50, 75, 100].map((milestone) => (
+              <div
+                key={milestone}
+                className="absolute top-0 bottom-0 flex flex-col items-center justify-center"
+                style={{ left: `${milestone}%`, transform: 'translateX(-50%)' }}
+              >
+                <div className={`absolute -top-6 text-xs font-bold transition-all duration-300 ${
+                  progress.percentage >= milestone 
+                    ? 'text-yellow-400 scale-110' 
+                    : 'text-gray-500 scale-100'
+                }`}>
+                  {milestone >= progress.percentage && progress.percentage > 0 && (
+                    <span className="inline-block">🎯</span>
+                  )}
+                  {progress.percentage >= milestone && (
+                    <span className="inline-block animate-bounce">
+                      {milestone === 25 ? '⭐' : milestone === 50 ? '💎' : milestone === 75 ? '👑' : '🏆'}
+                    </span>
+                  )}
+                </div>
+                <div className={`w-0.5 h-8 transition-all duration-300 ${
+                  progress.percentage >= milestone 
+                    ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50' 
+                    : 'bg-gray-600'
+                }`}></div>
+              </div>
+            ))}
             
-            {/* Progress bar with dynamic glow */}
+            {/* Progress fill */}
             <div
-              className="relative h-5 rounded-full transition-all duration-700 ease-out overflow-hidden"
+              className="relative h-full rounded-full transition-all duration-700 ease-out overflow-hidden"
               style={{ 
                 width: `${progress.percentage}%`,
-                background: `linear-gradient(90deg, 
-                  ${progress.percentage < 33 ? '#10b981, #059669' : 
-                    progress.percentage < 66 ? '#f59e0b, #d97706' : 
-                    '#fbbf24, #f59e0b, #eab308'}
-                )`,
-                boxShadow: `0 0 ${Math.min(progress.percentage / 5, 20)}px ${
-                  progress.percentage < 33 ? 'rgba(16, 185, 129, 0.8)' : 
-                  progress.percentage < 66 ? 'rgba(245, 158, 11, 0.9)' : 
-                  'rgba(251, 191, 36, 1)'
-                }, inset 0 1px 2px rgba(255, 255, 255, 0.3)`
+                background: progress.percentage === 100 
+                  ? 'linear-gradient(90deg, #fbbf24, #f59e0b, #eab308, #fbbf24)'
+                  : progress.percentage >= 75 
+                  ? 'linear-gradient(90deg, #a855f7, #ec4899, #f43f5e)'
+                  : progress.percentage >= 50 
+                  ? 'linear-gradient(90deg, #3b82f6, #8b5cf6, #a855f7)'
+                  : progress.percentage >= 25
+                  ? 'linear-gradient(90deg, #10b981, #06b6d4, #3b82f6)'
+                  : 'linear-gradient(90deg, #10b981, #059669)',
+                boxShadow: progress.percentage === 100
+                  ? '0 0 30px rgba(251, 191, 36, 1), inset 0 2px 4px rgba(255, 255, 255, 0.4)'
+                  : `0 0 ${Math.min(progress.percentage / 3, 20)}px ${
+                      progress.percentage >= 75 ? 'rgba(168, 85, 247, 0.6)' :
+                      progress.percentage >= 50 ? 'rgba(59, 130, 246, 0.6)' :
+                      progress.percentage >= 25 ? 'rgba(6, 182, 212, 0.6)' :
+                      'rgba(16, 185, 129, 0.6)'
+                    }, inset 0 1px 2px rgba(255, 255, 255, 0.2)`,
+                backgroundSize: progress.percentage === 100 ? '200% 100%' : '100% 100%',
+                animation: progress.percentage === 100 ? 'gradientShift 2s ease infinite' : 'none'
               }}
             >
-              {/* Animated comet/shimmer effect */}
-              <div 
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-comet"
-                style={{ 
-                  animationDuration: `${Math.max(2 - (progress.percentage / 100), 1)}s`
-                }}
-              ></div>
+              {/* Animated shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine"></div>
               
-              {/* Sparkle effect for high progress */}
-              {progress.percentage > 75 && (
-                <div className="absolute inset-0 opacity-60">
-                  <div className="absolute top-1/2 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"></div>
-                  <div className="absolute top-1/3 left-1/2 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-                  <div className="absolute top-2/3 left-3/4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+              {/* Particle effects at milestones */}
+              {progress.percentage >= 25 && progress.percentage < 100 && (
+                <div className="absolute inset-0">
+                  {[...Array(3)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full animate-float"
+                      style={{
+                        left: `${20 + i * 30}%`,
+                        top: '50%',
+                        animationDelay: `${i * 0.5}s`,
+                        opacity: 0.7
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              )}
+              
+              {/* 100% Celebration overlay */}
+              {progress.percentage === 100 && (
+                <div className="absolute inset-0 overflow-visible">
+                  {/* Confetti particles */}
+                  {[...Array(12)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-2 h-2 animate-confetti"
+                      style={{
+                        left: `${(i * 8) + 10}%`,
+                        top: '50%',
+                        animationDelay: `${i * 0.1}s`,
+                        background: ['#fbbf24', '#f59e0b', '#ef4444', '#3b82f6', '#8b5cf6'][i % 5]
+                      }}
+                    ></div>
+                  ))}
+                  {/* Radial burst lines */}
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={`burst-${i}`}
+                      className="absolute w-0.5 h-8 bg-white/40 animate-burst"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                        transformOrigin: 'center',
+                        transform: `rotate(${i * 45}deg)`,
+                        animationDelay: `${i * 0.05}s`
+                      }}
+                    ></div>
+                  ))}
                 </div>
               )}
             </div>
           </div>
+          
+          {/* Achievement message */}
+          {progress.percentage >= 25 && progress.percentage < 100 && (
+            <div className="text-center mt-3">
+              <p className="text-sm font-medium bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                {progress.percentage >= 75 ? "Almost there! You're a true collector! 👑" :
+                 progress.percentage >= 50 ? "Halfway there! Keep going! 💎" :
+                 "Great start! You've unlocked the first milestone! ⭐"}
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
