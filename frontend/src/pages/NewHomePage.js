@@ -22,7 +22,7 @@ const NewHomePage = () => {
           </p>
           <div className="text-gray-300 text-left leading-relaxed">
             <p>
-              Driven by a passion for the game's rich history, I built YGO Legacy Engine to unlock the full experience of every SJC format. Anyone can play, explore, and relive classic decks from 2005 to 2010, with every card choice and format instantly accessible. This project is more than a database; it's about sharing nostalgia, bringing people together, and keeping the legacy alive for fans everywhere.
+              Driven by a passion for the game's rich history, I built YGOLegacyEngine to unlock the full experience of every SJC format. Anyone can play, explore, and relive classic decks from 2005 to 2010, with every card choice and format instantly accessible. This project is more than a database; it's about sharing nostalgia, bringing people together, and keeping the legacy alive for fans everywhere.
             </p>
           </div>
         </div>
