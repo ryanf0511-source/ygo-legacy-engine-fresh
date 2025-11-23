@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
       <footer className="bg-black/40 backdrop-blur-md border-t border-fuchsia-500/20 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <p className="text-center text-gray-500 text-xs max-w-4xl mx-auto leading-relaxed">
-            YGO Legacy Engine is an independent fan project and is not affiliated with or endorsed by Konami. All Yu-Gi-Oh! trademarks and images are property of Konami Digital Entertainment, used here for informational purposes only. Tournament data is compiled from official sources and community archives.
+            YGOLegacyEngine is an independent fan project and is not affiliated with or endorsed by Konami. All Yu-Gi-Oh! trademarks and images are property of Konami Digital Entertainment, used here for informational purposes only. Tournament data is compiled from official sources and community archives.
           </p>
         </div>
       </footer>
