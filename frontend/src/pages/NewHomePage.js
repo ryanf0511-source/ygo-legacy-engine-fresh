@@ -8,9 +8,8 @@ const NewHomePage = () => {
         {/* Title with visual continuity */}
         <div className="space-y-4">
           <h1 className="text-6xl md:text-7xl font-bold">
-            <span className="text-white">YGO</span>{" "}
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-              Legacy Engine
+              YGOLegacyEngine
             </span>
           </h1>
           <div className="h-1 w-32 bg-gradient-to-r from-fuchsia-400 to-amber-400 mx-auto rounded-full"></div>
