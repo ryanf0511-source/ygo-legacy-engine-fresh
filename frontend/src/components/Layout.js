@@ -31,6 +31,56 @@ const Layout = ({ children }) => {
               >
                 Home
               </Link>
+              <Link
+                to="/cards"
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  isActive("/cards")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30"
+                    : "text-gray-300 hover:bg-slate-800/50 hover:text-fuchsia-400"
+                }`}
+              >
+                Card Browser
+              </Link>
+              <Link
+                to="/decklists"
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  isActive("/decklists")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30"
+                    : "text-gray-300 hover:bg-slate-800/50 hover:text-fuchsia-400"
+                }`}
+              >
+                Decklists
+              </Link>
+              <Link
+                to="/master-lists"
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  isActive("/master-lists")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30"
+                    : "text-gray-300 hover:bg-slate-800/50 hover:text-fuchsia-400"
+                }`}
+              >
+                Master Lists
+              </Link>
+              <Link
+                to="/stats"
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  isActive("/stats")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30"
+                    : "text-gray-300 hover:bg-slate-800/50 hover:text-fuchsia-400"
+                }`}
+              >
+                Statistics
+              </Link>
+              <Link
+                to="/head-to-head"
+                className={`px-4 py-2 rounded-lg transition-all ${
+                  isActive("/head-to-head")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/30"
+                    : "text-gray-300 hover:bg-slate-800/50 hover:text-fuchsia-400"
+                }`}
+              >
+                Head-to-Head
+              </Link>
             </div>
           </div>
         </div>
