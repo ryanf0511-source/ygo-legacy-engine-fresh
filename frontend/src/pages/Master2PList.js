@@ -214,7 +214,7 @@ const Master2PList = () => {
           
           <div className="relative w-full bg-gray-800/80 rounded-full h-8 overflow-visible border-2 border-gray-700 shadow-lg">
             {/* Milestone markers at 1/4 intervals */}
-            {[25, 50, 75, 100].map((milestone) => (
+            {[25, 50, 75].map((milestone) => (
               <div
                 key={milestone}
                 className="absolute top-0 bottom-0"
