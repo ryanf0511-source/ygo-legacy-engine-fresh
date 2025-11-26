@@ -16,6 +16,7 @@ const CardBrowser = () => {
   const [mainExtraFilter, setMainExtraFilter] = useState("");
   const [deckNameFilter, setDeckNameFilter] = useState("");
   const [eventFilter, setEventFilter] = useState("");
+  const [quantityFilter, setQuantityFilter] = useState("");
   const [pageSize] = useState(50);
   const [selectedDecklistId, setSelectedDecklistId] = useState(null);
 
