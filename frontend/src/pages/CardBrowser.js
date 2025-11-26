@@ -22,7 +22,7 @@ const CardBrowser = () => {
 
   useEffect(() => {
     fetchRecords();
-  }, [page, searchTerm, cardTypeFilter, mainExtraFilter, deckNameFilter, eventFilter]);
+  }, [page, searchTerm, cardTypeFilter, mainExtraFilter, deckNameFilter, eventFilter, quantityFilter]);
 
   const fetchRecords = async () => {
     setLoading(true);
