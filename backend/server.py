@@ -231,7 +231,8 @@ async def get_card_records(
     card_type: Optional[str] = None,
     main_extra: Optional[str] = None,
     event: Optional[str] = None,
-    deck_name: Optional[str] = None
+    deck_name: Optional[str] = None,
+    quantity: Optional[int] = None
 ):
     # Build filter query
     query = {}
