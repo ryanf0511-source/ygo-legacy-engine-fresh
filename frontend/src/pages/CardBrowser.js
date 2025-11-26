@@ -93,10 +93,11 @@ const CardBrowser = () => {
     setMainExtraFilter("");
     setDeckNameFilter("");
     setEventFilter("");
+    setQuantityFilter("");
     setPage(1);
   };
 
-  const hasActiveFilters = searchTerm || cardTypeFilter || mainExtraFilter || deckNameFilter || eventFilter;
+  const hasActiveFilters = searchTerm || cardTypeFilter || mainExtraFilter || deckNameFilter || eventFilter || quantityFilter;
 
   return (
     <div className="space-y-6">
