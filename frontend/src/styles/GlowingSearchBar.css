@@ -12,25 +12,29 @@
 .darkBorderBg,
 .glow {
   max-height: 70px;
-  max-width: 314px;
+  min-width: 314px;
   height: 100%;
   width: 100%;
   position: absolute;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
   border-radius: 12px;
   filter: blur(3px);
+  pointer-events: none;
 }
 
 .input {
   background-color: #010201;
   border: none;
-  width: 301px;
+  min-width: 301px;
+  width: 100%;
   height: 56px;
   border-radius: 10px;
   color: white;
   padding-inline: 59px;
-  font-size: 18px;
+  font-size: 16px;
+  position: relative;
+  z-index: 10;
 }
 
 #poda {
