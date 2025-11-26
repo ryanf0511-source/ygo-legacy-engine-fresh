@@ -142,9 +142,10 @@ async def get_decklists(
         )
         
         if deck_keys:
-            # Match against player-deck combination
+            # deck_key format is "player_name-deck_name | event"
+            # Match against the same format in decklists
             query["$or"] = [
-                {"$expr": {"$in": [{"$concat": ["$player_name", "-", "$deck_name"]}, deck_keys]}}
+                {"$expr": {"$in": [{"$concat": ["$player_name", "-", "$deck_name", " | ", "$event"]}, deck_keys]}}
             ]
     
     if search:
