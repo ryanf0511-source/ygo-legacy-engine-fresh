@@ -179,6 +179,8 @@ const CardBrowser = () => {
             <option value="Monster">Monster</option>
             <option value="Spell">Spell</option>
             <option value="Trap">Trap</option>
+            <option value="Fusion">Fusion</option>
+            <option value="Synchro">Synchro</option>
           </select>
 
           <select
@@ -192,6 +194,20 @@ const CardBrowser = () => {
             <option value="">All Locations</option>
             <option value="Main">Main Deck</option>
             <option value="Extra">Extra Deck</option>
+          </select>
+
+          <select
+            value={quantityFilter}
+            onChange={(e) => {
+              setQuantityFilter(e.target.value);
+              setPage(1);
+            }}
+            className="px-3 py-1.5 text-sm bg-gray-700/50 border border-gray-600 rounded-md text-white focus:ring-1 focus:ring-purple-500"
+          >
+            <option value="">All Quantities</option>
+            <option value="1">1 copy</option>
+            <option value="2">2 copies</option>
+            <option value="3">3 copies</option>
           </select>
 
           <input
