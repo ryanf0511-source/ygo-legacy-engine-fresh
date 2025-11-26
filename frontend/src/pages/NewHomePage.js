@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const NewHomePage = () => {
   return (
-    <div className="max-w-7xl mx-auto space-y-16">
+    <div className="max-w-7xl mx-auto space-y-12">
       {/* Hero Section - Figure/Ground & Closure */}
-      <section className="text-center space-y-8 py-12">
+      <section className="text-center space-y-8 py-8">
         {/* Title with visual continuity */}
         <div className="space-y-4">
           <h1 className="text-6xl md:text-7xl font-bold">
