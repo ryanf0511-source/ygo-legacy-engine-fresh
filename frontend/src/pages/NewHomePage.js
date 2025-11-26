@@ -32,7 +32,7 @@ const NewHomePage = () => {
       <section className="space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-3xl font-bold text-white">Core Features</h2>
-          <p className="text-gray-400">Explore comprehensive tournament data and analysis</p>
+          <p className="text-gray-400">Explore cards and track your collection</p>
         </div>
         
         {/* Grid with strong similarity and proximity */}
