@@ -94,7 +94,7 @@ const NewHomePage = () => {
       <section className="space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-3xl font-bold text-white">Tools & Resources</h2>
-          <p className="text-gray-400">Build, track, and analyze your collection</p>
+          <p className="text-gray-400">Explore tournament decklists and analyze the meta</p>
         </div>
         
         {/* Symmetrical grid - all items equal importance */}
