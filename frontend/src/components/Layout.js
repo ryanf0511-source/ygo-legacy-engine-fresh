@@ -53,20 +53,6 @@ const Layout = ({ children }) => {
               </Link>
               
               <Link
-                to="/decklists"
-                className={`group flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
-                  isActive("/decklists")
-                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/50 scale-105"
-                    : "text-gray-300 hover:bg-gradient-to-r hover:from-slate-800/80 hover:to-slate-700/80 hover:text-fuchsia-400 hover:shadow-md hover:scale-105"
-                }`}
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span className="font-medium">Decks</span>
-              </Link>
-              
-              <Link
                 to="/master-lists"
                 className={`group flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
                   isActive("/master-lists")
@@ -78,6 +64,20 @@ const Layout = ({ children }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
                 <span className="font-medium">Lists</span>
+              </Link>
+              
+              <Link
+                to="/decklists"
+                className={`group flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
+                  isActive("/decklists")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/50 scale-105"
+                    : "text-gray-300 hover:bg-gradient-to-r hover:from-slate-800/80 hover:to-slate-700/80 hover:text-fuchsia-400 hover:shadow-md hover:scale-105"
+                }`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span className="font-medium">Decks</span>
               </Link>
               
               <Link
