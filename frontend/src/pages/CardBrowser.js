@@ -204,10 +204,10 @@ const CardBrowser = () => {
             }}
             className="px-3 py-1.5 text-sm bg-gray-700/50 border border-gray-600 rounded-md text-white focus:ring-1 focus:ring-purple-500"
           >
-            <option value="">All Quantities</option>
-            <option value="1">1 copy</option>
-            <option value="2">2 copies</option>
-            <option value="3">3 copies</option>
+            <option value="">Qty</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
           </select>
 
           <input
