@@ -265,21 +265,34 @@ async def get_card_records(
         "card_name", 1
     ).skip(skip).limit(page_size).to_list(page_size)
     
-    # For each item, try to find the matching decklist ID
-    for item in items:
-        # Try to find the decklist by matching player_name and deck_name
-        decklist = await db.decklists.find_one(
+    # Batch lookup: Get all decklist IDs in one query
+    if items:
+        # Build lookup conditions for all items at once
+        lookup_conditions = [
             {
                 "player_name": item["player_name"],
                 "deck_name": item["deck_name"],
                 "event": item["event"]
-            },
-            {"id": 1}
-        )
-        if decklist:
-            item["decklist_id"] = decklist["id"]
-        else:
-            item["decklist_id"] = None
+            }
+            for item in items
+        ]
+        
+        # Single batch query for all decklists
+        decklists = await db.decklists.find(
+            {"$or": lookup_conditions},
+            {"id": 1, "player_name": 1, "deck_name": 1, "event": 1}
+        ).to_list(None)
+        
+        # Create lookup map for O(1) access
+        decklist_map = {
+            (d["player_name"], d["deck_name"], d["event"]): d["id"]
+            for d in decklists
+        }
+        
+        # Assign decklist IDs using the map
+        for item in items:
+            key = (item["player_name"], item["deck_name"], item["event"])
+            item["decklist_id"] = decklist_map.get(key)
     
     return {
         "total": total,
