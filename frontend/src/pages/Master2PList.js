@@ -199,7 +199,7 @@ const Master2PList = () => {
           </div>
         </div>
         
-        {/* Progress Bar - Gamified */}
+        {/* Progress Bar with Color Milestones */}
         <div className="max-w-5xl mx-auto mt-6">
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm font-medium text-gray-300">Collection Progress</span>
@@ -213,48 +213,22 @@ const Master2PList = () => {
           </div>
           
           <div className="relative w-full bg-gray-800/80 rounded-full h-8 overflow-visible border-2 border-gray-700 shadow-lg">
-            {/* Millennium Item Milestones - 1/7 intervals */}
-            {[
-              { percent: 14.3, item: 1, name: "Millennium Ring" },
-              { percent: 28.6, item: 2, name: "Millennium Scales" },
-              { percent: 42.9, item: 3, name: "Millennium Eye" },
-              { percent: 57.1, item: 4, name: "Millennium Rod" },
-              { percent: 71.4, item: 5, name: "Millennium Key" },
-              { percent: 85.7, item: 6, name: "Millennium Necklace" },
-              { percent: 100, item: 7, name: "Millennium Puzzle" }
-            ].map((milestone) => (
+            {/* Milestone markers at 1/4 intervals */}
+            {[25, 50, 75, 100].map((milestone) => (
               <div
-                key={milestone.item}
-                className="absolute top-0 bottom-0 flex flex-col items-center justify-center"
-                style={{ left: `${milestone.percent}%`, transform: 'translateX(-50%)' }}
+                key={milestone}
+                className="absolute top-0 bottom-0"
+                style={{ left: `${milestone}%`, transform: 'translateX(-50%)' }}
               >
-                {/* Millennium Item Icon above progress bar */}
-                <div className={`absolute -top-20 transition-all duration-500 ${
-                  progress.percentage >= milestone.percent 
-                    ? 'scale-125 opacity-100' 
-                    : 'scale-90 opacity-20 grayscale'
-                }`}>
-                  <img 
-                    src={`/millennium-${milestone.item}.png`}
-                    alt={milestone.name}
-                    className={`w-16 h-16 object-contain ${
-                      progress.percentage >= milestone.percent 
-                        ? 'animate-bounce drop-shadow-[0_0_20px_rgba(251,191,36,1)]' 
-                        : ''
-                    }`}
-                    style={{
-                      imageRendering: 'pixelated',
-                      filter: progress.percentage >= milestone.percent 
-                        ? 'brightness(1.5) contrast(1.2) drop-shadow(0 0 10px rgba(251, 191, 36, 1)) drop-shadow(0 0 20px rgba(251, 191, 36, 0.8))' 
-                        : 'brightness(0.3) contrast(0.5)'
-                    }}
-                    title={milestone.name}
-                  />
-                </div>
+                <div className={`w-0.5 h-8 transition-all duration-500 ${
+                  progress.percentage >= milestone 
+                    ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50' 
+                    : 'bg-gray-600'
+                }`}></div>
               </div>
             ))}
             
-            {/* Progress fill */}
+            {/* Progress fill with color transitions */}
             <div
               className="relative h-full rounded-full transition-all duration-700 ease-out overflow-hidden"
               style={{ 
@@ -282,24 +256,6 @@ const Master2PList = () => {
             >
               {/* Animated shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine"></div>
-              
-              {/* Particle effects at milestones */}
-              {progress.percentage >= 25 && progress.percentage < 100 && (
-                <div className="absolute inset-0">
-                  {[...Array(3)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-1 h-1 bg-white rounded-full animate-float"
-                      style={{
-                        left: `${20 + i * 30}%`,
-                        top: '50%',
-                        animationDelay: `${i * 0.5}s`,
-                        opacity: 0.7
-                      }}
-                    ></div>
-                  ))}
-                </div>
-              )}
               
               {/* 100% Celebration overlay */}
               {progress.percentage === 100 && (
