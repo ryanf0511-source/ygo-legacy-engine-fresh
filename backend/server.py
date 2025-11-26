@@ -134,14 +134,14 @@ async def get_decklists(
         query["event"] = {"$in": event_list}
     
     if card_name:
-        # Search in card usage collection and get matching deck keys
-        card_matches = await db.card_usage.find(
-            {"card_name": {"$regex": card_name, "$options": "i"}},
-            {"deck_key": 1}
-        ).to_list(None)
+        # Search in card usage collection and get unique deck keys directly
+        # Using distinct() is more efficient than loading all records and deduplicating in Python
+        deck_keys = await db.card_usage.distinct(
+            "deck_key",
+            {"card_name": {"$regex": card_name, "$options": "i"}}
+        )
         
-        if card_matches:
-            deck_keys = list(set([match["deck_key"] for match in card_matches]))
+        if deck_keys:
             # Match against player-deck combination
             query["$or"] = [
                 {"$expr": {"$in": [{"$concat": ["$player_name", "-", "$deck_name"]}, deck_keys]}}
