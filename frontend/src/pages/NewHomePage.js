@@ -2,32 +2,41 @@ import { Link } from "react-router-dom";
 
 const NewHomePage = () => {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center space-y-12">
+    <div className="max-w-7xl mx-auto space-y-16">
+      {/* Hero Section - Figure/Ground & Closure */}
+      <section className="text-center space-y-8 py-12">
+        {/* Title with visual continuity */}
+        <div className="space-y-4">
           <h1 className="text-6xl md:text-7xl font-bold">
             <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
               YGOLegacyEngine
             </span>
           </h1>
-          <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Your definitive archive for <span className="text-fuchsia-400 font-semibold">Yu-Gi-Oh! Shonen Jump Championship</span> history (2004-2010)
+          <div className="h-1 w-32 bg-gradient-to-r from-fuchsia-400 to-amber-400 mx-auto rounded-full"></div>
+        </div>
+        
+        {/* Story Card - Common Region principle */}
+        <div className="max-w-4xl mx-auto bg-slate-900/50 backdrop-blur-md rounded-2xl border border-fuchsia-500/30 p-10 shadow-2xl shadow-fuchsia-500/10">
+          <p className="text-xl text-amber-400 font-semibold mb-6 italic">
+            "Play Every Era. Relive Every Duel."
           </p>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-            Driven by a passion for the game's rich history, I built YGOLegacyEngine to unlock the full experience of every SJC format. Anyone can play, explore, and relive classic decks from 2005 to 2010, with every card choice and format instantly accessible. This project is more than a database; it's about sharing nostalgia, bringing people together, and keeping the legacy alive for fans everywhere.
-          </p>
+          <div className="text-gray-300 text-left leading-relaxed">
+            <p>
+              Driven by a passion for the game's rich history, I built YGOLegacyEngine to unlock the full experience of every SJC format. Anyone can play, explore, and relive classic decks from 2005 to 2010, with every card choice and format instantly accessible. This project is more than a database; it's about sharing nostalgia, bringing people together, and keeping the legacy alive for fans everywhere.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Primary Features - Emphasis & Separation */}
-      <section className="px-4 pb-12 space-y-6">
+      {/* Primary Features - Proximity & Similarity */}
+      <section className="space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-3xl font-bold text-white">Core Features</h2>
-          <p className="text-gray-400">Explore cards and track your collection</p>
+          <p className="text-gray-400">Explore comprehensive tournament data and analysis</p>
         </div>
         
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Grid with strong similarity and proximity */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card Browser - Primary Feature */}
           <Link
             to="/cards"
@@ -85,7 +94,7 @@ const NewHomePage = () => {
       <section className="space-y-6">
         <div className="text-center space-y-2">
           <h2 className="text-3xl font-bold text-white">Tools & Resources</h2>
-          <p className="text-gray-400">Explore tournament decklists and analyze the meta</p>
+          <p className="text-gray-400">Build, track, and analyze your collection</p>
         </div>
         
         {/* Symmetrical grid - all items equal importance */}
@@ -146,6 +155,49 @@ const NewHomePage = () => {
               </div>
             </div>
           </Link>
+        </div>
+      </section>
+
+      {/* Tertiary Features - Continuity through consistent styling */}
+      <section className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold text-white">Community & More</h2>
+          <p className="text-gray-400">Stay connected with the YGO community</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Streaming */}
+          <Link
+            to="/schedule"
+            className="group bg-gradient-to-br from-red-600/10 to-rose-600/10 backdrop-blur-md rounded-xl border-2 border-red-500/40 p-6 hover:border-red-400/80 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300"
+          >
+            <div className="flex items-center space-x-4">
+              <div className="p-4 bg-red-500/20 rounded-xl border border-red-400/30 group-hover:bg-red-500/30 transition-colors">
+                <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors">Live Streaming</h3>
+                <p className="text-gray-400 text-sm mb-2">Next stream:</p>
+                <p className="text-red-400 font-bold text-lg">Saturday @ 7:00 PM</p>
+                <p className="text-gray-500 text-xs mt-1">Format TBD</p>
+              </div>
+            </div>
+          </Link>
+
+          {/* Coming Soon - maintains visual continuity */}
+          <div className="bg-gradient-to-br from-gray-700/10 to-gray-800/10 backdrop-blur-md rounded-xl border-2 border-gray-600/30 p-6 flex items-center justify-center">
+            <div className="text-center space-y-3">
+              <div className="inline-flex p-4 bg-gray-600/20 rounded-xl border border-gray-500/30">
+                <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-400">More Features</h3>
+              <p className="text-sm text-gray-500">Coming Soon</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
