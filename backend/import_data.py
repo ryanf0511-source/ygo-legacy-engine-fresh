@@ -193,18 +193,36 @@ async def create_indexes():
     """Create indexes for better query performance"""
     print("Creating indexes...")
     
-    # Decklists indexes
+    # Decklists indexes - Single field
     await db.decklists.create_index("player_name")
     await db.decklists.create_index("deck_name")
     await db.decklists.create_index("event")
     await db.decklists.create_index("id", unique=True)
     
-    # Card usage indexes
+    # Decklists compound index - for batch lookups
+    # This dramatically speeds up queries that match on player_name + deck_name + event
+    await db.decklists.create_index([
+        ("player_name", 1),
+        ("deck_name", 1),
+        ("event", 1)
+    ])
+    print("  ✓ Created compound index on decklists (player_name, deck_name, event)")
+    
+    # Card usage indexes - Single field
     await db.card_usage.create_index("card_name")
     await db.card_usage.create_index("deck_key")
     await db.card_usage.create_index("player_name")
     await db.card_usage.create_index("deck_name")
     await db.card_usage.create_index("card_type")
+    
+    # Card usage compound index - for batch lookups
+    # Speeds up queries that join card_usage with decklists
+    await db.card_usage.create_index([
+        ("player_name", 1),
+        ("deck_name", 1),
+        ("event", 1)
+    ])
+    print("  ✓ Created compound index on card_usage (player_name, deck_name, event)")
     
     print("Indexes created successfully!")
 
