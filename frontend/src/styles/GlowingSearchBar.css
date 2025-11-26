@@ -2,9 +2,9 @@
 
 .glowing-search-wrapper {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: 100%;
+  min-height: 70px;
 }
 
 .white,
