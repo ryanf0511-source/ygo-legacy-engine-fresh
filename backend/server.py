@@ -255,6 +255,9 @@ async def get_card_records(
             {"deck_name": {"$regex": deck_name, "$options": "i"}}
         ]
     
+    if quantity is not None:
+        query["quantity"] = quantity
+    
     # Get total count
     total = await db.card_usage.count_documents(query)
     
