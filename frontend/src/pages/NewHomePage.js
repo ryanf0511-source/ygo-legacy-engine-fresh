@@ -12,7 +12,6 @@ const NewHomePage = () => {
               YGOLegacyEngine
             </span>
           </h1>
-          <div className="h-1 w-32 bg-gradient-to-r from-fuchsia-400 to-amber-400 mx-auto rounded-full"></div>
         </div>
         
         {/* Story Card - Common Region principle */}
