@@ -33,6 +33,7 @@ const CardBrowser = () => {
       if (mainExtraFilter) params.main_extra = mainExtraFilter;
       if (deckNameFilter) params.deck_name = deckNameFilter;
       if (eventFilter) params.event = eventFilter;
+      if (quantityFilter) params.quantity = quantityFilter;
 
       const response = await axios.get(`${API}/card-records`, { params });
       
