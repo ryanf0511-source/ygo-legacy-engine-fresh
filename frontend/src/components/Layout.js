@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -8,6 +8,11 @@ const Layout = ({ children }) => {
   const isActive = (path) => {
     return location.pathname === path;
   };
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-blue-950">
