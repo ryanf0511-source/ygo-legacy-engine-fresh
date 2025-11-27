@@ -113,6 +113,20 @@ const Master2PList = () => {
       filtered = filtered.filter((card) => card.card_type === cardTypeFilter);
     }
 
+    // Sort by card type: Monster, Spell, Trap
+    filtered.sort((a, b) => {
+      const typeOrder = { "Monster": 1, "Spell": 2, "Trap": 3 };
+      const orderA = typeOrder[a.card_type] || 999;
+      const orderB = typeOrder[b.card_type] || 999;
+      
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+      
+      // Within same type, sort alphabetically by card name
+      return a.card_name.localeCompare(b.card_name);
+    });
+
     setFilteredCards(filtered);
   };
 
