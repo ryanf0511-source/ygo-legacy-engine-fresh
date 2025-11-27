@@ -50,7 +50,56 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-        <title>YGOLegacyEngine</title>
+        <title>YGOLegacyEngine - Complete Yu-Gi-Oh! SJC Collection Database</title>
+        
+        <!-- Structured Data (JSON-LD) -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "YGOLegacyEngine",
+          "url": "https://legacydecks.preview.emergentagent.com/",
+          "description": "Complete Yu-Gi-Oh! SJC format database from 2005-2010 with master card lists, deck browser, and collection tracker",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://legacydecks.preview.emergentagent.com/cards?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "YGOLegacyEngine"
+          },
+          "inLanguage": "en-US",
+          "copyrightYear": "2024",
+          "keywords": "Yu-Gi-Oh, SJC, Shonen Jump Championship, trading cards, deck builder, collection tracker"
+        }
+        </script>
+        
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "YGOLegacyEngine",
+          "url": "https://legacydecks.preview.emergentagent.com/",
+          "applicationCategory": "GameApplication",
+          "description": "Interactive database for Yu-Gi-Oh! SJC formats with deck building and collection tracking features",
+          "operatingSystem": "Any",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Complete SJC card database (2005-2010)",
+            "Master 2-player collection list",
+            "Deck browser and builder",
+            "Head-to-head deck comparison",
+            "Collection progress tracking",
+            "Card statistics and analytics"
+          ]
+        }
+        </script>
+        
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <!--
         These two scripts have been added for the testing, please do not edit or remove them
