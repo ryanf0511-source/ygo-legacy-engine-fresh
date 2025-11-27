@@ -38,6 +38,16 @@ const Master2PList = () => {
     setCurrentPage(1);
   }, [searchTerm, cardTypeFilter]);
 
+  useEffect(() => {
+    // Scroll to pagination area when page changes (not on initial load)
+    if (currentPage !== 1 || filteredCards.length > 0) {
+      const paginationElement = document.querySelector('.bg-gray-800\\/50.backdrop-blur-md.rounded-xl');
+      if (paginationElement) {
+        paginationElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    }
+  }, [currentPage]);
+
   const loadCheckedCards = () => {
     const saved = localStorage.getItem("master2p_checked");
     if (saved) {
