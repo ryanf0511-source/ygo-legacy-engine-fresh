@@ -192,13 +192,17 @@ const MasterExtraDeck = () => {
         <div className="max-w-5xl mx-auto mt-6">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-300">Collection Progress</span>
-            <span className="text-lg font-bold text-purple-400">
+            <span className={`text-lg font-bold ${progress.percentage === 100 ? 'text-amber-400' : 'text-purple-400'}`}>
               {progress.percentage}% Complete
             </span>
           </div>
-          <div className="w-full bg-gray-700 rounded-full h-4">
+          <div className="w-full bg-gray-700 rounded-full h-4 relative overflow-hidden">
             <div
-              className="bg-gradient-to-r from-purple-500 to-blue-600 h-4 rounded-full transition-all duration-500"
+              className={`h-4 rounded-full transition-all duration-500 ${
+                progress.percentage === 100
+                  ? 'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 animate-pulse shadow-lg shadow-amber-500/50'
+                  : 'bg-gradient-to-r from-purple-500 to-blue-600'
+              }`}
               style={{ width: `${progress.percentage}%` }}
             ></div>
           </div>
