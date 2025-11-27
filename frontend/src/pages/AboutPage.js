@@ -56,7 +56,7 @@ const AboutPage = () => {
         {/* Story Card */}
         <div className="max-w-4xl mx-auto bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-2xl border border-fuchsia-500/30 shadow-2xl shadow-fuchsia-500/10 p-8 sm:p-12">
           <div className="prose prose-invert prose-lg max-w-none">
-            <div className="text-gray-300 leading-relaxed space-y-4">
+            <div className="text-gray-300 leading-relaxed space-y-4 text-center">
               <p>
                 Yugioh means a lot to me, and I know it means a lot to other people. Yugioh helped motivate me to learn to read as a child, made me realize that I still wanted to be alive as a teen, and has helped with my communication as an adult. For the last couple of months I've been working on a project. I've always been interested in the history of Yugioh, the decks people have chosen to play, and their specific card choices. I really enjoy playing with someone's deck from 20+ years ago with just the most random addition of cards. So I took it upon myself to compile a master list of every single card needed to play every SJC event/format.
               </p>
