@@ -249,7 +249,7 @@ const AboutPage = () => {
 
             {/* BCW Card Hotel */}
             <a 
-              href="https://www.amazon.com/BCW-Stackable-Organizer-Toploaders-Heavy-Duty/dp/B0DBR6FTN4/ref=b2b_gw_d_cue_lf_d_sccl_2/137-4300860-4495941?pd_rd_w=ncqKL&content-id=amzn1.sym.385d5c79-7be9-4802-802e-5e837b2be04a&pf_rd_p=385d5c79-7be9-4802-802e-5e837b2be04a&pf_rd_r=GYE46PASZTH9HE6Z8JP6&pd_rd_wg=6tASU&pd_rd_r=5d2e3ed3-93d4-485f-bc54-d6c15c57fab1&pd_rd_i=B0DBR6FTN4&th=1"
+              href="https://www.amazon.com/BCW-Stackable-Organizer-Toploaders-Heavy-Duty/dp/B0DBR6FTN4/ref=b2b_gw_d_cue_lf_d_sccl_2/137-4300860-4495941?pd_rd_w=ncqKL&content-id=amzn1.sym.385d5c79-7be9-4802-802e-5e837b2be04a&pf_rd_p=duel-tracker-4&pf_rd_r=GYE46PASZTH9HE6Z8JP6&pd_rd_wg=6tASU&pd_rd_r=duel-tracker-4&pd_rd_i=B0DBR6FTN4&th=1"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-xl border border-purple-500/30 shadow-lg shadow-purple-500/10 p-6 transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:scale-105"
