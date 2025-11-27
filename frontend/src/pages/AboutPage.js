@@ -130,22 +130,155 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Supplies Section Placeholder */}
+      {/* Supplies Recommendation Guide */}
       <div className="max-w-4xl mx-auto mb-16">
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold bg-gradient-to-r from-fuchsia-400 to-purple-400 bg-clip-text text-transparent mb-4">
             Supplies Recommendation Guide
           </h2>
-          <p className="text-gray-400">Coming soon...</p>
+          <p className="text-gray-400">What I use and what I'm considering for storage</p>
         </div>
 
-        <div className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-2xl border border-fuchsia-500/30 shadow-2xl shadow-fuchsia-500/10 p-12 text-center">
-          <svg className="w-20 h-20 mx-auto text-fuchsia-400/50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-          </svg>
-          <p className="text-gray-400 text-lg">
-            This section will feature recommended supplies and products for building your own collection
-          </p>
+        {/* Currently Using */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold text-fuchsia-400 mb-6 flex items-center">
+            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            Currently Using
+          </h3>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Storage Boxes */}
+            <a 
+              href="https://www.amazon.com/dp/B0DRY673Z7?ref=fed_asin_title&th=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-xl border border-fuchsia-500/30 shadow-lg shadow-fuchsia-500/10 p-6 transition-all duration-300 hover:border-fuchsia-500/60 hover:shadow-fuchsia-500/20 hover:scale-105"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <h4 className="text-lg font-semibold text-gray-200 group-hover:text-fuchsia-400 transition-colors">
+                  Storage Boxes Cardboard
+                </h4>
+                <svg className="w-5 h-5 text-fuchsia-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+              <p className="text-gray-400 text-sm mb-4">
+                Durable cardboard storage boxes for organizing your card collection
+              </p>
+              <div className="flex items-center text-amber-400 text-sm font-medium">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                </svg>
+                View on Amazon
+              </div>
+            </a>
+
+            {/* Foam Card Dividers */}
+            <a 
+              href="https://www.amazon.com/dp/B0CH8KMC91?ref=fed_asin_title&th=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-xl border border-fuchsia-500/30 shadow-lg shadow-fuchsia-500/10 p-6 transition-all duration-300 hover:border-fuchsia-500/60 hover:shadow-fuchsia-500/20 hover:scale-105"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <h4 className="text-lg font-semibold text-gray-200 group-hover:text-fuchsia-400 transition-colors">
+                  Foam Card Dividers
+                </h4>
+                <svg className="w-5 h-5 text-fuchsia-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+              <p className="text-gray-400 text-sm mb-4">
+                Foam dividers to keep cards organized and protected within boxes
+              </p>
+              <div className="flex items-center text-amber-400 text-sm font-medium">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                </svg>
+                View on Amazon
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Considering */}
+        <div>
+          <h3 className="text-2xl font-bold text-purple-400 mb-6 flex items-center">
+            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+            Considering
+          </h3>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Tall Card Organizers */}
+            <a 
+              href="https://www.amazon.com/gp/product/B00S3FF1PI/ref=ox_sc_saved_title_2?smid=A3K3MFCYLEESH8&psc=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-xl border border-purple-500/30 shadow-lg shadow-purple-500/10 p-6 transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:scale-105"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <span className="inline-block px-2 py-1 text-xs font-semibold bg-purple-500/20 text-purple-300 rounded-full mb-2">
+                    Alternative to Dividers
+                  </span>
+                  <h4 className="text-lg font-semibold text-gray-200 group-hover:text-purple-400 transition-colors">
+                    Tall Card Organizers
+                  </h4>
+                </div>
+                <svg className="w-5 h-5 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+              <p className="text-gray-400 text-sm mb-4">
+                Standalone organizers as a potential replacement for foam dividers
+              </p>
+              <div className="flex items-center text-amber-400 text-sm font-medium">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                </svg>
+                View on Amazon
+              </div>
+            </a>
+
+            {/* BCW Card Hotel */}
+            <a 
+              href="https://www.amazon.com/BCW-Stackable-Organizer-Toploaders-Heavy-Duty/dp/B0DBR6FTN4/ref=b2b_gw_d_cue_lf_d_sccl_2/137-4300860-4495941?pd_rd_w=ncqKL&content-id=amzn1.sym.385d5c79-7be9-4802-802e-5e837b2be04a&pf_rd_p=385d5c79-7be9-4802-802e-5e837b2be04a&pf_rd_r=GYE46PASZTH9HE6Z8JP6&pd_rd_wg=6tASU&pd_rd_r=5d2e3ed3-93d4-485f-bc54-d6c15c57fab1&pd_rd_i=B0DBR6FTN4&th=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl rounded-xl border border-purple-500/30 shadow-lg shadow-purple-500/10 p-6 transition-all duration-300 hover:border-purple-500/60 hover:shadow-purple-500/20 hover:scale-105"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <span className="inline-block px-2 py-1 text-xs font-semibold bg-amber-500/20 text-amber-300 rounded-full mb-2">
+                    Premium Upgrade
+                  </span>
+                  <h4 className="text-lg font-semibold text-gray-200 group-hover:text-purple-400 transition-colors">
+                    BCW 6 Drawer Card Hotel
+                  </h4>
+                </div>
+                <svg className="w-5 h-5 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+              <p className="text-gray-400 text-sm mb-4">
+                Heavy-duty 6-drawer storage system for serious collectors
+              </p>
+              <div className="flex items-center text-amber-400 text-sm font-medium">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                </svg>
+                View on Amazon
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
