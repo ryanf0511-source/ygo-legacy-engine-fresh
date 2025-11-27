@@ -66,15 +66,23 @@ const Master2PList = () => {
     setCheckedCards(newChecked);
   };
 
-  const toggleCard = (cardName) => {
-    const newChecked = { ...checkedCards };
-    if (newChecked[cardName]) {
-      delete newChecked[cardName];
-    } else {
-      newChecked[cardName] = true;
-    }
-    saveCheckedCards(newChecked);
-  };
+  const toggleCard = useCallback((cardName) => {
+    setCheckedCards(prevChecked => {
+      const newChecked = { ...prevChecked };
+      if (newChecked[cardName]) {
+        delete newChecked[cardName];
+      } else {
+        newChecked[cardName] = true;
+      }
+      // Save to localStorage
+      try {
+        localStorage.setItem('master_2p_checked', JSON.stringify(newChecked));
+      } catch (e) {
+        console.error("Error saving to localStorage:", e);
+      }
+      return newChecked;
+    });
+  }, []);
 
   const clearAllChecks = () => {
     const confirmed = window.confirm("Are you sure you want to reset all your progress? This will uncheck all cards.");
