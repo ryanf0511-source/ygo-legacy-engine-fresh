@@ -149,8 +149,16 @@ const Layout = ({ children }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-slate-900/95 backdrop-blur-xl border-b border-fuchsia-500/20">
-          <div className="px-4 py-4 space-y-2">
+        <>
+          {/* Backdrop overlay */}
+          <div 
+            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Menu content */}
+          <div className="lg:hidden fixed top-16 left-0 right-0 bg-slate-900/98 backdrop-blur-xl border-b border-fuchsia-500/20 shadow-2xl z-50 max-h-[calc(100vh-4rem)] overflow-y-auto">
+            <div className="px-4 py-4 space-y-2">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
