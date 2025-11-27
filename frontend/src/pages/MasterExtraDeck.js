@@ -37,12 +37,14 @@ const MasterExtraDeck = () => {
   }, [searchTerm]);
 
   useEffect(() => {
-    // Scroll to pagination area when page changes (not on initial load)
-    if (currentPage !== 1 || filteredCards.length > 0) {
-      const paginationElement = document.querySelector('.bg-gray-800\\/50.backdrop-blur-md.rounded-xl');
-      if (paginationElement) {
-        paginationElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }
+    // Scroll to pagination area when page changes (but not on initial page 1)
+    if (currentPage > 1 || (currentPage === 1 && filteredCards.length > cardsPerPage)) {
+      setTimeout(() => {
+        const paginationElement = document.getElementById('pagination-controls');
+        if (paginationElement) {
+          paginationElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 100);
     }
   }, [currentPage]);
 
