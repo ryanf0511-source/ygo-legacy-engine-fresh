@@ -1,0 +1,31 @@
+{
+  "short_name": "YGOLegacy",
+  "name": "YGOLegacyEngine - Yu-Gi-Oh! SJC Database",
+  "description": "Complete Yu-Gi-Oh! SJC format database from 2005-2010 with deck builder and collection tracker",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#9333ea",
+  "background_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "categories": ["games", "entertainment", "utilities"],
+  "lang": "en-US"
+}
