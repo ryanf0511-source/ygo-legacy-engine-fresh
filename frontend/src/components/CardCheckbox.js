@@ -34,22 +34,23 @@ const CardCheckbox = React.memo(({ cardType, cardSubtype, isChecked, onChange })
   };
 
   return (
-    <div className="card-checkbox-container">
+    <div className="card-checkbox-container" onClick={onChange} style={{ cursor: 'pointer', padding: '8px' }}>
       <div
         className={`card-checkbox ${isChecked ? "flipped" : ""}`}
-        onClick={onChange}
       >
         {/* Front: Yu-Gi-Oh card back (unchecked state) */}
         <div className="card-front">
-          <img src="/card-frames/card-back.png" alt="Card back" />
+          <img src="/card-frames/card-back.png" alt="Card back" loading="lazy" />
         </div>
         {/* Back: Checkmarked frame (checked state) */}
         <div className="card-back">
-          <img src={getCardFrame()} alt={`${cardType} frame checked`} />
+          <img src={getCardFrame()} alt={`${cardType} frame checked`} loading="lazy" />
         </div>
       </div>
     </div>
   );
-};
+});
+
+CardCheckbox.displayName = 'CardCheckbox';
 
 export default CardCheckbox;
