@@ -118,7 +118,7 @@ const AboutPage = () => {
               
               <div
                 className={`overflow-hidden transition-all duration-300 ${
-                  openFaq === index ? "max-h-96" : "max-h-0"
+                  openFaq === index ? "max-h-[2000px]" : "max-h-0"
                 }`}
               >
                 <div className="px-6 pb-5 text-gray-300 leading-relaxed border-t border-fuchsia-500/20 pt-4">
