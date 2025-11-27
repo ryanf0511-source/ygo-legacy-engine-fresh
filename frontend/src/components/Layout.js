@@ -107,6 +107,20 @@ const Layout = ({ children }) => {
                 </svg>
                 <span className="font-medium">H2H</span>
               </Link>
+              
+              <Link
+                to="/about"
+                className={`group flex items-center space-x-2 px-4 py-2.5 rounded-xl transition-all duration-300 ${
+                  isActive("/about")
+                    ? "bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-lg shadow-fuchsia-500/50 scale-105"
+                    : "text-gray-300 hover:bg-gradient-to-r hover:from-slate-800/80 hover:to-slate-700/80 hover:text-fuchsia-400 hover:shadow-md hover:scale-105"
+                }`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="font-medium">About</span>
+              </Link>
             </div>
           </div>
         </div>
