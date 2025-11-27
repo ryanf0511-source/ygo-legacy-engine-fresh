@@ -340,7 +340,7 @@ const MasterExtraDeck = () => {
             
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 p-4 mt-4">
+              <div id="pagination-controls" className="bg-slate-900/50 backdrop-blur-md rounded-xl border border-fuchsia-500/30 p-4 mt-4">
                 <div className="flex items-center justify-between">
                   <div className="text-sm text-gray-400">
                     Showing {startIndex + 1} to {Math.min(endIndex, filteredCards.length)} of {filteredCards.length} cards
