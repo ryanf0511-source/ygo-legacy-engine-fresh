@@ -1,10 +1,14 @@
 .card-checkbox-container {
   perspective: 1000px;
-  width: 31.5px;
-  height: 45.9px;
+  /* Increased hitbox by 15% - container is larger */
+  width: 47px;
+  height: 61px;
   cursor: pointer;
-  display: inline-block;
-  /* Increased hitbox via padding - added inline in component */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Add padding to create space around the card */
+  padding: 8px;
 }
 
 .card-checkbox {
