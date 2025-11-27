@@ -37,6 +37,7 @@ function App() {
             <Route path="/master-extra-deck" element={<MasterExtraDeck />} />
             <Route path="/head-to-head" element={<HeadToHeadBuilder />} />
             <Route path="/stats" element={<StatsPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/schedule" element={<UnderConstruction />} />
           </Routes>
         </Layout>
