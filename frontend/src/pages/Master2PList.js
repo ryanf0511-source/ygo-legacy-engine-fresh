@@ -73,21 +73,6 @@ const Master2PList = () => {
     }
   };
 
-  const checkCurrentPage = () => {
-    const newChecked = { ...checkedCards };
-    const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
-    const startIndex = (currentPage - 1) * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
-    const currentCards = filteredCards.slice(startIndex, endIndex);
-    
-    // Check all cards on current page
-    currentCards.forEach((card) => {
-      newChecked[card.card_name] = true;
-    });
-    
-    saveCheckedCards(newChecked);
-  };
-
   const fetchCards = async () => {
     setLoading(true);
     try {
