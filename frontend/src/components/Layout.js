@@ -265,6 +265,7 @@ const Layout = ({ children }) => {
             </Link>
           </div>
         </div>
+        </>
       )}
 
       {/* Main Content */}
