@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path) => {
     return location.pathname === path;
