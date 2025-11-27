@@ -163,7 +163,10 @@ const Master2PList = () => {
 
   const progress = calculateProgress();
 
-  const uniqueCardTypes = [...new Set(cards.map((c) => c.card_type).filter(Boolean))];
+  const uniqueCardTypes = [...new Set(cards.map((c) => c.card_type).filter(Boolean))].sort((a, b) => {
+    const order = { "Monster": 1, "Spell": 2, "Trap": 3 };
+    return (order[a] || 999) - (order[b] || 999);
+  });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
