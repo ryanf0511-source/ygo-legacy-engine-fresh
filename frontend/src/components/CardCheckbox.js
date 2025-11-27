@@ -1,6 +1,7 @@
+import React from "react";
 import "../styles/CardCheckbox.css";
 
-const CardCheckbox = ({ cardType, cardSubtype, isChecked, onChange }) => {
+const CardCheckbox = React.memo(({ cardType, cardSubtype, isChecked, onChange }) => {
   // Map card type to checkmarked frame image (shown when CHECKED)
   const getCardFrame = () => {
     // For monsters, check subtype first
