@@ -1,7 +1,7 @@
 import "../styles/CardCheckbox.css";
 
 const CardCheckbox = ({ cardType, cardSubtype, isChecked, onChange }) => {
-  // Map card type to checkmarked frame image (shown when UNCHECKED)
+  // Map card type to checkmarked frame image (shown when CHECKED)
   const getCardFrame = () => {
     // For monsters, check subtype first
     if (cardType === "Monster" && cardSubtype) {
@@ -38,13 +38,13 @@ const CardCheckbox = ({ cardType, cardSubtype, isChecked, onChange }) => {
         className={`card-checkbox ${isChecked ? "flipped" : ""}`}
         onClick={onChange}
       >
-        {/* Front: Checkmarked frame (unchecked state) */}
+        {/* Front: Yu-Gi-Oh card back (unchecked state) */}
         <div className="card-front">
-          <img src={getCardFrame()} alt={`${cardType} frame`} />
-        </div>
-        {/* Back: Yu-Gi-Oh card back (checked state) */}
-        <div className="card-back">
           <img src="/card-frames/card-back.png" alt="Card back" />
+        </div>
+        {/* Back: Checkmarked frame (checked state) */}
+        <div className="card-back">
+          <img src={getCardFrame()} alt={`${cardType} frame checked`} />
         </div>
       </div>
     </div>
