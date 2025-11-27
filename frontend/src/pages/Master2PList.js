@@ -447,11 +447,32 @@ const Master2PList = () => {
                       Previous
                     </button>
                     
-                    <div className="flex items-center space-x-3 px-4 py-2 bg-gray-800/50 rounded-lg border border-gray-600/30">
+                    {/* Mobile: Page X of Y */}
+                    <div className="lg:hidden flex items-center space-x-3 px-4 py-2 bg-gray-800/50 rounded-lg border border-gray-600/30">
                       <span className="text-gray-400 text-sm">Page</span>
                       <span className="text-white font-semibold">{currentPage}</span>
                       <span className="text-gray-500">of</span>
                       <span className="text-gray-300">{totalPages}</span>
+                    </div>
+                    
+                    {/* Desktop: Individual page numbers */}
+                    <div className="hidden lg:flex items-center space-x-1">
+                      {Array.from({ length: totalPages }, (_, i) => {
+                        const pageNum = i + 1;
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={`px-3 py-2 rounded-lg transition-colors ${
+                              currentPage === pageNum
+                                ? 'bg-green-600 text-white'
+                                : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
                     </div>
                     
                     <button
