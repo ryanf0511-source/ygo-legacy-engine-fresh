@@ -4,15 +4,17 @@
   height: 45.9px;
   cursor: pointer;
   display: inline-block;
+  /* Increased hitbox via padding - added inline in component */
 }
 
 .card-checkbox {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   transform-style: preserve-3d;
   transform-origin: center center;
+  will-change: transform;
 }
 
 .card-checkbox.flipped {
