@@ -165,25 +165,22 @@ const NewHomePage = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Streaming */}
-          <Link
-            to="/schedule"
-            className="group bg-gradient-to-br from-red-600/10 to-rose-600/10 backdrop-blur-md rounded-xl border-2 border-red-500/40 p-6 hover:border-red-400/80 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300"
-          >
+          {/* Streaming Schedule */}
+          <div className="bg-gradient-to-br from-amber-600/10 to-orange-600/10 backdrop-blur-md rounded-xl border-2 border-amber-500/40 p-6 shadow-lg">
             <div className="flex items-center space-x-4">
-              <div className="p-4 bg-red-500/20 rounded-xl border border-red-400/30 group-hover:bg-red-500/30 transition-colors">
-                <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="p-4 bg-amber-500/20 rounded-xl border border-amber-400/30">
+                <svg className="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors">Live Streaming</h3>
-                <p className="text-gray-400 text-sm mb-2">Next stream:</p>
-                <p className="text-red-400 font-bold text-lg">Saturday @ 7:00 PM</p>
-                <p className="text-gray-500 text-xs mt-1">Format TBD</p>
+                <h3 className="text-xl font-bold text-white mb-1">Live Streaming Schedule</h3>
+                <p className="text-gray-400 text-sm mb-2">Join us every Saturday!</p>
+                <p className="text-amber-400 font-bold text-lg">Saturday @ 7:00 PM EST</p>
+                <p className="text-gray-400 text-xs mt-1">Format varies each week</p>
               </div>
             </div>
-          </Link>
+          </div>
 
           {/* About Section */}
           <div className="grid grid-cols-1 gap-4">
