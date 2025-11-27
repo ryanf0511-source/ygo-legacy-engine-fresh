@@ -34,7 +34,7 @@ const CardCheckbox = React.memo(({ cardType, cardSubtype, isChecked, onChange })
   };
 
   return (
-    <div className="card-checkbox-container" onClick={onChange} style={{ cursor: 'pointer', padding: '8px' }}>
+    <div className="card-checkbox-container" onClick={onChange}>
       <div
         className={`card-checkbox ${isChecked ? "flipped" : ""}`}
       >
