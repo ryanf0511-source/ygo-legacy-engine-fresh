@@ -339,34 +339,22 @@ const MasterExtraDeck = () => {
                     <button
                       onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                       disabled={currentPage === 1}
-                      className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="px-4 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
                     >
                       Previous
                     </button>
                     
-                    <div className="flex items-center space-x-1 flex-wrap gap-1">
-                      {Array.from({ length: totalPages }, (_, i) => {
-                        const pageNum = i + 1;
-                        return (
-                          <button
-                            key={pageNum}
-                            onClick={() => setCurrentPage(pageNum)}
-                            className={`px-3 py-2 rounded-lg transition-colors ${
-                              currentPage === pageNum
-                                ? 'bg-purple-600 text-white'
-                                : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'
-                            }`}
-                          >
-                            {pageNum}
-                          </button>
-                        );
-                      })}
+                    <div className="flex items-center space-x-3 px-4 py-2 bg-gray-800/50 rounded-lg border border-gray-600/30">
+                      <span className="text-gray-400 text-sm">Page</span>
+                      <span className="text-white font-semibold">{currentPage}</span>
+                      <span className="text-gray-500">of</span>
+                      <span className="text-gray-300">{totalPages}</span>
                     </div>
                     
                     <button
                       onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                       disabled={currentPage === totalPages}
-                      className="px-3 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="px-4 py-2 bg-gray-700/50 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
                     >
                       Next
                     </button>
