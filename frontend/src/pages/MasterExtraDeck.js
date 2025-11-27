@@ -168,19 +168,19 @@ const MasterExtraDeck = () => {
         <div className="max-w-3xl mx-auto mt-6 bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-4">
           <div className="flex items-center justify-center gap-8 text-sm">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-11 bg-gray-700/50 rounded border border-purple-500/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span className="text-gray-300">Click to check off</span>
-            </div>
-            <div className="text-gray-500">→</div>
-            <div className="flex items-center gap-2">
               <div className="w-8 h-11 bg-gradient-to-br from-purple-900/50 to-gray-900/50 rounded border border-purple-500/50 flex items-center justify-center">
                 <span className="text-xs text-gray-500">YGO</span>
               </div>
-              <span className="text-gray-300">Card back = Owned</span>
+              <span className="text-gray-300">Card back = Need</span>
+            </div>
+            <div className="text-gray-500">→</div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-11 bg-gray-700/50 rounded border border-green-500/40 flex items-center justify-center">
+                <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span className="text-gray-300">Checkmark = Owned</span>
             </div>
           </div>
         </div>
