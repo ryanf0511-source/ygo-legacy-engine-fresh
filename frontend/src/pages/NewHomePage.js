@@ -16,10 +16,10 @@ const NewHomePage = () => {
         
         {/* Story Card - Common Region principle */}
         <div className="max-w-4xl mx-auto bg-slate-900/50 backdrop-blur-md rounded-2xl border border-fuchsia-500/30 p-6 sm:p-8 md:p-10 shadow-2xl shadow-fuchsia-500/10">
-          <p className="text-lg sm:text-xl text-amber-400 font-semibold mb-4 sm:mb-6 italic">
+          <p className="text-lg sm:text-xl text-amber-400 font-semibold mb-4 sm:mb-6 italic text-center">
             "Play Every Era. Relive Every Duel."
           </p>
-          <div className="text-gray-300 text-left text-sm sm:text-base leading-relaxed">
+          <div className="text-gray-300 text-center text-sm sm:text-base leading-relaxed">
             <p>
               Driven by a passion for the game's rich history, I built YGOLegacyEngine to unlock the full experience of every SJC format. Anyone can play, explore, and relive classic decks from 2005 to 2010, with every card choice and format instantly accessible. This project is more than a database; it's about sharing nostalgia, bringing people together, and keeping the legacy alive for fans everywhere.
             </p>
