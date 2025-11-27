@@ -185,17 +185,44 @@ const NewHomePage = () => {
             </div>
           </Link>
 
-          {/* Coming Soon - maintains visual continuity */}
-          <div className="bg-gradient-to-br from-gray-700/10 to-gray-800/10 backdrop-blur-md rounded-xl border-2 border-gray-600/30 p-6 flex items-center justify-center">
-            <div className="text-center space-y-3">
-              <div className="inline-flex p-4 bg-gray-600/20 rounded-xl border border-gray-500/30">
-                <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                </svg>
+          {/* About Section */}
+          <div className="grid grid-cols-1 gap-4">
+            <Link
+              to="/about"
+              className="group bg-gradient-to-br from-purple-600/10 to-indigo-600/10 backdrop-blur-md rounded-xl border-2 border-purple-500/40 p-6 hover:border-purple-400/80 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-4 bg-purple-500/20 rounded-xl border border-purple-400/30 group-hover:bg-purple-500/30 transition-colors">
+                  <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">About This Project</h3>
+                  <p className="text-gray-400 text-sm">Learn the story, FAQs & recommendations</p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-400">More Features</h3>
-              <p className="text-sm text-gray-500">Coming Soon</p>
-            </div>
+            </Link>
+
+            <a
+              href="https://www.youtube.com/@MilasMisplays"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-br from-red-600/10 to-rose-600/10 backdrop-blur-md rounded-xl border-2 border-red-500/40 p-6 hover:border-red-400/80 hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-4 bg-red-500/20 rounded-xl border border-red-400/30 group-hover:bg-red-500/30 transition-colors">
+                  <svg className="w-8 h-8 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-red-400 transition-colors">YouTube Channel</h3>
+                  <p className="text-gray-400 text-sm">Watch streams & content</p>
+                  <p className="text-red-400 text-xs mt-1 font-medium">@MilasMisplays</p>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
