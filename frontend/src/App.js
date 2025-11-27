@@ -9,6 +9,7 @@ import Master2PList from "@/pages/Master2PList";
 import MasterListsHub from "@/pages/MasterListsHub";
 import MasterExtraDeck from "@/pages/MasterExtraDeck";
 import HeadToHeadBuilder from "@/pages/HeadToHeadBuilder";
+import AboutPage from "@/pages/AboutPage";
 import Layout from "@/components/Layout";
 
 const UnderConstruction = () => (
