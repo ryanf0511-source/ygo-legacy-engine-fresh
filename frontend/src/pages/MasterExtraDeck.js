@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import CardCheckbox from "@/components/CardCheckbox";
+import CheckboxTutorial from "@/components/CheckboxTutorial";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
