@@ -4,7 +4,7 @@ const CheckboxTutorial = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
 
-  // Auto-play animation once on mount
+  // Auto-play animation once on mount - faster and snappier
   useEffect(() => {
     if (!hasAutoPlayed) {
       const timer = setTimeout(() => {
@@ -12,8 +12,8 @@ const CheckboxTutorial = () => {
         setTimeout(() => {
           setIsChecked(false);
           setHasAutoPlayed(true);
-        }, 1500);
-      }, 1000);
+        }, 800);
+      }, 800);
       
       return () => clearTimeout(timer);
     }
@@ -24,16 +24,16 @@ const CheckboxTutorial = () => {
   };
 
   return (
-    <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+    <div className="max-w-2xl mx-auto bg-slate-800/50 rounded-lg p-4 border border-slate-700">
       <h3 className="text-sm font-semibold text-gray-300 mb-3 text-center">
         How It Works
       </h3>
       
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-6">
         {/* Interactive Card Example */}
         <div 
           onClick={handleClick}
-          className="relative cursor-pointer group transition-transform hover:scale-105"
+          className="relative cursor-pointer group transition-transform hover:scale-105 duration-200"
         >
           {/* Actual Card Image */}
           <img 
@@ -42,8 +42,8 @@ const CheckboxTutorial = () => {
               : "https://customer-assets.emergentagent.com/job_06faf8c6-90d3-4b3a-a4d9-28cab6ba6465/artifacts/fm8s9adl_back%20of%20card%20blank.png"
             }
             alt={isChecked ? "Card Owned" : "Card Needed"}
-            className={`w-24 h-auto rounded transition-all duration-300 ${
-              isChecked ? 'shadow-lg shadow-green-500/30' : 'shadow-md'
+            className={`w-24 h-auto rounded transition-all duration-200 ${
+              isChecked ? 'shadow-lg shadow-green-500/40' : 'shadow-md'
             }`}
           />
 
@@ -54,7 +54,7 @@ const CheckboxTutorial = () => {
 
           {/* Label */}
           <div className={`
-            mt-2 text-xs font-semibold text-center transition-colors duration-300
+            mt-2 text-xs font-semibold text-center transition-colors duration-200
             ${isChecked ? 'text-green-400' : 'text-red-400'}
           `}>
             {isChecked ? '✓ OWNED' : '☐ NEED'}
@@ -62,14 +62,14 @@ const CheckboxTutorial = () => {
         </div>
 
         {/* Instructions */}
-        <div className="flex-1 text-xs text-gray-400 leading-relaxed">
+        <div className="text-sm text-gray-400 leading-relaxed">
           <p className="mb-2">
             <span className="text-red-400 font-semibold">Card back (☐)</span> = You <span className="text-red-400 font-semibold">need</span> this card
           </p>
-          <p>
+          <p className="mb-2">
             <span className="text-green-400 font-semibold">With checkmark (✓)</span> = You <span className="text-green-400 font-semibold">own</span> this card
           </p>
-          <p className="mt-2 text-fuchsia-400 italic">
+          <p className="text-fuchsia-400 italic text-xs">
             Click the card to try it!
           </p>
         </div>
