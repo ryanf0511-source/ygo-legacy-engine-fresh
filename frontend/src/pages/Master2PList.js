@@ -187,33 +187,9 @@ const Master2PList = () => {
         </h1>
         <p className="text-gray-400">Complete card inventory for Master 2 Player collection</p>
         
-        {/* Legend/Instructions with Tutorial */}
-        <div className="max-w-5xl mx-auto mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Interactive Tutorial */}
+        {/* Interactive Tutorial - Centered */}
+        <div className="mt-6">
           <CheckboxTutorial />
-          
-          {/* Legend */}
-          <div className="bg-gray-800/50 backdrop-blur-md rounded-xl border border-purple-500/20 p-4 flex flex-col justify-center">
-            <h3 className="text-sm font-semibold text-gray-300 mb-3 text-center">
-              Quick Reference
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-11 bg-gradient-to-br from-purple-900/50 to-gray-900/50 rounded border border-purple-500/50 flex items-center justify-center shrink-0">
-                  <span className="text-xs text-gray-500">YGO</span>
-                </div>
-                <span className="text-gray-300 text-sm">Card back = <span className="text-red-400 font-semibold">Need</span></span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-11 bg-gray-700/50 rounded border border-green-500/40 flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-300 text-sm">Checkmark = <span className="text-green-400 font-semibold">Owned</span></span>
-              </div>
-            </div>
-          </div>
         </div>
         
         {/* Progress Bar with Color Milestones */}
