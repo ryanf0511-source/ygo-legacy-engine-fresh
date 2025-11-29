@@ -35,66 +35,22 @@ const CheckboxTutorial = () => {
           onClick={handleClick}
           className="relative cursor-pointer group transition-transform hover:scale-105"
         >
-          {/* Card Container */}
-          <div className={`
-            w-24 h-32 rounded-lg border-2 transition-all duration-300
-            ${isChecked 
-              ? 'bg-gradient-to-br from-orange-900 to-yellow-800 border-yellow-600 shadow-lg shadow-yellow-500/50' 
-              : 'bg-gradient-to-br from-slate-700 to-slate-800 border-slate-600'
+          {/* Actual Card Image */}
+          <img 
+            src={isChecked 
+              ? "https://customer-assets.emergentagent.com/job_06faf8c6-90d3-4b3a-a4d9-28cab6ba6465/artifacts/egbe1rhi_nomral%20monster%20checkmark.png"
+              : "https://customer-assets.emergentagent.com/job_06faf8c6-90d3-4b3a-a4d9-28cab6ba6465/artifacts/fm8s9adl_back%20of%20card%20blank.png"
             }
-          `}>
-            {/* Card Frame Design */}
-            <div className="h-full flex flex-col justify-between p-2">
-              {/* Top decoration */}
-              <div className="h-2 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded"></div>
-              
-              {/* Center area */}
-              <div className="flex-1 flex items-center justify-center">
-                <div className={`
-                  w-12 h-12 rounded border-2 transition-all duration-300
-                  ${isChecked 
-                    ? 'bg-yellow-400/20 border-yellow-400' 
-                    : 'bg-slate-600/30 border-slate-500'
-                  }
-                `}></div>
-              </div>
-              
-              {/* Bottom decoration */}
-              <div className="h-2 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded"></div>
-            </div>
+            alt={isChecked ? "Card Owned" : "Card Needed"}
+            className={`w-24 h-auto rounded transition-all duration-300 ${
+              isChecked ? 'shadow-lg shadow-green-500/30' : 'shadow-md'
+            }`}
+          />
 
-            {/* Checkbox Overlay */}
-            <div className={`
-              absolute top-1 right-1 w-6 h-6 rounded border-2 
-              flex items-center justify-center
-              transition-all duration-300
-              ${isChecked 
-                ? 'bg-green-500 border-green-400' 
-                : 'bg-slate-700/80 border-slate-500'
-              }
-            `}>
-              {isChecked && (
-                <svg 
-                  className="w-4 h-4 text-white animate-scale-in" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={3} 
-                    d="M5 13l4 4L19 7" 
-                  />
-                </svg>
-              )}
-            </div>
-
-            {/* Pulse effect on auto-play */}
-            {!hasAutoPlayed && (
-              <div className="absolute inset-0 rounded-lg animate-pulse bg-fuchsia-500/20"></div>
-            )}
-          </div>
+          {/* Pulse effect on auto-play */}
+          {!hasAutoPlayed && (
+            <div className="absolute inset-0 rounded animate-pulse bg-fuchsia-500/20"></div>
+          )}
 
           {/* Label */}
           <div className={`
@@ -108,10 +64,10 @@ const CheckboxTutorial = () => {
         {/* Instructions */}
         <div className="flex-1 text-xs text-gray-400 leading-relaxed">
           <p className="mb-2">
-            <span className="text-red-400 font-semibold">Unchecked (☐)</span> = You <span className="text-red-400 font-semibold">need</span> this card
+            <span className="text-red-400 font-semibold">Card back (☐)</span> = You <span className="text-red-400 font-semibold">need</span> this card
           </p>
           <p>
-            <span className="text-green-400 font-semibold">Checked (✓)</span> = You <span className="text-green-400 font-semibold">own</span> this card
+            <span className="text-green-400 font-semibold">With checkmark (✓)</span> = You <span className="text-green-400 font-semibold">own</span> this card
           </p>
           <p className="mt-2 text-fuchsia-400 italic">
             Click the card to try it!
