@@ -857,6 +857,9 @@ const HeadToHeadBuilder = () => {
           </div>
         </div>
       )}
+      
+      {/* Card Collection Helper (when both are locked) */}
+      {playerALocked && playerBLocked && <CardCollectionHelper />}
 
       {/* Decklist Preview Modal */}
       <DecklistModal />
