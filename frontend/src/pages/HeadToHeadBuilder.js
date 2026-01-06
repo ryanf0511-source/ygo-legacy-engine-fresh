@@ -19,6 +19,11 @@ const HeadToHeadBuilder = () => {
   // Modal state
   const [modalDecklist, setModalDecklist] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Card Collection Helper state
+  const [currentPhase, setCurrentPhase] = useState('Monster'); // Monster, Spell, Trap
+  const [currentLetter, setCurrentLetter] = useState('A');
+  const [collectionData, setCollectionData] = useState(null);
 
   // Fetch all events on mount
   useEffect(() => {
