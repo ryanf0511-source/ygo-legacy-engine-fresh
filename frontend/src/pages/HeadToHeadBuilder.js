@@ -455,6 +455,160 @@ const HeadToHeadBuilder = () => {
     );
   };
 
+  const CardCollectionHelper = () => {
+    if (!collectionData || !playerALocked || !playerBLocked) return null;
+    
+    const playerACards = collectionData.playerA[currentPhase]?.[currentLetter] || [];
+    const playerBCards = collectionData.playerB[currentPhase]?.[currentLetter] || [];
+    const progress = getProgressPercentage();
+    const currentLetters = getAllLettersForPhase(currentPhase);
+    const currentLetterIndex = currentLetters.indexOf(currentLetter) + 1;
+    const totalLettersInPhase = currentLetters.length;
+    
+    return (
+      <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-xl border-2 border-purple-500/30 p-6 shadow-2xl">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-bold text-white mb-2">
+            📦 Card Collection Helper
+          </h2>
+          <p className="text-gray-400 text-sm">
+            Gather cards alphabetically for both decks at once
+          </p>
+        </div>
+        
+        {/* Progress Bar */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-purple-400">
+              {currentPhase}s - Letter {currentLetter} ({currentLetterIndex}/{totalLettersInPhase})
+            </span>
+            <span className="text-sm font-bold text-green-400">
+              {progress}% Complete
+            </span>
+          </div>
+          <div className="w-full bg-gray-700/50 rounded-full h-3 overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 transition-all duration-500 ease-out rounded-full"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
+        
+        {/* Current Letter Display */}
+        <div className="bg-gray-900/60 rounded-lg border border-purple-500/20 p-4 mb-6">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 shadow-lg shadow-purple-500/50 mb-3">
+              <span className="text-5xl font-bold text-white">{currentLetter}</span>
+            </div>
+            <p className="text-gray-400 text-sm">
+              Collecting {currentPhase} cards starting with "{currentLetter}"
+            </p>
+          </div>
+        </div>
+        
+        {/* Cards Grid - Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {/* Player A Column */}
+          <div className="bg-gray-800/60 rounded-lg border border-purple-500/30 p-4">
+            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-purple-500/20">
+              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+              <h3 className="text-lg font-bold text-purple-400">Player A</h3>
+            </div>
+            
+            {playerACards.length > 0 ? (
+              <ul className="space-y-2">
+                {playerACards.map((card, idx) => (
+                  <li key={idx} className="flex items-center justify-between text-gray-200 bg-gray-900/40 rounded px-3 py-2">
+                    <span className="font-medium">{card.name}</span>
+                    <span className="text-purple-400 font-bold text-sm bg-purple-500/20 px-2 py-1 rounded">
+                      {card.quantity}x
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-gray-500 text-sm">
+                  No cards needed for letter "{currentLetter}"
+                </p>
+              </div>
+            )}
+          </div>
+          
+          {/* Player B Column */}
+          <div className="bg-gray-800/60 rounded-lg border border-pink-500/30 p-4">
+            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-pink-500/20">
+              <div className="w-3 h-3 rounded-full bg-pink-500"></div>
+              <h3 className="text-lg font-bold text-pink-400">Player B</h3>
+            </div>
+            
+            {playerBCards.length > 0 ? (
+              <ul className="space-y-2">
+                {playerBCards.map((card, idx) => (
+                  <li key={idx} className="flex items-center justify-between text-gray-200 bg-gray-900/40 rounded px-3 py-2">
+                    <span className="font-medium">{card.name}</span>
+                    <span className="text-pink-400 font-bold text-sm bg-pink-500/20 px-2 py-1 rounded">
+                      {card.quantity}x
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-gray-500 text-sm">
+                  No cards needed for letter "{currentLetter}"
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Navigation Buttons */}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={navigatePrevious}
+            disabled={!canNavigatePrevious()}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              canNavigatePrevious()
+                ? "bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 shadow-lg"
+                : "bg-gray-800 text-gray-600 cursor-not-allowed"
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous
+          </button>
+          
+          <button
+            onClick={navigateNext}
+            disabled={!canNavigateNext()}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              canNavigateNext()
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/30"
+                : "bg-gray-800 text-gray-600 cursor-not-allowed"
+            }`}
+          >
+            Next
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+        
+        {/* Completion Message */}
+        {progress === 100 && (
+          <div className="mt-6 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/50 rounded-lg p-4 text-center">
+            <p className="text-green-400 font-semibold text-lg">
+              🎉 All cards collected! Both decks are ready to build!
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const DecklistModal = () => {
     if (!isModalOpen || !modalDecklist) return null;
 
