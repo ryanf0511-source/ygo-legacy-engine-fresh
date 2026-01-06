@@ -103,6 +103,162 @@ const HeadToHeadBuilder = () => {
     setPlayerB(null);
     setPlayerALocked(false);
     setPlayerBLocked(false);
+    setCollectionData(null);
+    setCurrentPhase('Monster');
+    setCurrentLetter('A');
+  };
+  
+  // Generate collection data when both players are locked
+  useEffect(() => {
+    if (playerALocked && playerBLocked && playerA && playerB) {
+      generateCollectionData();
+    } else {
+      setCollectionData(null);
+      setCurrentPhase('Monster');
+      setCurrentLetter('A');
+    }
+  }, [playerALocked, playerBLocked, playerA, playerB]);
+  
+  const generateCollectionData = () => {
+    // Organize all cards by type and letter
+    const organizeCards = (deck) => {
+      const organized = {
+        Monster: {},
+        Spell: {},
+        Trap: {}
+      };
+      
+      [...(deck.main_deck || []), ...(deck.extra_deck || [])].forEach(card => {
+        const type = card.card_type;
+        // Only include Monster, Spell, Trap
+        if (!['Monster', 'Spell', 'Trap'].includes(type)) return;
+        
+        const firstLetter = card.name.charAt(0).toUpperCase();
+        
+        if (!organized[type][firstLetter]) {
+          organized[type][firstLetter] = [];
+        }
+        organized[type][firstLetter].push({
+          name: card.name,
+          quantity: card.quantity
+        });
+      });
+      
+      return organized;
+    };
+    
+    const playerACards = organizeCards(playerA);
+    const playerBCards = organizeCards(playerB);
+    
+    setCollectionData({
+      playerA: playerACards,
+      playerB: playerBCards
+    });
+  };
+  
+  const getAllLettersForPhase = (phase) => {
+    if (!collectionData) return [];
+    
+    const lettersSet = new Set();
+    
+    // Get all letters from both players for this phase
+    Object.keys(collectionData.playerA[phase] || {}).forEach(letter => lettersSet.add(letter));
+    Object.keys(collectionData.playerB[phase] || {}).forEach(letter => lettersSet.add(letter));
+    
+    return Array.from(lettersSet).sort();
+  };
+  
+  const getProgressPercentage = () => {
+    if (!collectionData) return 0;
+    
+    const phases = ['Monster', 'Spell', 'Trap'];
+    let totalLetters = 0;
+    let completedLetters = 0;
+    
+    phases.forEach(phase => {
+      const letters = getAllLettersForPhase(phase);
+      totalLetters += letters.length;
+      
+      const phaseIndex = phases.indexOf(phase);
+      const currentPhaseIndex = phases.indexOf(currentPhase);
+      
+      if (phaseIndex < currentPhaseIndex) {
+        // All letters in previous phases are completed
+        completedLetters += letters.length;
+      } else if (phaseIndex === currentPhaseIndex) {
+        // Count completed letters in current phase
+        const currentLetterIndex = letters.indexOf(currentLetter);
+        completedLetters += currentLetterIndex;
+      }
+    });
+    
+    return totalLetters > 0 ? Math.round((completedLetters / totalLetters) * 100) : 0;
+  };
+  
+  const navigateNext = () => {
+    const phases = ['Monster', 'Spell', 'Trap'];
+    const currentLetters = getAllLettersForPhase(currentPhase);
+    const currentIndex = currentLetters.indexOf(currentLetter);
+    
+    if (currentIndex < currentLetters.length - 1) {
+      // Move to next letter in current phase
+      setCurrentLetter(currentLetters[currentIndex + 1]);
+    } else {
+      // Move to next phase
+      const phaseIndex = phases.indexOf(currentPhase);
+      if (phaseIndex < phases.length - 1) {
+        const nextPhase = phases[phaseIndex + 1];
+        const nextPhaseLetters = getAllLettersForPhase(nextPhase);
+        if (nextPhaseLetters.length > 0) {
+          setCurrentPhase(nextPhase);
+          setCurrentLetter(nextPhaseLetters[0]);
+        }
+      }
+    }
+  };
+  
+  const navigatePrevious = () => {
+    const phases = ['Monster', 'Spell', 'Trap'];
+    const currentLetters = getAllLettersForPhase(currentPhase);
+    const currentIndex = currentLetters.indexOf(currentLetter);
+    
+    if (currentIndex > 0) {
+      // Move to previous letter in current phase
+      setCurrentLetter(currentLetters[currentIndex - 1]);
+    } else {
+      // Move to previous phase
+      const phaseIndex = phases.indexOf(currentPhase);
+      if (phaseIndex > 0) {
+        const prevPhase = phases[phaseIndex - 1];
+        const prevPhaseLetters = getAllLettersForPhase(prevPhase);
+        if (prevPhaseLetters.length > 0) {
+          setCurrentPhase(prevPhase);
+          setCurrentLetter(prevPhaseLetters[prevPhaseLetters.length - 1]);
+        }
+      }
+    }
+  };
+  
+  const canNavigateNext = () => {
+    if (!collectionData) return false;
+    const phases = ['Monster', 'Spell', 'Trap'];
+    const currentLetters = getAllLettersForPhase(currentPhase);
+    const currentIndex = currentLetters.indexOf(currentLetter);
+    const phaseIndex = phases.indexOf(currentPhase);
+    
+    // Can navigate if not at last letter of last phase
+    return !(phaseIndex === phases.length - 1 && currentIndex === currentLetters.length - 1);
+  };
+  
+  const canNavigatePrevious = () => {
+    if (!collectionData) return false;
+    const phases = ['Monster', 'Spell', 'Trap'];
+    const currentLetters = getAllLettersForPhase(currentPhase);
+    const currentIndex = currentLetters.indexOf(currentLetter);
+    const phaseIndex = phases.indexOf(currentPhase);
+    
+    // Can navigate if not at first letter of first phase
+    return !(phaseIndex === 0 && currentIndex === 0);
   };
 
   const calculateTotalCards = (cards) => {
