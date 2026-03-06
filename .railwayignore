@@ -1,0 +1,14 @@
+node_modules/
+.git/
+.emergent/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env.local
+.DS_Store
+*.log
+db_export/
