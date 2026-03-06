@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"card_name":{"$numberInt":"1"}},"name":"card_name_1"}],"uuid":"466102bb2b1647c0aec34285cd8b0db0","collectionName":"master_extra_deck_list","type":"collection"}
