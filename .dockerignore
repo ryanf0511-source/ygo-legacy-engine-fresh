@@ -1,0 +1,26 @@
+# Exclude everything by default
+*
+
+# Include only what we need
+!backend/
+backend/__pycache__
+backend/*.pyc
+
+# Exclude unnecessary backend files
+backend/venv/
+backend/.venv/
+backend/.pytest_cache/
+backend/.mypy_cache/
+
+# Don't need these in the container
+node_modules/
+frontend/
+database1_final/
+database2_final/
+db_export/
+*.csv
+*.md
+.git/
+.gitignore
+.emergent/
+test_result.md
