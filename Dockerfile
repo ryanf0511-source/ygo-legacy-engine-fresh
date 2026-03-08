@@ -18,8 +18,11 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 # Copy backend code
 COPY backend/ ./backend/
 
+# Set working directory to backend
+WORKDIR /app/backend
+
 # Expose port (Railway will override with $PORT)
 EXPOSE 8001
 
-# Start command
-CMD cd backend && uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}
+# Start command - use shell form for environment variable expansion
+CMD uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}
