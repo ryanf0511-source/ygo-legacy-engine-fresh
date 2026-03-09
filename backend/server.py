@@ -437,15 +437,38 @@ async def get_decklists_by_event(event: str):
 # Include the router in the main app
 app.include_router(api_router)
 
-# Add root health check endpoint
-@app.get("/")
-async def root():
-    return {
-        "status": "online",
-        "message": "YGO Legacy Engine API is running",
-        "api_docs": "/docs",
-        "api_base": "/api"
-    }
+# Serve static files from React build
+FRONTEND_BUILD_PATH = Path(__file__).parent.parent / "frontend" / "build"
+
+if FRONTEND_BUILD_PATH.exists():
+    # Mount static files
+    app.mount("/static", StaticFiles(directory=str(FRONTEND_BUILD_PATH / "static")), name="static")
+    
+    # Serve React app for all non-API routes
+    @app.get("/{full_path:path}")
+    async def serve_react_app(full_path: str):
+        # Don't intercept API routes, health, or docs
+        if full_path.startswith(("api/", "health", "docs", "redoc", "openapi.json")):
+            raise HTTPException(status_code=404, detail="Not found")
+        
+        # Serve index.html for all other routes (React Router handles them)
+        index_path = FRONTEND_BUILD_PATH / "index.html"
+        if index_path.exists():
+            return FileResponse(index_path)
+        
+        raise HTTPException(status_code=404, detail="Frontend not found")
+else:
+    print(f"Warning: Frontend build not found at {FRONTEND_BUILD_PATH}")
+    
+    # Add root health check endpoint (fallback when no frontend)
+    @app.get("/")
+    async def root():
+        return {
+            "status": "online",
+            "message": "YGO Legacy Engine API is running",
+            "api_docs": "/docs",
+            "api_base": "/api"
+        }
 
 # Add health check endpoint
 @app.get("/health")
