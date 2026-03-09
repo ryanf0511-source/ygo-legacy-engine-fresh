@@ -167,3 +167,7 @@ android-sdk/ -e
 
 # EXCEPTION: Allow frontend/build for Railway deployment
 !frontend/build/
+-e 
+# Environment files
+*.env
+*.env.*
