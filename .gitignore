@@ -25,11 +25,10 @@ node_modules/
 next-env.d.ts
 *.tsbuildinfo
 
-# Production builds (but KEEP frontend/build for Railway)
+# Production builds
 /build
 dist/
 dist
-!frontend/build/
 
 # Environment files (comprehensive coverage)
 
