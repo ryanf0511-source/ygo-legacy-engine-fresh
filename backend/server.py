@@ -14,10 +14,21 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection with error handling
+try:
+    mongo_url = os.environ.get('MONGO_URL') or os.getenv('MONGO_URL')
+    db_name = os.environ.get('DB_NAME') or os.getenv('DB_NAME', 'ygo_legacy_db')
+    
+    if not mongo_url:
+        raise ValueError("MONGO_URL environment variable is not set")
+    
+    print(f"Connecting to MongoDB: {mongo_url[:50]}...")  # Log first 50 chars for debugging
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[db_name]
+    print(f"MongoDB client created for database: {db_name}")
+except Exception as e:
+    print(f"ERROR: Failed to initialize MongoDB connection: {e}")
+    raise
 
 # Create the main app without a prefix
 app = FastAPI()
