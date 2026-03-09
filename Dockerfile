@@ -3,11 +3,17 @@ FROM node:18-slim AS frontend-builder
 
 WORKDIR /app/frontend
 
-# Copy frontend files
-COPY frontend/package.json frontend/yarn.lock ./
-RUN yarn install --frozen-lockfile --network-timeout 100000
+# Copy frontend package files
+COPY frontend/package.json ./
+COPY frontend/yarn.lock* ./
 
+# Install dependencies
+RUN yarn install --network-timeout 100000
+
+# Copy rest of frontend
 COPY frontend/ ./
+
+# Build frontend
 RUN yarn build
 
 # Python runtime stage
