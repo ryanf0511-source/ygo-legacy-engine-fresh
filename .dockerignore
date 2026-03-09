@@ -1,8 +1,11 @@
-# Include backend and frontend source
+# Include backend and frontend build
 !backend/
-!frontend/
+!frontend/build/
+!frontend/public/
+!frontend/package.json
+!frontend/yarn.lock
 
-# Exclude build artifacts and dependencies
+# Exclude source and dependencies
 backend/__pycache__/
 backend/*.pyc
 backend/venv/
@@ -10,9 +13,9 @@ backend/.venv/
 backend/.pytest_cache/
 backend/.mypy_cache/
 
+frontend/src/
 frontend/node_modules/
 frontend/.cache/
-frontend/build/
 
 # Exclude data files
 database1_final/
