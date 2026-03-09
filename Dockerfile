@@ -1,22 +1,4 @@
-# Use Node 20 for building (React Router v7 requires Node 20+)
-FROM node:20-slim AS frontend-builder
-
-WORKDIR /app/frontend
-
-# Copy frontend package files
-COPY frontend/package.json ./
-COPY frontend/yarn.lock* ./
-
-# Install dependencies
-RUN yarn install --network-timeout 100000
-
-# Copy rest of frontend
-COPY frontend/ ./
-
-# Build frontend
-RUN yarn build
-
-# Python runtime stage
+# Simple Python runtime - NO building
 FROM python:3.10-slim
 
 WORKDIR /app
@@ -28,23 +10,18 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/* \
     && update-ca-certificates
 
-# Copy backend requirements
+# Copy and install backend dependencies
 COPY backend/requirements.txt ./backend/
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
 # Copy backend code
 COPY backend/ ./backend/
 
-# Copy built frontend from builder stage
-COPY --from=frontend-builder /app/frontend/build/ ./frontend/build/
+# Copy PRE-BUILT frontend
+COPY frontend/build/ ./frontend/build/
 
-# Set working directory to backend
+# Set working directory
 WORKDIR /app/backend
 
-# Expose port
-EXPOSE 8001
-
-# Start command
+# Start server
 CMD uvicorn server:app --host 0.0.0.0 --port ${PORT:-8001}
