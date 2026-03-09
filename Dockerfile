@@ -1,7 +1,18 @@
-# Use Python 3.10 slim image
+# Use Node 18 for building, then Python for runtime
+FROM node:18-slim AS frontend-builder
+
+WORKDIR /app/frontend
+
+# Copy frontend files
+COPY frontend/package.json frontend/yarn.lock ./
+RUN yarn install --frozen-lockfile --network-timeout 100000
+
+COPY frontend/ ./
+RUN yarn build
+
+# Python runtime stage
 FROM python:3.10-slim
 
-# Set working directory
 WORKDIR /app
 
 # Install system dependencies
@@ -20,13 +31,13 @@ RUN pip install --no-cache-dir -r backend/requirements.txt
 # Copy backend code
 COPY backend/ ./backend/
 
-# Copy pre-built frontend
-COPY frontend/build/ ./frontend/build/
+# Copy built frontend from builder stage
+COPY --from=frontend-builder /app/frontend/build/ ./frontend/build/
 
 # Set working directory to backend
 WORKDIR /app/backend
 
-# Expose port (Railway will override with $PORT)
+# Expose port
 EXPOSE 8001
 
 # Start command
