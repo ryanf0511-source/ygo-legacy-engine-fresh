@@ -1,0 +1,9 @@
+# robots.txt for YGOLegacyEngine
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://ygolegacyengine.com/sitemap.xml
+
+# Crawl-delay (optional, prevents overloading)
+Crawl-delay: 1
