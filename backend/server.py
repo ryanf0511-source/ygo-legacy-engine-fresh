@@ -15,7 +15,7 @@ import certifi
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection with error handling
+# MongoDB connection with error handling and SSL certificates
 try:
     mongo_url = os.environ.get('MONGO_URL') or os.getenv('MONGO_URL')
     db_name = os.environ.get('DB_NAME') or os.getenv('DB_NAME', 'ygo_legacy_db')
@@ -24,7 +24,14 @@ try:
         raise ValueError("MONGO_URL environment variable is not set")
     
     print(f"Connecting to MongoDB: {mongo_url[:50]}...")  # Log first 50 chars for debugging
-    client = AsyncIOMotorClient(mongo_url)
+    
+    # Create MongoDB client with SSL certificate verification
+    client = AsyncIOMotorClient(
+        mongo_url,
+        tlsCAFile=certifi.where(),  # Use certifi for SSL certificates
+        serverSelectionTimeoutMS=10000  # 10 second timeout
+    )
+    
     db = client[db_name]
     print(f"MongoDB client created for database: {db_name}")
 except Exception as e:
