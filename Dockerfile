@@ -1,5 +1,5 @@
-# Use Node 18 for building, then Python for runtime
-FROM node:18-slim AS frontend-builder
+# Use Node 20 for building (React Router v7 requires Node 20+)
+FROM node:20-slim AS frontend-builder
 
 WORKDIR /app/frontend
 
