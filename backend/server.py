@@ -426,6 +426,34 @@ async def get_decklists_by_event(event: str):
 # Include the router in the main app
 app.include_router(api_router)
 
+# Add root health check endpoint
+@app.get("/")
+async def root():
+    return {
+        "status": "online",
+        "message": "YGO Legacy Engine API is running",
+        "api_docs": "/docs",
+        "api_base": "/api"
+    }
+
+# Add health check endpoint
+@app.get("/health")
+async def health_check():
+    try:
+        # Test database connection
+        await db.command("ping")
+        return {
+            "status": "healthy",
+            "database": "connected",
+            "message": "All systems operational"
+        }
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "database": "disconnected",
+            "error": str(e)
+        }
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
