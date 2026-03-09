@@ -25,10 +25,11 @@ try:
     
     print(f"Connecting to MongoDB: {mongo_url[:50]}...")  # Log first 50 chars for debugging
     
-    # Create MongoDB client with SSL certificate verification
+    # Create MongoDB client with relaxed TLS settings
     client = AsyncIOMotorClient(
         mongo_url,
-        tlsCAFile=certifi.where(),  # Use certifi for SSL certificates
+        tls=True,
+        tlsAllowInvalidCertificates=True,  # Workaround for SSL issues
         serverSelectionTimeoutMS=10000  # 10 second timeout
     )
     
